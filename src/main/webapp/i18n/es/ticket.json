@@ -1,0 +1,46 @@
+
+{
+    "ipicytBussApp": {
+        "ticket" : {
+            "home": {
+                "title": "Tickets",
+                "createLabel": "Crear nuevo Ticket",
+                "createOrEditLabel": "Crear o editar Ticket"
+            },
+            "created": "Un nuevo Ticket ha sido creado con el identificador {{ param }}",
+            "updated": "Un Ticket ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Ticket ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Ticket {{ id }}?"
+            },
+            "detail": {
+                "title": "Ticket"
+            },
+            "idRemedyGlpi": "Id Remedy Glpi",
+            "subTypeTransaction": "Sub Type Transaction",
+            "idReferenciaCliente": "Id Referencia Cliente",
+            "company": "Company",
+            "prodCat01": "Prod Cat 01",
+            "prodCat02": "Prod Cat 02",
+            "prodCat03": "Prod Cat 03",
+            "nombreProducto": "Nombre Producto",
+            "catOp01": "Cat Op 01",
+            "catOp02": "Cat Op 02",
+            "catOp03": "Cat Op 03",
+            "glpiTicketsRequesttypesId": "Glpi Tickets Requesttypes Id",
+            "contactType": "Contact Type",
+            "impact": "Impact",
+            "urgency": "Urgency",
+            "glpiTicketsName": "Glpi Tickets Name",
+            "glpiTicketsContent": "Glpi Tickets Content",
+            "notes": "Notes",
+            "actualSysDate": "Actual Sys Date",
+            "caller": "Caller",
+            "callerEmail": "Caller Email",
+            "callerPhone": "Caller Phone",
+            "typeTransaccion": "Type Transaccion",
+            "idGlpi": "Id Glpi",
+            "idtypeReqSol": "Idtype Req Sol"
+        }
+    }
+}

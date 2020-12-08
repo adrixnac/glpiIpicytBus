@@ -1,0 +1,270 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTicketLabel" jhiTranslate="ipicytBussApp.ticket.home.createOrEditLabel">Create or edit a Ticket</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!ticket.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="ticket.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.idRemedyGlpi" for="field_idRemedyGlpi">Id Remedy Glpi</label>
+            <input type="text" class="form-control" name="idRemedyGlpi" id="field_idRemedyGlpi"
+                [(ngModel)]="ticket.idRemedyGlpi" required/>
+            <div [hidden]="!(editForm.controls.idRemedyGlpi?.dirty && editForm.controls.idRemedyGlpi?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.idRemedyGlpi?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.subTypeTransaction" for="field_subTypeTransaction">Sub Type Transaction</label>
+            <input type="text" class="form-control" name="subTypeTransaction" id="field_subTypeTransaction"
+                [(ngModel)]="ticket.subTypeTransaction" required/>
+            <div [hidden]="!(editForm.controls.subTypeTransaction?.dirty && editForm.controls.subTypeTransaction?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.subTypeTransaction?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.idReferenciaCliente" for="field_idReferenciaCliente">Id Referencia Cliente</label>
+            <input type="text" class="form-control" name="idReferenciaCliente" id="field_idReferenciaCliente"
+                [(ngModel)]="ticket.idReferenciaCliente" required/>
+            <div [hidden]="!(editForm.controls.idReferenciaCliente?.dirty && editForm.controls.idReferenciaCliente?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.idReferenciaCliente?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.company" for="field_company">Company</label>
+            <input type="text" class="form-control" name="company" id="field_company"
+                [(ngModel)]="ticket.company" required/>
+            <div [hidden]="!(editForm.controls.company?.dirty && editForm.controls.company?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.company?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.prodCat01" for="field_prodCat01">Prod Cat 01</label>
+            <input type="text" class="form-control" name="prodCat01" id="field_prodCat01"
+                [(ngModel)]="ticket.prodCat01" required/>
+            <div [hidden]="!(editForm.controls.prodCat01?.dirty && editForm.controls.prodCat01?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prodCat01?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.prodCat02" for="field_prodCat02">Prod Cat 02</label>
+            <input type="text" class="form-control" name="prodCat02" id="field_prodCat02"
+                [(ngModel)]="ticket.prodCat02" required/>
+            <div [hidden]="!(editForm.controls.prodCat02?.dirty && editForm.controls.prodCat02?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prodCat02?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.prodCat03" for="field_prodCat03">Prod Cat 03</label>
+            <input type="text" class="form-control" name="prodCat03" id="field_prodCat03"
+                [(ngModel)]="ticket.prodCat03" required/>
+            <div [hidden]="!(editForm.controls.prodCat03?.dirty && editForm.controls.prodCat03?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prodCat03?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.nombreProducto" for="field_nombreProducto">Nombre Producto</label>
+            <input type="text" class="form-control" name="nombreProducto" id="field_nombreProducto"
+                [(ngModel)]="ticket.nombreProducto" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.catOp01" for="field_catOp01">Cat Op 01</label>
+            <input type="text" class="form-control" name="catOp01" id="field_catOp01"
+                [(ngModel)]="ticket.catOp01" required/>
+            <div [hidden]="!(editForm.controls.catOp01?.dirty && editForm.controls.catOp01?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.catOp01?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.catOp02" for="field_catOp02">Cat Op 02</label>
+            <input type="text" class="form-control" name="catOp02" id="field_catOp02"
+                [(ngModel)]="ticket.catOp02" required/>
+            <div [hidden]="!(editForm.controls.catOp02?.dirty && editForm.controls.catOp02?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.catOp02?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.catOp03" for="field_catOp03">Cat Op 03</label>
+            <input type="text" class="form-control" name="catOp03" id="field_catOp03"
+                [(ngModel)]="ticket.catOp03" required/>
+            <div [hidden]="!(editForm.controls.catOp03?.dirty && editForm.controls.catOp03?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.catOp03?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.glpiTicketsRequesttypesId" for="field_glpiTicketsRequesttypesId">Glpi Tickets Requesttypes Id</label>
+            <input type="text" class="form-control" name="glpiTicketsRequesttypesId" id="field_glpiTicketsRequesttypesId"
+                [(ngModel)]="ticket.glpiTicketsRequesttypesId" required/>
+            <div [hidden]="!(editForm.controls.glpiTicketsRequesttypesId?.dirty && editForm.controls.glpiTicketsRequesttypesId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.glpiTicketsRequesttypesId?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.contactType" for="field_contactType">Contact Type</label>
+            <input type="text" class="form-control" name="contactType" id="field_contactType"
+                [(ngModel)]="ticket.contactType" required/>
+            <div [hidden]="!(editForm.controls.contactType?.dirty && editForm.controls.contactType?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.contactType?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.impact" for="field_impact">Impact</label>
+            <input type="text" class="form-control" name="impact" id="field_impact"
+                [(ngModel)]="ticket.impact" required/>
+            <div [hidden]="!(editForm.controls.impact?.dirty && editForm.controls.impact?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.impact?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.urgency" for="field_urgency">Urgency</label>
+            <input type="text" class="form-control" name="urgency" id="field_urgency"
+                [(ngModel)]="ticket.urgency" required/>
+            <div [hidden]="!(editForm.controls.urgency?.dirty && editForm.controls.urgency?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.urgency?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.glpiTicketsName" for="field_glpiTicketsName">Glpi Tickets Name</label>
+            <input type="text" class="form-control" name="glpiTicketsName" id="field_glpiTicketsName"
+                [(ngModel)]="ticket.glpiTicketsName" required/>
+            <div [hidden]="!(editForm.controls.glpiTicketsName?.dirty && editForm.controls.glpiTicketsName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.glpiTicketsName?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.glpiTicketsContent" for="field_glpiTicketsContent">Glpi Tickets Content</label>
+            <input type="text" class="form-control" name="glpiTicketsContent" id="field_glpiTicketsContent"
+                [(ngModel)]="ticket.glpiTicketsContent" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.notes" for="field_notes">Notes</label>
+            <input type="text" class="form-control" name="notes" id="field_notes"
+                [(ngModel)]="ticket.notes" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.actualSysDate" for="field_actualSysDate">Actual Sys Date</label>
+            <div class="d-flex">
+                <input id="field_actualSysDate" type="datetime-local" class="form-control" name="actualSysDate" [(ngModel)]="ticket.actualSysDate"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.actualSysDate?.dirty && editForm.controls.actualSysDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.actualSysDate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.actualSysDate?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.caller" for="field_caller">Caller</label>
+            <input type="text" class="form-control" name="caller" id="field_caller"
+                [(ngModel)]="ticket.caller" required/>
+            <div [hidden]="!(editForm.controls.caller?.dirty && editForm.controls.caller?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.caller?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.callerEmail" for="field_callerEmail">Caller Email</label>
+            <input type="text" class="form-control" name="callerEmail" id="field_callerEmail"
+                [(ngModel)]="ticket.callerEmail" required/>
+            <div [hidden]="!(editForm.controls.callerEmail?.dirty && editForm.controls.callerEmail?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.callerEmail?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.callerPhone" for="field_callerPhone">Caller Phone</label>
+            <input type="text" class="form-control" name="callerPhone" id="field_callerPhone"
+                [(ngModel)]="ticket.callerPhone" required/>
+            <div [hidden]="!(editForm.controls.callerPhone?.dirty && editForm.controls.callerPhone?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.callerPhone?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.typeTransaccion" for="field_typeTransaccion">Type Transaccion</label>
+            <input type="text" class="form-control" name="typeTransaccion" id="field_typeTransaccion"
+                [(ngModel)]="ticket.typeTransaccion" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.idGlpi" for="field_idGlpi">Id Glpi</label>
+            <input type="text" class="form-control" name="idGlpi" id="field_idGlpi"
+                [(ngModel)]="ticket.idGlpi" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.idtypeReqSol" for="field_idtypeReqSol">Idtype Req Sol</label>
+            <input type="text" class="form-control" name="idtypeReqSol" id="field_idtypeReqSol"
+                [(ngModel)]="ticket.idtypeReqSol" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

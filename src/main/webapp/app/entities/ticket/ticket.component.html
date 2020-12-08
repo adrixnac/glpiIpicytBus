@@ -1,0 +1,114 @@
+<div>
+    <h2>
+        <span jhiTranslate="ipicytBussApp.ticket.home.title">Tickets</span>
+        <button class="btn btn-primary float-right jh-create-entity create-ticket" [routerLink]="['/', { outlets: { popup: ['ticket-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ipicytBussApp.ticket.home.createLabel">
+            Create new Ticket
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="tickets">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="idRemedyGlpi"><span jhiTranslate="ipicytBussApp.ticket.idRemedyGlpi">Id Remedy Glpi</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="subTypeTransaction"><span jhiTranslate="ipicytBussApp.ticket.subTypeTransaction">Sub Type Transaction</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="idReferenciaCliente"><span jhiTranslate="ipicytBussApp.ticket.idReferenciaCliente">Id Referencia Cliente</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="company"><span jhiTranslate="ipicytBussApp.ticket.company">Company</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="prodCat01"><span jhiTranslate="ipicytBussApp.ticket.prodCat01">Prod Cat 01</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="prodCat02"><span jhiTranslate="ipicytBussApp.ticket.prodCat02">Prod Cat 02</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="prodCat03"><span jhiTranslate="ipicytBussApp.ticket.prodCat03">Prod Cat 03</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nombreProducto"><span jhiTranslate="ipicytBussApp.ticket.nombreProducto">Nombre Producto</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="catOp01"><span jhiTranslate="ipicytBussApp.ticket.catOp01">Cat Op 01</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="catOp02"><span jhiTranslate="ipicytBussApp.ticket.catOp02">Cat Op 02</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="catOp03"><span jhiTranslate="ipicytBussApp.ticket.catOp03">Cat Op 03</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="glpiTicketsRequesttypesId"><span jhiTranslate="ipicytBussApp.ticket.glpiTicketsRequesttypesId">Glpi Tickets Requesttypes Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="contactType"><span jhiTranslate="ipicytBussApp.ticket.contactType">Contact Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="impact"><span jhiTranslate="ipicytBussApp.ticket.impact">Impact</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="urgency"><span jhiTranslate="ipicytBussApp.ticket.urgency">Urgency</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="glpiTicketsName"><span jhiTranslate="ipicytBussApp.ticket.glpiTicketsName">Glpi Tickets Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="glpiTicketsContent"><span jhiTranslate="ipicytBussApp.ticket.glpiTicketsContent">Glpi Tickets Content</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="notes"><span jhiTranslate="ipicytBussApp.ticket.notes">Notes</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="actualSysDate"><span jhiTranslate="ipicytBussApp.ticket.actualSysDate">Actual Sys Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="caller"><span jhiTranslate="ipicytBussApp.ticket.caller">Caller</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="callerEmail"><span jhiTranslate="ipicytBussApp.ticket.callerEmail">Caller Email</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="callerPhone"><span jhiTranslate="ipicytBussApp.ticket.callerPhone">Caller Phone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typeTransaccion"><span jhiTranslate="ipicytBussApp.ticket.typeTransaccion">Type Transaccion</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="idGlpi"><span jhiTranslate="ipicytBussApp.ticket.idGlpi">Id Glpi</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="idtypeReqSol"><span jhiTranslate="ipicytBussApp.ticket.idtypeReqSol">Idtype Req Sol</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ticket of tickets ;trackBy: trackId">
+                <td><a [routerLink]="['../ticket', ticket.id ]">{{ticket.id}}</a></td>
+                <td>{{ticket.idRemedyGlpi}}</td>
+                <td>{{ticket.subTypeTransaction}}</td>
+                <td>{{ticket.idReferenciaCliente}}</td>
+                <td>{{ticket.company}}</td>
+                <td>{{ticket.prodCat01}}</td>
+                <td>{{ticket.prodCat02}}</td>
+                <td>{{ticket.prodCat03}}</td>
+                <td>{{ticket.nombreProducto}}</td>
+                <td>{{ticket.catOp01}}</td>
+                <td>{{ticket.catOp02}}</td>
+                <td>{{ticket.catOp03}}</td>
+                <td>{{ticket.glpiTicketsRequesttypesId}}</td>
+                <td>{{ticket.contactType}}</td>
+                <td>{{ticket.impact}}</td>
+                <td>{{ticket.urgency}}</td>
+                <td>{{ticket.glpiTicketsName}}</td>
+                <td>{{ticket.glpiTicketsContent}}</td>
+                <td>{{ticket.notes}}</td>
+                <td>{{ticket.actualSysDate | date:'medium'}}</td>
+                <td>{{ticket.caller}}</td>
+                <td>{{ticket.callerEmail}}</td>
+                <td>{{ticket.callerPhone}}</td>
+                <td>{{ticket.typeTransaccion}}</td>
+                <td>{{ticket.idGlpi}}</td>
+                <td>{{ticket.idtypeReqSol}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../ticket', ticket.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ticket/'+ ticket.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ticket/'+ ticket.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="tickets && tickets.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+
+<div *ngIf="ticket">
+    <h2><span jhiTranslate="ipicytBussApp.ticket.detail.title">Ticket</span> {{ticket.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ipicytBussApp.ticket.idRemedyGlpi">Id Remedy Glpi</span></dt>
+        <dd>
+            <span>{{ticket.idRemedyGlpi}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.subTypeTransaction">Sub Type Transaction</span></dt>
+        <dd>
+            <span>{{ticket.subTypeTransaction}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.idReferenciaCliente">Id Referencia Cliente</span></dt>
+        <dd>
+            <span>{{ticket.idReferenciaCliente}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.company">Company</span></dt>
+        <dd>
+            <span>{{ticket.company}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.prodCat01">Prod Cat 01</span></dt>
+        <dd>
+            <span>{{ticket.prodCat01}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.prodCat02">Prod Cat 02</span></dt>
+        <dd>
+            <span>{{ticket.prodCat02}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.prodCat03">Prod Cat 03</span></dt>
+        <dd>
+            <span>{{ticket.prodCat03}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.nombreProducto">Nombre Producto</span></dt>
+        <dd>
+            <span>{{ticket.nombreProducto}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.catOp01">Cat Op 01</span></dt>
+        <dd>
+            <span>{{ticket.catOp01}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.catOp02">Cat Op 02</span></dt>
+        <dd>
+            <span>{{ticket.catOp02}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.catOp03">Cat Op 03</span></dt>
+        <dd>
+            <span>{{ticket.catOp03}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.glpiTicketsRequesttypesId">Glpi Tickets Requesttypes Id</span></dt>
+        <dd>
+            <span>{{ticket.glpiTicketsRequesttypesId}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.contactType">Contact Type</span></dt>
+        <dd>
+            <span>{{ticket.contactType}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.impact">Impact</span></dt>
+        <dd>
+            <span>{{ticket.impact}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.urgency">Urgency</span></dt>
+        <dd>
+            <span>{{ticket.urgency}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.glpiTicketsName">Glpi Tickets Name</span></dt>
+        <dd>
+            <span>{{ticket.glpiTicketsName}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.glpiTicketsContent">Glpi Tickets Content</span></dt>
+        <dd>
+            <span>{{ticket.glpiTicketsContent}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.notes">Notes</span></dt>
+        <dd>
+            <span>{{ticket.notes}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.actualSysDate">Actual Sys Date</span></dt>
+        <dd>
+            <span>{{ticket.actualSysDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.caller">Caller</span></dt>
+        <dd>
+            <span>{{ticket.caller}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.callerEmail">Caller Email</span></dt>
+        <dd>
+            <span>{{ticket.callerEmail}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.callerPhone">Caller Phone</span></dt>
+        <dd>
+            <span>{{ticket.callerPhone}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.typeTransaccion">Type Transaccion</span></dt>
+        <dd>
+            <span>{{ticket.typeTransaccion}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.idGlpi">Id Glpi</span></dt>
+        <dd>
+            <span>{{ticket.idGlpi}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.idtypeReqSol">Idtype Req Sol</span></dt>
+        <dd>
+            <span>{{ticket.idtypeReqSol}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ticket/'+ ticket.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

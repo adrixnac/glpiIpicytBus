@@ -1,0 +1,48 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "mx.edu.ipicyt.imssipicytsd",
+      "nativeLanguage": "es"
+    },
+    "jhipsterVersion": "4.14.5",
+    "baseName": "ipicytBuss",
+    "packageName": "mx.edu.ipicyt.imssipicytsd",
+    "packageFolder": "mx/edu/ipicyt/imssipicytsd",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSocialSignIn": false,
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "dc2abb4190425d24732d81f8a298a89e6c227013",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "yarn",
+    "applicationType": "monolith",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "es",
+    "languages": [
+      "es"
+    ],
+    "appsFolders": [
+      "ipicytBuss"
+    ],
+    "directoryPath": "../",
+    "dockerRepositoryName": "",
+    "dockerPushCommand": "docker push",
+    "kubernetesNamespace": "default",
+    "kubernetesServiceType": "Ingress",
+    "ingressDomain": "default.192.168.99.100.nip.io"
+  }
+}
