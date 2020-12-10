@@ -7,9 +7,13 @@ import mx.edu.ipicyt.imssipicytsd.domain.GlpiResponse;
 import mx.edu.ipicyt.imssipicytsd.domain.Session;
 import mx.edu.ipicyt.imssipicytsd.domain.Ticket;
 import mx.edu.ipicyt.imssipicytsd.repository.TicketRepository;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.ContentType;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -48,20 +52,8 @@ public class TicketIpicytService {
                 .addHeader("Authorization", "")
 
                 // Add body
-                .bodyString("{\"input\": {\"status\": 1," +
-                    "\"global_validation\": 1," +
-                    "\"itilcategories_id\": "+ ticket.getCatOp01() +
-                    ",\"priority\": "+ ticket.getUrgency()+
-                    ",\"type\": "+ ticket.getGlpiTicketsRequesttypesId()+"," +
-                    "\"requesttypes_id\": "+ ticket.getContactType()+
-                    ",\"date\": \"2020-11-01 00:00:00\"," +
-                    "\"time_to_resolve\": \"14-11-2020 00:00\"," +
-                    "\"urgency\": "+ ticket.getUrgency()+"," +
-                    "\"impact\": " +ticket.getImpact()+ "," +
-                    "\"locations_id\": 1," +
-                    "\"name\": \" MSI IMSS Ticket " + ticket.getIdRemedyGlpi() + " - " + ticket.getGlpiTicketsName() + " \"," +
-                    "\"content\": \" "+ ticket.getGlpiTicketsContent()+ "\"}}",
-                    ContentType.APPLICATION_JSON)
+                .bodyString(this.generateJSON(ticket), ContentType.APPLICATION_JSON)
+
                 // Fetch request and return content
                 .execute().returnContent();
 
@@ -81,40 +73,26 @@ public class TicketIpicytService {
 
             return glpiResponse;
         }
-        catch (IOException e) { System.out.println(e); }
+        catch (IOException | JSONException e) { System.out.println(e); }
 
         this.CloseSession(token);
         return null;
     }
 
     public GlpiResponse updateTicket( Ticket ticket){
+        log.debug("ticket a actualizar: {}",ticket.getIdGlpi());
         String token = "";
         token = this.GetSession().getSession_token();
         try {
 
             // Create request
-            Content content = Request.Put("http://0.0.0.0:83/apirest.php/Ticket/"+ticket.getIdRemedyGlpi())
+            Content content = Request.Put("http://0.0.0.0:83/apirest.php/Ticket/"+ticket.getIdGlpi())
 
                 // Add headers
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Session-Token", token)
-
                 // Add body
-                .bodyString("{\"input\": {\"status\": 1," +
-                        "\"global_validation\": 1," +
-                        "\"itilcategories_id\": "+ ticket.getCatOp01() +
-                        ",\"priority\": "+ ticket.getUrgency()+
-                        ",\"type\": "+ ticket.getGlpiTicketsRequesttypesId()+"," +
-                        "\"requesttypes_id\": "+ ticket.getContactType()+
-                        ",\"date\": \"2020-11-01 00:00:00\"," +
-                        "\"time_to_resolve\": \"14-11-2020 00:00\"," +
-                        "\"urgency\": "+ ticket.getUrgency()+"," +
-                        "\"impact\": " +ticket.getImpact()+ "," +
-                        "\"locations_id\": 1," +
-                        "\"name\": \" MSI IMSS Ticket " + ticket.getIdRemedyGlpi() + " - " + ticket.getGlpiTicketsName() + " \"," +
-                        "\"content\": \" "+ ticket.getGlpiTicketsContent()+ "\"}}",
-                    ContentType.APPLICATION_JSON)
-
+                .bodyString(this.generateJSON(ticket), ContentType.APPLICATION_JSON)
                 // Fetch request and return content
                 .execute().returnContent();
 
@@ -124,7 +102,7 @@ public class TicketIpicytService {
 
 
         }
-        catch (IOException e) { System.out.println(e); }
+        catch (IOException | JSONException e) { System.out.println(e); }
 
         return null;
     }
@@ -178,6 +156,32 @@ public class TicketIpicytService {
             System.out.println(content);
         }
         catch (IOException e) { System.out.println(e); }
+    }
+
+    private String generateJSON(Ticket ticket) throws JSONException {
+
+        JSONObject json = new JSONObject();
+        JSONArray array = new JSONArray();
+        JSONObject item = new JSONObject();
+        item.put("name",ticket.getIdRemedyGlpi() + "-"+ ticket.getNombreProducto()+" - "+ ticket.getGlpiTicketsName());
+        //item.put("date",ticket.getActualSysDate());
+        item.put("status",ticket.getSubTypeTransaction());
+        item.put("users_id_recipient","");
+        item.put("content",ticket.getGlpiTicketsContent());
+        item.put("requesttypes_id","");
+        item.put("urgency",ticket.getUrgency());
+        item.put("impact",ticket.getImpact());
+        item.put("priority",ticket.getGlpiTicketsRequesttypesId());
+        item.put("itilcategories_id",ticket.getProdCat01());
+        item.put("global_validation","1");
+        item.put("content",ticket.getGlpiTicketsContent());
+        array.put(item);
+        json.put("input",array);
+        String tmp=json.toString();
+        tmp = tmp.replace("[","");
+        tmp = tmp.replace("]","");
+        log.debug("JSON resultado {}", tmp);
+        return tmp;
     }
 
 

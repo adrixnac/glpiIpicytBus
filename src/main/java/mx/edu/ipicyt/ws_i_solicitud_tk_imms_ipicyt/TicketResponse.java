@@ -2,61 +2,84 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2020.12.08 a las 06:44:28 AM CST 
+// Generado el: 2020.12.10 a las 12:18:50 PM CST 
 //
 
 
-package https._10_100_10_1.wsdl._public.glpi.ws_a_solicitud_tk_imms_ipicyt;
+package mx.edu.ipicyt.ws_i_solicitud_tk_imms_ipicyt;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Clase Java para TicketDetails complex type.
+ * <p>Clase Java para anonymous complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="TicketDetails">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="type_transaccion" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Id_referencia_cliente" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="glpi_tickets.id" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="status_transaccion.id" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="result_message" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
+ * &lt;complexType>
+ *   &lt;simpleContent>
+ *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
+ *       &lt;attribute name="type_transaccion" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="Id_referencia_cliente" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="glpi_tickets.id" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="status_transaccion.id" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="result_message" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *     &lt;/extension>
+ *   &lt;/simpleContent>
  * &lt;/complexType>
  * </pre>
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TicketDetails", propOrder = {
-    "typeTransaccion",
-    "idReferenciaCliente",
-    "glpiTicketsId",
-    "statusTransaccionId",
-    "resultMessage"
+@XmlType(name = "", propOrder = {
+    "value"
 })
-public class TicketDetails {
+@XmlRootElement(name = "TicketResponse")
+public class TicketResponse {
 
-    @XmlElement(name = "type_transaccion", required = true)
+    @XmlValue
+    protected String value;
+    @XmlAttribute(name = "type_transaccion")
     protected String typeTransaccion;
-    @XmlElement(name = "Id_referencia_cliente", required = true)
+    @XmlAttribute(name = "Id_referencia_cliente")
     protected String idReferenciaCliente;
-    @XmlElement(name = "glpi_tickets.id")
-    protected int glpiTicketsId;
-    @XmlElement(name = "status_transaccion.id", required = true)
+    @XmlAttribute(name = "glpi_tickets.id")
+    protected String glpiTicketsId;
+    @XmlAttribute(name = "status_transaccion.id")
     protected String statusTransaccionId;
-    @XmlElement(name = "result_message", required = true)
+    @XmlAttribute(name = "result_message")
     protected String resultMessage;
+
+    /**
+     * Obtiene el valor de la propiedad value.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * Define el valor de la propiedad value.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setValue(String value) {
+        this.value = value;
+    }
 
     /**
      * Obtiene el valor de la propiedad typeTransaccion.
@@ -109,16 +132,24 @@ public class TicketDetails {
     /**
      * Obtiene el valor de la propiedad glpiTicketsId.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getGlpiTicketsId() {
+    public String getGlpiTicketsId() {
         return glpiTicketsId;
     }
 
     /**
      * Define el valor de la propiedad glpiTicketsId.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setGlpiTicketsId(int value) {
+    public void setGlpiTicketsId(String value) {
         this.glpiTicketsId = value;
     }
 

@@ -2,11 +2,11 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2020.12.08 a las 06:44:28 AM CST 
+// Generado el: 2020.12.10 a las 12:18:50 PM CST 
 //
 
 
-package https._10_100_10_1.wsdl._public.glpi.ws_i_solicitud_tk_imms_ipicyt;
+package mx.edu.ipicyt.ws_i_solicitud_tk_imms_ipicyt;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -47,6 +47,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="caller" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="calle_email" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="caller_phone" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="id_glpi" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Ticket_IPICYT" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="glpi_tickets.content" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -76,10 +79,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "actualSysDate",
     "caller",
     "calleEmail",
-    "callerPhone"
+    "callerPhone",
+    "idGlpi",
+    "ticketIPICYT",
+    "glpiTicketsContent"
 })
-@XmlRootElement(name = "GetTicketRequest")
-public class GetTicketRequest {
+@XmlRootElement(name = "TicketRequest")
+public class TicketRequest {
 
     @XmlElement(name = "id_remedy_glpi")
     protected int idRemedyGlpi;
@@ -122,6 +128,12 @@ public class GetTicketRequest {
     protected String calleEmail;
     @XmlElement(name = "caller_phone", required = true)
     protected String callerPhone;
+    @XmlElement(name = "id_glpi", required = true)
+    protected String idGlpi;
+    @XmlElement(name = "Ticket_IPICYT", required = true)
+    protected String ticketIPICYT;
+    @XmlElement(name = "glpi_tickets.content", required = true)
+    protected String glpiTicketsContent;
 
     /**
      * Obtiene el valor de la propiedad idRemedyGlpi.
@@ -593,6 +605,78 @@ public class GetTicketRequest {
      */
     public void setCallerPhone(String value) {
         this.callerPhone = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idGlpi.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdGlpi() {
+        return idGlpi;
+    }
+
+    /**
+     * Define el valor de la propiedad idGlpi.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdGlpi(String value) {
+        this.idGlpi = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad ticketIPICYT.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTicketIPICYT() {
+        return ticketIPICYT;
+    }
+
+    /**
+     * Define el valor de la propiedad ticketIPICYT.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTicketIPICYT(String value) {
+        this.ticketIPICYT = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad glpiTicketsContent.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getGlpiTicketsContent() {
+        return glpiTicketsContent;
+    }
+
+    /**
+     * Define el valor de la propiedad glpiTicketsContent.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setGlpiTicketsContent(String value) {
+        this.glpiTicketsContent = value;
     }
 
 }

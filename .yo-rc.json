@@ -36,13 +36,17 @@
       "es"
     ],
     "appsFolders": [
-      "ipicytBuss"
+      "ipicytBus"
     ],
     "directoryPath": "../",
     "dockerRepositoryName": "",
     "dockerPushCommand": "docker push",
     "kubernetesNamespace": "default",
     "kubernetesServiceType": "Ingress",
-    "ingressDomain": "default.192.168.99.100.nip.io"
+    "ingressDomain": "default.192.168.99.100.nip.io",
+    "monitoring": "no",
+    "openshiftNamespace": "default",
+    "storageType": "persistent",
+    "registryReplicas": 2
   }
 }

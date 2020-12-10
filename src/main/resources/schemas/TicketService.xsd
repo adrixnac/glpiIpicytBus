@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="http://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt"
+           xmlns:spr="http://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://10.100.10.1/WSDL/public/glpi/ws_i_solicitud_tk_imms_ipicyt"
-           targetNamespace="https://10.100.10.1/WSDL/public/glpi/ws_i_solicitud_tk_imms_ipicyt" elementFormDefault="qualified">
-
-    <xs:element name="GetTicketRequest">
+    <!-- SOAP IN -->
+    <xs:element name="TicketRequest" >
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="id_remedy_glpi" type="xs:int"/>
@@ -26,26 +29,27 @@
                 <xs:element name="caller" type="xs:string"/>
                 <xs:element name="calle_email" type="xs:string"/>
                 <xs:element name="caller_phone" type="xs:string"/>
+                <xs:element name="id_glpi" type="xs:string" />
+                <xs:element name="Ticket_IPICYT" type="xs:string" />
+                <xs:element name="glpi_tickets.content" type="xs:string" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="GetTicketResponse">
+    <!-- SOAP OUT -->
+    <xs:element name="TicketResponse">
         <xs:complexType>
-            <xs:sequence>
-                <xs:element name= "TicketDetails" type="tns:TicketDetails"/>
-            </xs:sequence>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute type="xs:string" name="type_transaccion"/>
+                    <xs:attribute type="xs:string" name="Id_referencia_cliente"/>
+                    <xs:attribute type="xs:string" name="glpi_tickets.id"/>
+                    <xs:attribute type="xs:string" name="status_transaccion.id"/>
+                    <xs:attribute type="xs:string" name="result_message"/>
+                </xs:extension>
+            </xs:simpleContent>
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="TicketDetails">
-        <xs:sequence>
-            <xs:element name="type_transaccion" type="xs:string"/>
-            <xs:element name="Id_referencia_cliente" type="xs:string"/>
-            <xs:element name="glpi_tickets.id" type="xs:int"/>
-            <xs:element name="status_transaccion.id" type="xs:string"/>
-            <xs:element name="result_message" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
 
 </xs:schema>
