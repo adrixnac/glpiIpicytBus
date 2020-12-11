@@ -114,11 +114,11 @@ public class TicketIpicytService {
         try {
 
             // Create request
-            Content content = Request.Get("http://0.0.0.0:83/apirest.php/initSession/")
+            Content content = Request.Get("http://10.100.10.3/apirest.php/initSession/")
                 // Add headers
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization", "Basic Z2xwaTpnbHBp")
-                .addHeader("App-Token", "Uhy6zT5OrjAOkxt7CETA9uNOua9KpBFHiZdn9s51")
+                .addHeader("App-Token", "#Dd&WSgu9qGn")
                 .execute().returnContent();
 
             // Print content
@@ -146,7 +146,7 @@ public class TicketIpicytService {
                 // Add headers
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization", "Basic Z2xwaTpnbHBp")
-                .addHeader("App-Token", "Uhy6zT5OrjAOkxt7CETA9uNOua9KpBFHiZdn9s51")
+                .addHeader("App-Token", "#Dd&WSgu9qGn")
                 .addHeader("Session-Token", token)
 
                 // Fetch request and return content
