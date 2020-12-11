@@ -5,9 +5,9 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JAVA_OPTS=""
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs rsync tree
-COPY ../../Downloads /source
-RUN rm -f ./.gitignore
-RUN rm -f ./.gitattributes
+COPY . /source
+RUN rm -f ./.gitignore 
+RUN rm -f ./.gitattributes 
 RUN npm install
 RUN ./mvnw package -Pprod -DskipTests
 RUN rsync -av --ignore-existing ./ /source/
