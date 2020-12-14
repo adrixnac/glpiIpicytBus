@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2020.12.10 a las 12:18:50 PM CST 
+// Generado el: 2020.12.14 a las 08:24:56 AM CST 
 //
 
 
@@ -50,6 +50,15 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="id_glpi" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Ticket_IPICYT" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="glpi_tickets.content" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Attachment.FileName1" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Attachment.FileType1" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Attachment.FileData1" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
+ *         &lt;element name="Attachment.FileName2" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Attachment.FileType2" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Attachment.FileData2" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
+ *         &lt;element name="Attachment.FileName3" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Attachment.FileType3" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Attachment.FileData3" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -82,7 +91,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "callerPhone",
     "idGlpi",
     "ticketIPICYT",
-    "glpiTicketsContent"
+    "glpiTicketsContent",
+    "attachmentFileName1",
+    "attachmentFileType1",
+    "attachmentFileData1",
+    "attachmentFileName2",
+    "attachmentFileType2",
+    "attachmentFileData2",
+    "attachmentFileName3",
+    "attachmentFileType3",
+    "attachmentFileData3"
 })
 @XmlRootElement(name = "TicketRequest")
 public class TicketRequest {
@@ -134,6 +152,24 @@ public class TicketRequest {
     protected String ticketIPICYT;
     @XmlElement(name = "glpi_tickets.content", required = true)
     protected String glpiTicketsContent;
+    @XmlElement(name = "Attachment.FileName1", required = true)
+    protected String attachmentFileName1;
+    @XmlElement(name = "Attachment.FileType1", required = true)
+    protected String attachmentFileType1;
+    @XmlElement(name = "Attachment.FileData1", required = true)
+    protected byte[] attachmentFileData1;
+    @XmlElement(name = "Attachment.FileName2", required = true)
+    protected String attachmentFileName2;
+    @XmlElement(name = "Attachment.FileType2", required = true)
+    protected String attachmentFileType2;
+    @XmlElement(name = "Attachment.FileData2", required = true)
+    protected byte[] attachmentFileData2;
+    @XmlElement(name = "Attachment.FileName3", required = true)
+    protected String attachmentFileName3;
+    @XmlElement(name = "Attachment.FileType3", required = true)
+    protected String attachmentFileType3;
+    @XmlElement(name = "Attachment.FileData3", required = true)
+    protected byte[] attachmentFileData3;
 
     /**
      * Obtiene el valor de la propiedad idRemedyGlpi.
@@ -677,6 +713,216 @@ public class TicketRequest {
      */
     public void setGlpiTicketsContent(String value) {
         this.glpiTicketsContent = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad attachmentFileName1.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAttachmentFileName1() {
+        return attachmentFileName1;
+    }
+
+    /**
+     * Define el valor de la propiedad attachmentFileName1.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAttachmentFileName1(String value) {
+        this.attachmentFileName1 = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad attachmentFileType1.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAttachmentFileType1() {
+        return attachmentFileType1;
+    }
+
+    /**
+     * Define el valor de la propiedad attachmentFileType1.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAttachmentFileType1(String value) {
+        this.attachmentFileType1 = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad attachmentFileData1.
+     * 
+     * @return
+     *     possible object is
+     *     byte[]
+     */
+    public byte[] getAttachmentFileData1() {
+        return attachmentFileData1;
+    }
+
+    /**
+     * Define el valor de la propiedad attachmentFileData1.
+     * 
+     * @param value
+     *     allowed object is
+     *     byte[]
+     */
+    public void setAttachmentFileData1(byte[] value) {
+        this.attachmentFileData1 = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad attachmentFileName2.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAttachmentFileName2() {
+        return attachmentFileName2;
+    }
+
+    /**
+     * Define el valor de la propiedad attachmentFileName2.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAttachmentFileName2(String value) {
+        this.attachmentFileName2 = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad attachmentFileType2.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAttachmentFileType2() {
+        return attachmentFileType2;
+    }
+
+    /**
+     * Define el valor de la propiedad attachmentFileType2.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAttachmentFileType2(String value) {
+        this.attachmentFileType2 = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad attachmentFileData2.
+     * 
+     * @return
+     *     possible object is
+     *     byte[]
+     */
+    public byte[] getAttachmentFileData2() {
+        return attachmentFileData2;
+    }
+
+    /**
+     * Define el valor de la propiedad attachmentFileData2.
+     * 
+     * @param value
+     *     allowed object is
+     *     byte[]
+     */
+    public void setAttachmentFileData2(byte[] value) {
+        this.attachmentFileData2 = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad attachmentFileName3.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAttachmentFileName3() {
+        return attachmentFileName3;
+    }
+
+    /**
+     * Define el valor de la propiedad attachmentFileName3.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAttachmentFileName3(String value) {
+        this.attachmentFileName3 = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad attachmentFileType3.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAttachmentFileType3() {
+        return attachmentFileType3;
+    }
+
+    /**
+     * Define el valor de la propiedad attachmentFileType3.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAttachmentFileType3(String value) {
+        this.attachmentFileType3 = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad attachmentFileData3.
+     * 
+     * @return
+     *     possible object is
+     *     byte[]
+     */
+    public byte[] getAttachmentFileData3() {
+        return attachmentFileData3;
+    }
+
+    /**
+     * Define el valor de la propiedad attachmentFileData3.
+     * 
+     * @param value
+     *     allowed object is
+     *     byte[]
+     */
+    public void setAttachmentFileData3(byte[] value) {
+        this.attachmentFileData3 = value;
     }
 
 }

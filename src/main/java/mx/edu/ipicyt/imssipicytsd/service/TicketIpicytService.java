@@ -44,12 +44,12 @@ public class TicketIpicytService {
             log.debug("Entra al try:  {}", token);
 
             // Create request
-            Content content = Request.Post("http://0.0.0.0:83/apirest.php/Ticket/")
+            Content content = Request.Post("http://10.100.10.3/apirest.php/Ticket/")
 
                 // Add headers
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Session-Token", token)
-                .addHeader("Authorization", "")
+                .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
 
                 // Add body
                 .bodyString(this.generateJSON(ticket), ContentType.APPLICATION_JSON)
@@ -86,11 +86,12 @@ public class TicketIpicytService {
         try {
 
             // Create request
-            Content content = Request.Put("http://0.0.0.0:83/apirest.php/Ticket/"+ticket.getIdGlpi())
+            Content content = Request.Put("http://10.100.10.3/apirest.php/Ticket/"+ticket.getIdGlpi())
 
                 // Add headers
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Session-Token", token)
+                .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
                 // Add body
                 .bodyString(this.generateJSON(ticket), ContentType.APPLICATION_JSON)
                 // Fetch request and return content
@@ -117,7 +118,7 @@ public class TicketIpicytService {
             Content content = Request.Get("http://10.100.10.3/apirest.php/initSession/")
                 // Add headers
                 .addHeader("Content-Type", "application/json")
-                .addHeader("Authorization", "Basic Z2xwaTpnbHBp")
+                .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
                 .addHeader("App-Token", "#Dd&WSgu9qGn")
                 .execute().returnContent();
 
@@ -145,7 +146,7 @@ public class TicketIpicytService {
 
                 // Add headers
                 .addHeader("Content-Type", "application/json")
-                .addHeader("Authorization", "Basic Z2xwaTpnbHBp")
+                .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
                 .addHeader("App-Token", "#Dd&WSgu9qGn")
                 .addHeader("Session-Token", token)
 
