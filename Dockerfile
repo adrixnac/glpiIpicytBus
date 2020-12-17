@@ -13,7 +13,7 @@ RUN ./mvnw package -Pprod -DskipTests
 RUN rsync -av --ignore-existing ./ /source/
 RUN cp -a target/*.war /app.war
 RUN rm -rf /source/*
-COPY ./keystore.p12 /source
+COPY ./mkyong.p12 /source/
 CMD echo "The application will start in ${JHIPSTER_SLEEP}s..." && \
    sleep ${JHIPSTER_SLEEP} && \
    java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar /app.war
