@@ -6,13 +6,14 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs rsync tree
 COPY . /source
-RUN rm -f ./.gitignore 
-RUN rm -f ./.gitattributes 
+RUN rm -f ./.gitignore
+RUN rm -f ./.gitattributes
 RUN npm install
 RUN ./mvnw package -Pprod -DskipTests
 RUN rsync -av --ignore-existing ./ /source/
 RUN cp -a target/*.war /app.war
 RUN rm -rf /source/*
+COPY ./keystore.p12 /source
 CMD echo "The application will start in ${JHIPSTER_SLEEP}s..." && \
    sleep ${JHIPSTER_SLEEP} && \
    java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar /app.war
