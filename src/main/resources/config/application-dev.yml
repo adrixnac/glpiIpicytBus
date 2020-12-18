@@ -93,14 +93,7 @@ liquibase:
 #        key-alias: ipicytBuss
 # ===================================================================
 server:
-    port: 8443
-    ssl:
-        enabled: true
-        key-store: mkyong.p12
-        key-store-password: 123456qW
-        key-store-type: PKCS12
-#        ciphers: ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA
-#        enabled-protocols: TLS
+    port: 8080
 
 # ===================================================================
 # JHipster specific properties

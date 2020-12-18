@@ -31,7 +31,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("TicketServicePort");
         wsdl11Definition.setLocationUri("/ws_i_solicitud_tk_imms_ipicyt");
-        wsdl11Definition.setTargetNamespace("http://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt");
+        wsdl11Definition.setTargetNamespace("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt");
         wsdl11Definition.setSchema(ticketServiceSchema);
 
         return wsdl11Definition;
