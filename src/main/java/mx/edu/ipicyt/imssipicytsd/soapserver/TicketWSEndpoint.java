@@ -1,7 +1,6 @@
 package mx.edu.ipicyt.imssipicytsd.soapserver;
-
-import mx.edu.ipicyt.ws_i_solicitud_tk_imms_ipicyt.TicketRequest;
-import mx.edu.ipicyt.ws_i_solicitud_tk_imms_ipicyt.TicketResponse;
+import https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt.TicketRequest;
+import https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt.TicketResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -11,7 +10,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Endpoint
 public class TicketWSEndpoint {
 
-    private static final String NAMESPACE_URI = "http://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt";
+    private static final String NAMESPACE_URI = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt";
 
     private TicketService ticketService;
 

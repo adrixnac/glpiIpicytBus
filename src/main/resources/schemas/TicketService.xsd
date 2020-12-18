@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema attributeFormDefault="unqualified"
            elementFormDefault="qualified"
-           targetNamespace="http://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt"
-           xmlns:spr="http://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+           targetNamespace="https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt"
+           xmlns:spr="https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
 
     <!-- SOAP IN -->
     <xs:element name="TicketRequest" >
@@ -46,6 +47,15 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="UsernameToken">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Username" type="xs:string" />
+                <xs:element name="Password" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="Id" type="xs:ID"/>
+        </xs:complexType></xs:element>
+
     <!-- SOAP OUT -->
     <xs:element name="TicketResponse">
         <xs:complexType>
@@ -60,6 +70,4 @@
             </xs:simpleContent>
         </xs:complexType>
     </xs:element>
-
-
 </xs:schema>
