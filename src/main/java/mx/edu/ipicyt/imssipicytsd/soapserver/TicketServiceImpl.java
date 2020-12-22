@@ -1,12 +1,12 @@
 package mx.edu.ipicyt.imssipicytsd.soapserver;
 
+import https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt.TicketRequest;
+import https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt.TicketResponse;
 import mx.edu.ipicyt.imssipicytsd.domain.GlpiResponse;
 import mx.edu.ipicyt.imssipicytsd.domain.Ticket;
 import mx.edu.ipicyt.imssipicytsd.repository.TicketRepository;
 import mx.edu.ipicyt.imssipicytsd.service.TicketIpicytService;
 import mx.edu.ipicyt.imssipicytsd.web.rest.TicketResource;
-import https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt.TicketRequest;
-import https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt.TicketResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,6 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.net.URISyntaxException;
-import java.time.Instant;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -130,11 +129,6 @@ public class TicketServiceImpl implements TicketService{
         ticket.idReferenciaCliente(ticketRequest.getIdReferenciaCliente());
         ticket.caller(ticketRequest.getCaller());
         ticket.setSubTypeTransaction(ticketRequest.getSubTypeTransaction());
-
-
-
-
-
 
         // nuevo ticket
         if (ticketSolicitado.isEmpty()  ){

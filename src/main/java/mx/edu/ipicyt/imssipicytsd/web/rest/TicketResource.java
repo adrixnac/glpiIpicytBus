@@ -32,9 +32,7 @@ import java.util.Optional;
 public class TicketResource {
 
     private final Logger log = LoggerFactory.getLogger(TicketResource.class);
-
     private static final String ENTITY_NAME = "ticket";
-
     private final TicketRepository ticketRepository;
     private final TicketIpicytService ticketIpicytService;
 
