@@ -3,12 +3,11 @@ package mx.edu.ipicyt.imssipicytsd.service;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
+import mx.edu.ipicyt.imssipicytsd.config.ApplicationProperties;
 import mx.edu.ipicyt.imssipicytsd.domain.GlpiResponse;
 import mx.edu.ipicyt.imssipicytsd.domain.Session;
 import mx.edu.ipicyt.imssipicytsd.domain.Ticket;
 import mx.edu.ipicyt.imssipicytsd.repository.TicketRepository;
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.ContentType;
@@ -28,34 +27,36 @@ import java.net.URISyntaxException;
 public class TicketIpicytService {
     private static final Logger log = LoggerFactory.getLogger(TicketIpicytService.class);
     private final TicketRepository ticketRepository;
+    private final String glpiAuthorization;
+    private final String glpiToken;
+    private final String glpiURL;
 
-    public TicketIpicytService(TicketRepository ticketRepository) {
+    public TicketIpicytService(TicketRepository ticketRepository, ApplicationProperties glpi) {
         this.ticketRepository = ticketRepository;
+        this.glpiURL = glpi.getGlpiUrl();
+        this.glpiAuthorization = glpi.getGlpiAuthorization();
+        this.glpiToken = glpi.getGlpiToken();
     }
 
     public GlpiResponse createTicket(@Valid @RequestBody Ticket ticket) throws URISyntaxException {
         log.debug("Contenido Ipicyt createTicket: ", ticket.toString());
         String token = "";
 
-
+        log.debug("Session-Token {}", this.glpiToken);
+        log.debug("App-Token {}", this.glpiToken);
+        log.debug("Authorization {}", this.glpiAuthorization);
 
         token = this.GetSession().getSession_token();
         try {
 
             log.debug("Entra al try:  {}", token);
 
-            // Create request
-            Content content = Request.Post("http://10.100.10.3/apirest.php/Ticket/")
-
-                // Add headers
+            Content content = Request.Post(this.glpiURL + "/Ticket/")
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Session-Token", token)
-                .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
-
-                // Add body
+                .addHeader("App-Token", this.glpiToken)
+                .addHeader("Authorization", "Basic " + this.glpiAuthorization)
                 .bodyString(this.generateJSON(ticket), ContentType.APPLICATION_JSON)
-
-                // Fetch request and return content
                 .execute().returnContent();
 
             // Print content
@@ -87,12 +88,13 @@ public class TicketIpicytService {
         try {
 
             // Create request
-            Content content = Request.Put("http://10.100.10.3/apirest.php/Ticket/"+ticket.getIdGlpi())
+            Content content = Request.Put(this.glpiURL + "/Ticket/" + ticket.getIdGlpi())
 
                 // Add headers
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Session-Token", token)
-                .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
+                .addHeader("Authorization", "Basic " + this.glpiAuthorization)
+                .addHeader("App-Token", this.glpiToken)
                 // Add body
                 .bodyString(this.generateJSON(ticket), ContentType.APPLICATION_JSON)
                 // Fetch request and return content
@@ -112,16 +114,21 @@ public class TicketIpicytService {
 
     private Session GetSession(){
         // Inicia Sesión (GET )
+        log.debug("GLPI get session ");
+        log.debug("Basic {} ", this.glpiAuthorization);
+        log.debug("this.glpiToken {}", this.glpiToken);
 
         try {
 
             // Create request
-            Content content = Request.Get("http://10.100.10.3/apirest.php/initSession/")
+            Content content = Request.Get(this.glpiURL + "/initSession")
+
                 // Add headers
                 .addHeader("Content-Type", "application/json")
-                .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
-                .addHeader("App-Token", "#Dd&WSgu9qGn")
+                .addHeader("Authorization", "Basic " + this.glpiAuthorization)
+                .addHeader("App-Token", this.glpiToken)
                 .execute().returnContent();
+
 
             // Print content
             Gson gson = new Gson();
@@ -143,13 +150,13 @@ public class TicketIpicytService {
         try {
 
             // Create request
-            Content content = Request.Get("http://0.0.0.0:83/apirest.php/killSession/")
+            Content content = Request.Get(this.glpiURL + "/killSession/")
 
                 // Add headers
                 .addHeader("Content-Type", "application/json")
-                .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
-                .addHeader("App-Token", "#Dd&WSgu9qGn")
                 .addHeader("Session-Token", token)
+                .addHeader("Authorization", "Basic " + this.glpiAuthorization)
+                .addHeader("App-Token", this.glpiToken)
 
                 // Fetch request and return content
                 .execute().returnContent();

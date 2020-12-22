@@ -1,27 +1,22 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
-// Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2020.12.18 a las 12:41:09 PM CST 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7
+// Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a>
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen.
+// Generado el: 2020.12.22 a las 12:45:55 PM CST
 //
 
 
 package https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Clase Java para anonymous complex type.
- * 
+ *
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -64,8 +59,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -173,7 +168,7 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad idRemedyGlpi.
-     * 
+     *
      */
     public int getIdRemedyGlpi() {
         return idRemedyGlpi;
@@ -181,7 +176,7 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad idRemedyGlpi.
-     * 
+     *
      */
     public void setIdRemedyGlpi(int value) {
         this.idRemedyGlpi = value;
@@ -189,11 +184,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad typeTransaccion.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getTypeTransaccion() {
         return typeTransaccion;
@@ -201,11 +196,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad typeTransaccion.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setTypeTransaccion(String value) {
         this.typeTransaccion = value;
@@ -213,11 +208,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad subTypeTransaction.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getSubTypeTransaction() {
         return subTypeTransaction;
@@ -225,11 +220,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad subTypeTransaction.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setSubTypeTransaction(String value) {
         this.subTypeTransaction = value;
@@ -237,11 +232,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad idReferenciaCliente.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getIdReferenciaCliente() {
         return idReferenciaCliente;
@@ -249,11 +244,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad idReferenciaCliente.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setIdReferenciaCliente(String value) {
         this.idReferenciaCliente = value;
@@ -261,11 +256,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad company.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getCompany() {
         return company;
@@ -273,11 +268,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad company.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setCompany(String value) {
         this.company = value;
@@ -285,11 +280,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad prodCat01.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getProdCat01() {
         return prodCat01;
@@ -297,11 +292,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad prodCat01.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setProdCat01(String value) {
         this.prodCat01 = value;
@@ -309,11 +304,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad prodCat02.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getProdCat02() {
         return prodCat02;
@@ -321,11 +316,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad prodCat02.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setProdCat02(String value) {
         this.prodCat02 = value;
@@ -333,11 +328,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad prodCat03.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getProdCat03() {
         return prodCat03;
@@ -345,11 +340,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad prodCat03.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setProdCat03(String value) {
         this.prodCat03 = value;
@@ -357,11 +352,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad nombreProducto.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getNombreProducto() {
         return nombreProducto;
@@ -369,11 +364,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad nombreProducto.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setNombreProducto(String value) {
         this.nombreProducto = value;
@@ -381,11 +376,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad catOp01.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getCatOp01() {
         return catOp01;
@@ -393,11 +388,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad catOp01.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setCatOp01(String value) {
         this.catOp01 = value;
@@ -405,11 +400,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad catOp02.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getCatOp02() {
         return catOp02;
@@ -417,11 +412,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad catOp02.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setCatOp02(String value) {
         this.catOp02 = value;
@@ -429,11 +424,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad glpiTicketsRequesttypesId.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getGlpiTicketsRequesttypesId() {
         return glpiTicketsRequesttypesId;
@@ -441,11 +436,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad glpiTicketsRequesttypesId.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setGlpiTicketsRequesttypesId(String value) {
         this.glpiTicketsRequesttypesId = value;
@@ -453,11 +448,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad contactType.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getContactType() {
         return contactType;
@@ -465,11 +460,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad contactType.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setContactType(String value) {
         this.contactType = value;
@@ -477,11 +472,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad impact.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getImpact() {
         return impact;
@@ -489,11 +484,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad impact.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setImpact(String value) {
         this.impact = value;
@@ -501,11 +496,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad urgency.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getUrgency() {
         return urgency;
@@ -513,11 +508,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad urgency.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setUrgency(String value) {
         this.urgency = value;
@@ -525,11 +520,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad notes.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getNotes() {
         return notes;
@@ -537,11 +532,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad notes.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setNotes(String value) {
         this.notes = value;
@@ -549,11 +544,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad actualSysDate.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
-     *     
+     *
      */
     public XMLGregorianCalendar getActualSysDate() {
         return actualSysDate;
@@ -561,11 +556,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad actualSysDate.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
-     *     
+     *
      */
     public void setActualSysDate(XMLGregorianCalendar value) {
         this.actualSysDate = value;
@@ -573,11 +568,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad caller.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getCaller() {
         return caller;
@@ -585,11 +580,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad caller.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setCaller(String value) {
         this.caller = value;
@@ -597,11 +592,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad calleEmail.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getCalleEmail() {
         return calleEmail;
@@ -609,11 +604,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad calleEmail.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setCalleEmail(String value) {
         this.calleEmail = value;
@@ -621,11 +616,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad callerPhone.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getCallerPhone() {
         return callerPhone;
@@ -633,11 +628,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad callerPhone.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setCallerPhone(String value) {
         this.callerPhone = value;
@@ -645,11 +640,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad idGlpi.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getIdGlpi() {
         return idGlpi;
@@ -657,11 +652,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad idGlpi.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setIdGlpi(String value) {
         this.idGlpi = value;
@@ -669,11 +664,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad ticketIPICYT.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getTicketIPICYT() {
         return ticketIPICYT;
@@ -681,11 +676,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad ticketIPICYT.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setTicketIPICYT(String value) {
         this.ticketIPICYT = value;
@@ -693,11 +688,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad glpiTicketsContent.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getGlpiTicketsContent() {
         return glpiTicketsContent;
@@ -705,11 +700,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad glpiTicketsContent.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setGlpiTicketsContent(String value) {
         this.glpiTicketsContent = value;
@@ -717,11 +712,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad attachmentFileName1.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getAttachmentFileName1() {
         return attachmentFileName1;
@@ -729,11 +724,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad attachmentFileName1.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setAttachmentFileName1(String value) {
         this.attachmentFileName1 = value;
@@ -741,11 +736,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad attachmentFileType1.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getAttachmentFileType1() {
         return attachmentFileType1;
@@ -753,11 +748,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad attachmentFileType1.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setAttachmentFileType1(String value) {
         this.attachmentFileType1 = value;
@@ -765,7 +760,7 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad attachmentFileData1.
-     * 
+     *
      * @return
      *     possible object is
      *     byte[]
@@ -776,7 +771,7 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad attachmentFileData1.
-     * 
+     *
      * @param value
      *     allowed object is
      *     byte[]
@@ -787,11 +782,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad attachmentFileName2.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getAttachmentFileName2() {
         return attachmentFileName2;
@@ -799,11 +794,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad attachmentFileName2.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setAttachmentFileName2(String value) {
         this.attachmentFileName2 = value;
@@ -811,11 +806,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad attachmentFileType2.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getAttachmentFileType2() {
         return attachmentFileType2;
@@ -823,11 +818,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad attachmentFileType2.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setAttachmentFileType2(String value) {
         this.attachmentFileType2 = value;
@@ -835,7 +830,7 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad attachmentFileData2.
-     * 
+     *
      * @return
      *     possible object is
      *     byte[]
@@ -846,7 +841,7 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad attachmentFileData2.
-     * 
+     *
      * @param value
      *     allowed object is
      *     byte[]
@@ -857,11 +852,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad attachmentFileName3.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getAttachmentFileName3() {
         return attachmentFileName3;
@@ -869,11 +864,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad attachmentFileName3.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setAttachmentFileName3(String value) {
         this.attachmentFileName3 = value;
@@ -881,11 +876,11 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad attachmentFileType3.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getAttachmentFileType3() {
         return attachmentFileType3;
@@ -893,11 +888,11 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad attachmentFileType3.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setAttachmentFileType3(String value) {
         this.attachmentFileType3 = value;
@@ -905,7 +900,7 @@ public class TicketRequest {
 
     /**
      * Obtiene el valor de la propiedad attachmentFileData3.
-     * 
+     *
      * @return
      *     possible object is
      *     byte[]
@@ -916,7 +911,7 @@ public class TicketRequest {
 
     /**
      * Define el valor de la propiedad attachmentFileData3.
-     * 
+     *
      * @param value
      *     allowed object is
      *     byte[]

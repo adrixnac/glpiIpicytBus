@@ -152,3 +152,11 @@ jhipster:
 # ===================================================================
 
 application:
+    glpiAuthorization: aG90bGluZXIucmVzdDpxd2VyMTIzNA==
+    glpiToken: Dd&WSgu9qGn
+    glpiUrl: http://0.0.0.0/apirest.php
+    glpiuser: admin
+    glpipass: 123456qW
+    appTransfromEnable: true
+
+

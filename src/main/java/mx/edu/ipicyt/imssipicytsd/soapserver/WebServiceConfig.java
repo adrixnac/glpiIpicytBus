@@ -1,3 +1,4 @@
+
 package mx.edu.ipicyt.imssipicytsd.soapserver;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -22,7 +23,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     public ServletRegistrationBean messageDispactherServlet(ApplicationContext applicationContext) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
-        servlet.setTransformWsdlLocations(false);
+        servlet.setTransformWsdlLocations(true);
         return new ServletRegistrationBean(servlet, "/ws_i_solicitud_tk_imms_ipicyt/*");
     }
 
@@ -32,11 +33,8 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         wsdl11Definition.setPortTypeName("TicketServicePort");
         wsdl11Definition.setLocationUri("https://ipicytbuss-glpi-mesas-qa.cloudapps.imss.gob.mx/ws_i_solicitud_tk_imms_ipicyt");
         wsdl11Definition.setTargetNamespace("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt");
-
         wsdl11Definition.setSchema(ticketServiceSchema);
-
         return wsdl11Definition;
-
     }
 
     @Bean
