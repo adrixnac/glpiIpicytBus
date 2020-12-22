@@ -159,8 +159,8 @@ jhipster:
 application:
     glpiAuthorization: aG90bGluZXIucmVzdDpxd2VyMTIzNA==
     glpiToken: Dd&WSgu9qGn
-    glpiUrl: http://10.100.10.3/apirest.php
+    glpiUrl: http://0.0.0.0/apirest.php
     glpiuser: imssglpi
     glpipass: 123456qW
-
+    appTransfromEnable: true
 

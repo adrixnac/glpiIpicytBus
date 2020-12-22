@@ -16,6 +16,15 @@ public class ApplicationProperties {
     private String glpiUrl;
     private String glpiuser;
     private String glpipass;
+    private String appTransfromEnable;
+
+    public String getAppTransfromEnable() {
+        return appTransfromEnable;
+    }
+
+    public void setAppTransfromEnable(String appTransfromEnable) {
+        this.appTransfromEnable = appTransfromEnable;
+    }
 
     public String getGlpiuser() {
         return glpiuser;
@@ -56,6 +65,4 @@ public class ApplicationProperties {
     public void setGlpiUrl(String glpiUrl) {
         this.glpiUrl = glpiUrl;
     }
-
-
 }

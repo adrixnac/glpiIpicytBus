@@ -1,4 +1,4 @@
-# JHipster generated kubernetes configuration
+# kubernetes configuration
 
 ## Preparation
 
@@ -48,11 +48,11 @@ Using livenessProbes and readinessProbe allows you to tell kubernetes about the 
 
 ## Monitoring tools
 
-### JHipster console
+###  console
 
-Your application logs can be found in JHipster console (powered by Kibana). You can find its service details by
+Your application logs can be found in  console (powered by Kibana). You can find its service details by
 ```
-$ kubectl get svc jhipster-console
+$ kubectl get svc console
 ```
 
 Point your browser to an IP of any of your nodes and use the node port described in the output.
@@ -73,7 +73,7 @@ The prometheus instance for your apps can be explored using
 $ kubectl get svc prometheus-default
 ```
 
-## JHipster registry
+## registry
 
 The registry is deployed using a headless service in kubernetes, so the primary service has no IP address, and cannot get a node port. You can create a secondary service for any type, using:
 
