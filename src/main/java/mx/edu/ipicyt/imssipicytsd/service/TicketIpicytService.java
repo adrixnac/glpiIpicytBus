@@ -51,12 +51,18 @@ public class TicketIpicytService {
 
             log.debug("Entra al try:  {}", token);
 
-            Content content = Request.Post(this.glpiURL + "/Ticket/")
+            Content content = Request.Post("http://0.0.0.0/apirest.php/Ticket/")
+
+                // Add headers
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Session-Token", token)
-                .addHeader("App-Token", this.glpiToken)
-                .addHeader("Authorization", "Basic " + this.glpiAuthorization)
-                .bodyString(this.generateJSON(ticket), ContentType.APPLICATION_JSON)
+                .addHeader("App-Token", "Dd&WSgu9qGn")
+                .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
+
+                // Add body
+                .bodyString("{\"input\": {\"status\": 2,\"global_validation\": 1,\"\": \"\",\"itilcategories_id\": 1,\"priority\": 2,\"type\": 2,\"requesttypes_id\": 4,\"date\": \"2020-11-01 00:00:00\",\"time_to_resolve\": \"14-11-2020 00:00\",\"urgency\": 2,\"impact\": 1,\"locations_id\": 1,\"name\": \"REQ 2020Nov4: Solicitud de actualización de imagen institucional\",\"content\": \" Prueba en el req 2020Nov11\"}}", ContentType.APPLICATION_JSON)
+
+                // Fetch request and return content
                 .execute().returnContent();
 
             // Print content
@@ -65,17 +71,20 @@ public class TicketIpicytService {
 
             Gson gson = new Gson();
             JsonParser parser = new JsonParser();
-            JsonObject object = (JsonObject) parser.parse(content.toString());// response will be the json String
-            GlpiResponse glpiResponse = gson.fromJson(object, GlpiResponse.class);
-            Ticket ticketUpdate = ticketRepository.findOne(ticket.getId());
-            log.debug("Entra al ticketRepository:  {}", ticketUpdate.toString());
-            ticketUpdate.setIdGlpi(glpiResponse.getId());
-            Ticket result = ticketRepository.save(ticketUpdate);
-            log.debug("Entra al result:  {}", result.toString());
+            if(content.toString() != null ) {
+                JsonObject object = (JsonObject) parser.parse(content.toString());// response will be the json String
+                GlpiResponse glpiResponse = gson.fromJson(object, GlpiResponse.class);
+                Ticket ticketUpdate = ticketRepository.findOne(ticket.getId());
+                log.debug("Entra al ticketRepository:  {}", ticketUpdate.toString());
+                ticketUpdate.setIdGlpi(glpiResponse.getId());
+                Ticket result = ticketRepository.save(ticketUpdate);
+                log.debug("Entra al result:  {}", result.toString());
 
-            return glpiResponse;
+                return glpiResponse;
+            }
+
         }
-        catch (IOException | JSONException e) { System.out.println(e); }
+        catch (IOException e) { System.out.println(e); }
 
         this.CloseSession(token);
         return null;
