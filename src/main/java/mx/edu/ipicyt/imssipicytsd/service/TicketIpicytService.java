@@ -51,7 +51,7 @@ public class TicketIpicytService {
 
             log.debug("Entra al try:  {}", token);
 
-            Content content = Request.Post("http://0.0.0.0/apirest.php/Ticket/")
+            Content content = Request.Post("http://10.100.10.3/apirest.php/Ticket/")
 
                 // Add headers
                 .addHeader("Content-Type", "application/json")
