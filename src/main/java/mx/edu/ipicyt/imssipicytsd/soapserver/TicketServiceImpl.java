@@ -10,6 +10,7 @@ import mx.edu.ipicyt.imssipicytsd.web.rest.TicketResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import com.google.common.base.Strings;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -63,6 +64,8 @@ public class TicketServiceImpl implements TicketService{
             ticket.setIdReferenciaCliente(ticketRequest.getIdReferenciaCliente());
 
             Ticket result = ticketRepository.save(ticket);
+            log.debug("TICKET DE SALIDA {}", result.toString() );
+
             glpiResponse.setId(result.getIdGlpi());
            if(result != null) {
                glpiResponse.setMessage("");
@@ -93,7 +96,7 @@ public class TicketServiceImpl implements TicketService{
     public TicketResponse processTicketApplication(TicketRequest ticketRequest) {
         TicketResponse ticketResponse = new TicketResponse();
         String ticketSolicitado = ticketRequest.getTicketIPICYT();
-        log.debug("Ticket solicitado {}",ticketSolicitado);
+        log.debug("Ticket solicitado {}",ticketSolicitado.toString());
         Ticket ticket = new Ticket();
         GregorianCalendar c = new GregorianCalendar();
         c.setTime(new Date());
@@ -131,7 +134,7 @@ public class TicketServiceImpl implements TicketService{
         ticket.setSubTypeTransaction(ticketRequest.getSubTypeTransaction());
 
         // nuevo ticket
-        if (ticketSolicitado.isEmpty()  ){
+        if ( ticketSolicitado.isEmpty() ){
             log.debug("ticket para ser creado {}", ticket.toString());
             Ticket result = ticketRepository.save(ticket);
             try {
