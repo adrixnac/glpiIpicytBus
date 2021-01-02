@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="transaction"/>
 
+        <addForeignKeyConstraint baseColumnNames="subtype_transaction_id"
+                                 baseTableName="ticket"
+                                 constraintName="fk_ticket_subtype_transaction_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="subtype_transaction"/>
+
     </changeSet>
 </databaseChangeLog>

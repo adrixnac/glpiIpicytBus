@@ -6,6 +6,12 @@
             "otherEntityName": "transaction",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "subtypeTransaction",
+            "otherEntityName": "subtypeTransaction",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

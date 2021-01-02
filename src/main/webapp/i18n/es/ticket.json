@@ -41,7 +41,8 @@
             "typeTransaccion": "Type Transaccion",
             "idGlpi": "Id Glpi",
             "idtypeReqSol": "Idtype Req Sol",
-            "transaction": "Transaction"
+            "transaction": "Transaction",
+            "subtypeTransaction": "Subtype Transaction"
         }
     }
 }

@@ -10,6 +10,7 @@ import { Ticket } from './ticket.model';
 import { TicketPopupService } from './ticket-popup.service';
 import { TicketService } from './ticket.service';
 import { Transaction, TransactionService } from '../transaction';
+import { SubtypeTransaction, SubtypeTransactionService } from '../subtype-transaction';
 
 @Component({
     selector: 'jhi-ticket-dialog',
@@ -22,11 +23,14 @@ export class TicketDialogComponent implements OnInit {
 
     transactions: Transaction[];
 
+    subtypetransactions: SubtypeTransaction[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private ticketService: TicketService,
         private transactionService: TransactionService,
+        private subtypeTransactionService: SubtypeTransactionService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -35,6 +39,8 @@ export class TicketDialogComponent implements OnInit {
         this.isSaving = false;
         this.transactionService.query()
             .subscribe((res: HttpResponse<Transaction[]>) => { this.transactions = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.subtypeTransactionService.query()
+            .subscribe((res: HttpResponse<SubtypeTransaction[]>) => { this.subtypetransactions = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -72,6 +78,10 @@ export class TicketDialogComponent implements OnInit {
     }
 
     trackTransactionById(index: number, item: Transaction) {
+        return item.id;
+    }
+
+    trackSubtypeTransactionById(index: number, item: SubtypeTransaction) {
         return item.id;
     }
 }

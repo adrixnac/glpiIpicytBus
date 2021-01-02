@@ -9,6 +9,7 @@
                 "main": "Entidades",
                 "ticket": "Ticket",
                 "transaction": "Transaction",
+                "subtypeTransaction": "Subtype Transaction",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -110,6 +110,12 @@
                 <a [routerLink]="['/transaction', ticket.transaction?.id]">{{ticket.transaction?.id}}</a>
             </div>
         </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.subtypeTransaction">Subtype Transaction</span></dt>
+        <dd>
+            <div *ngIf="ticket.subtypeTransaction">
+                <a [routerLink]="['/subtype-transaction', ticket.subtypeTransaction?.id]">{{ticket.subtypeTransaction?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

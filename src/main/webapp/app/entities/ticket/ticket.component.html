@@ -43,6 +43,7 @@
             <th jhiSortBy="idGlpi"><span jhiTranslate="ipicytBussApp.ticket.idGlpi">Id Glpi</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="idtypeReqSol"><span jhiTranslate="ipicytBussApp.ticket.idtypeReqSol">Idtype Req Sol</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="transaction.id"><span jhiTranslate="ipicytBussApp.ticket.transaction">Transaction</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="subtypeTransaction.id"><span jhiTranslate="ipicytBussApp.ticket.subtypeTransaction">Subtype Transaction</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -77,6 +78,11 @@
                 <td>
                     <div *ngIf="ticket.transaction">
                         <a [routerLink]="['../transaction', ticket.transaction?.id ]" >{{ticket.transaction?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ticket.subtypeTransaction">
+                        <a [routerLink]="['../subtype-transaction', ticket.subtypeTransaction?.id ]" >{{ticket.subtypeTransaction?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

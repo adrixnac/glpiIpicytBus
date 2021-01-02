@@ -265,6 +265,13 @@
                 <option [ngValue]="transactionOption.id === ticket.transaction?.id ? ticket.transaction : transactionOption" *ngFor="let transactionOption of transactions; trackBy: trackTransactionById">{{transactionOption.id}}</option>
             </select>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.subtypeTransaction" for="field_subtypeTransaction">Subtype Transaction</label>
+            <select class="form-control" id="field_subtypeTransaction" name="subtypeTransaction" [(ngModel)]="ticket.subtypeTransaction" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="subtypeTransactionOption.id === ticket.subtypeTransaction?.id ? ticket.subtypeTransaction : subtypeTransactionOption" *ngFor="let subtypeTransactionOption of subtypetransactions; trackBy: trackSubtypeTransactionById">{{subtypeTransactionOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

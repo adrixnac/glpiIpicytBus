@@ -121,6 +121,9 @@ public class Ticket implements Serializable {
     @ManyToOne
     private Transaction transaction;
 
+    @ManyToOne
+    private SubtypeTransaction subtypeTransaction;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -466,6 +469,19 @@ public class Ticket implements Serializable {
 
     public void setTransaction(Transaction transaction) {
         this.transaction = transaction;
+    }
+
+    public SubtypeTransaction getSubtypeTransaction() {
+        return subtypeTransaction;
+    }
+
+    public Ticket subtypeTransaction(SubtypeTransaction subtypeTransaction) {
+        this.subtypeTransaction = subtypeTransaction;
+        return this;
+    }
+
+    public void setSubtypeTransaction(SubtypeTransaction subtypeTransaction) {
+        this.subtypeTransaction = subtypeTransaction;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

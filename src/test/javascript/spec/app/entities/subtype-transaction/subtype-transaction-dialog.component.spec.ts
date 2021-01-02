@@ -6,39 +6,35 @@ import { Observable } from 'rxjs/Observable';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { IpicytBussTestModule } from '../../../test.module';
-import { TicketDialogComponent } from '../../../../../../main/webapp/app/entities/ticket/ticket-dialog.component';
-import { TicketService } from '../../../../../../main/webapp/app/entities/ticket/ticket.service';
-import { Ticket } from '../../../../../../main/webapp/app/entities/ticket/ticket.model';
-import { TransactionService } from '../../../../../../main/webapp/app/entities/transaction';
-import { SubtypeTransactionService } from '../../../../../../main/webapp/app/entities/subtype-transaction';
+import { SubtypeTransactionDialogComponent } from '../../../../../../main/webapp/app/entities/subtype-transaction/subtype-transaction-dialog.component';
+import { SubtypeTransactionService } from '../../../../../../main/webapp/app/entities/subtype-transaction/subtype-transaction.service';
+import { SubtypeTransaction } from '../../../../../../main/webapp/app/entities/subtype-transaction/subtype-transaction.model';
 
 describe('Component Tests', () => {
 
-    describe('Ticket Management Dialog Component', () => {
-        let comp: TicketDialogComponent;
-        let fixture: ComponentFixture<TicketDialogComponent>;
-        let service: TicketService;
+    describe('SubtypeTransaction Management Dialog Component', () => {
+        let comp: SubtypeTransactionDialogComponent;
+        let fixture: ComponentFixture<SubtypeTransactionDialogComponent>;
+        let service: SubtypeTransactionService;
         let mockEventManager: any;
         let mockActiveModal: any;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [IpicytBussTestModule],
-                declarations: [TicketDialogComponent],
+                declarations: [SubtypeTransactionDialogComponent],
                 providers: [
-                    TransactionService,
-                    SubtypeTransactionService,
-                    TicketService
+                    SubtypeTransactionService
                 ]
             })
-            .overrideTemplate(TicketDialogComponent, '')
+            .overrideTemplate(SubtypeTransactionDialogComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(TicketDialogComponent);
+            fixture = TestBed.createComponent(SubtypeTransactionDialogComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(TicketService);
+            service = fixture.debugElement.injector.get(SubtypeTransactionService);
             mockEventManager = fixture.debugElement.injector.get(JhiEventManager);
             mockActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
         });
@@ -48,9 +44,9 @@ describe('Component Tests', () => {
                 inject([],
                     fakeAsync(() => {
                         // GIVEN
-                        const entity = new Ticket(123);
+                        const entity = new SubtypeTransaction(123);
                         spyOn(service, 'update').and.returnValue(Observable.of(new HttpResponse({body: entity})));
-                        comp.ticket = entity;
+                        comp.subtypeTransaction = entity;
                         // WHEN
                         comp.save();
                         tick(); // simulate async
@@ -58,7 +54,7 @@ describe('Component Tests', () => {
                         // THEN
                         expect(service.update).toHaveBeenCalledWith(entity);
                         expect(comp.isSaving).toEqual(false);
-                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'ticketListModification', content: 'OK'});
+                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'subtypeTransactionListModification', content: 'OK'});
                         expect(mockActiveModal.dismissSpy).toHaveBeenCalled();
                     })
                 )
@@ -68,9 +64,9 @@ describe('Component Tests', () => {
                 inject([],
                     fakeAsync(() => {
                         // GIVEN
-                        const entity = new Ticket();
+                        const entity = new SubtypeTransaction();
                         spyOn(service, 'create').and.returnValue(Observable.of(new HttpResponse({body: entity})));
-                        comp.ticket = entity;
+                        comp.subtypeTransaction = entity;
                         // WHEN
                         comp.save();
                         tick(); // simulate async
@@ -78,7 +74,7 @@ describe('Component Tests', () => {
                         // THEN
                         expect(service.create).toHaveBeenCalledWith(entity);
                         expect(comp.isSaving).toEqual(false);
-                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'ticketListModification', content: 'OK'});
+                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'subtypeTransactionListModification', content: 'OK'});
                         expect(mockActiveModal.dismissSpy).toHaveBeenCalled();
                     })
                 )
