@@ -44,6 +44,12 @@
             <th jhiSortBy="idtypeReqSol"><span jhiTranslate="ipicytBussApp.ticket.idtypeReqSol">Idtype Req Sol</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="transaction.id"><span jhiTranslate="ipicytBussApp.ticket.transaction">Transaction</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="subtypeTransaction.id"><span jhiTranslate="ipicytBussApp.ticket.subtypeTransaction">Subtype Transaction</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productCat01.id"><span jhiTranslate="ipicytBussApp.ticket.productCat01">Product Cat 01</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productCat02.id"><span jhiTranslate="ipicytBussApp.ticket.productCat02">Product Cat 02</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productCat03.id"><span jhiTranslate="ipicytBussApp.ticket.productCat03">Product Cat 03</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="contactTypes.id"><span jhiTranslate="ipicytBussApp.ticket.contactTypes">Contact Types</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="impacts.id"><span jhiTranslate="ipicytBussApp.ticket.impacts">Impacts</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="urgencies.id"><span jhiTranslate="ipicytBussApp.ticket.urgencies">Urgencies</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -83,6 +89,36 @@
                 <td>
                     <div *ngIf="ticket.subtypeTransaction">
                         <a [routerLink]="['../subtype-transaction', ticket.subtypeTransaction?.id ]" >{{ticket.subtypeTransaction?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ticket.productCat01">
+                        <a [routerLink]="['../product-cat', ticket.productCat01?.id ]" >{{ticket.productCat01?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ticket.productCat02">
+                        <a [routerLink]="['../product-cat', ticket.productCat02?.id ]" >{{ticket.productCat02?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ticket.productCat03">
+                        <a [routerLink]="['../product-cat', ticket.productCat03?.id ]" >{{ticket.productCat03?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ticket.contactTypes">
+                        <a [routerLink]="['../contact-type', ticket.contactTypes?.id ]" >{{ticket.contactTypes?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ticket.impacts">
+                        <a [routerLink]="['../impact', ticket.impacts?.id ]" >{{ticket.impacts?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ticket.urgencies">
+                        <a [routerLink]="['../urgency', ticket.urgencies?.id ]" >{{ticket.urgencies?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -1,0 +1,24 @@
+
+{
+    "ipicytBussApp": {
+        "contactType" : {
+            "home": {
+                "title": "Contact Types",
+                "createLabel": "Crear nuevo Contact Type",
+                "createOrEditLabel": "Crear o editar Contact Type"
+            },
+            "created": "Un nuevo Contact Type ha sido creado con el identificador {{ param }}",
+            "updated": "Un Contact Type ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Contact Type ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Contact Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Contact Type"
+            },
+            "contactTypeRemedy": "Contact Type Remedy",
+            "contactTypeGlpi": "Contact Type Glpi",
+            "contactTypeGlpiId": "Contact Type Glpi Id"
+        }
+    }
+}

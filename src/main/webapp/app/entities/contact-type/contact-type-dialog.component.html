@@ -1,0 +1,62 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myContactTypeLabel" jhiTranslate="ipicytBussApp.contactType.home.createOrEditLabel">Create or edit a Contact Type</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!contactType.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="contactType.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.contactType.contactTypeRemedy" for="field_contactTypeRemedy">Contact Type Remedy</label>
+            <input type="text" class="form-control" name="contactTypeRemedy" id="field_contactTypeRemedy"
+                [(ngModel)]="contactType.contactTypeRemedy" required/>
+            <div [hidden]="!(editForm.controls.contactTypeRemedy?.dirty && editForm.controls.contactTypeRemedy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.contactTypeRemedy?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.contactType.contactTypeGlpi" for="field_contactTypeGlpi">Contact Type Glpi</label>
+            <input type="text" class="form-control" name="contactTypeGlpi" id="field_contactTypeGlpi"
+                [(ngModel)]="contactType.contactTypeGlpi" required/>
+            <div [hidden]="!(editForm.controls.contactTypeGlpi?.dirty && editForm.controls.contactTypeGlpi?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.contactTypeGlpi?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.contactType.contactTypeGlpiId" for="field_contactTypeGlpiId">Contact Type Glpi Id</label>
+            <input type="number" class="form-control" name="contactTypeGlpiId" id="field_contactTypeGlpiId"
+                [(ngModel)]="contactType.contactTypeGlpiId" required/>
+            <div [hidden]="!(editForm.controls.contactTypeGlpiId?.dirty && editForm.controls.contactTypeGlpiId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.contactTypeGlpiId?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.contactTypeGlpiId?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

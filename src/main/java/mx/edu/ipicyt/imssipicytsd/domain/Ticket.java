@@ -124,6 +124,24 @@ public class Ticket implements Serializable {
     @ManyToOne
     private SubtypeTransaction subtypeTransaction;
 
+    @ManyToOne
+    private ProductCat productCat01;
+
+    @ManyToOne
+    private ProductCat productCat02;
+
+    @ManyToOne
+    private ProductCat productCat03;
+
+    @ManyToOne
+    private ContactType contactTypes;
+
+    @ManyToOne
+    private Impact impacts;
+
+    @ManyToOne
+    private Urgency urgencies;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -482,6 +500,84 @@ public class Ticket implements Serializable {
 
     public void setSubtypeTransaction(SubtypeTransaction subtypeTransaction) {
         this.subtypeTransaction = subtypeTransaction;
+    }
+
+    public ProductCat getProductCat01() {
+        return productCat01;
+    }
+
+    public Ticket productCat01(ProductCat productCat) {
+        this.productCat01 = productCat;
+        return this;
+    }
+
+    public void setProductCat01(ProductCat productCat) {
+        this.productCat01 = productCat;
+    }
+
+    public ProductCat getProductCat02() {
+        return productCat02;
+    }
+
+    public Ticket productCat02(ProductCat productCat) {
+        this.productCat02 = productCat;
+        return this;
+    }
+
+    public void setProductCat02(ProductCat productCat) {
+        this.productCat02 = productCat;
+    }
+
+    public ProductCat getProductCat03() {
+        return productCat03;
+    }
+
+    public Ticket productCat03(ProductCat productCat) {
+        this.productCat03 = productCat;
+        return this;
+    }
+
+    public void setProductCat03(ProductCat productCat) {
+        this.productCat03 = productCat;
+    }
+
+    public ContactType getContactTypes() {
+        return contactTypes;
+    }
+
+    public Ticket contactTypes(ContactType contactType) {
+        this.contactTypes = contactType;
+        return this;
+    }
+
+    public void setContactTypes(ContactType contactType) {
+        this.contactTypes = contactType;
+    }
+
+    public Impact getImpacts() {
+        return impacts;
+    }
+
+    public Ticket impacts(Impact impact) {
+        this.impacts = impact;
+        return this;
+    }
+
+    public void setImpacts(Impact impact) {
+        this.impacts = impact;
+    }
+
+    public Urgency getUrgencies() {
+        return urgencies;
+    }
+
+    public Ticket urgencies(Urgency urgency) {
+        this.urgencies = urgency;
+        return this;
+    }
+
+    public void setUrgencies(Urgency urgency) {
+        this.urgencies = urgency;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

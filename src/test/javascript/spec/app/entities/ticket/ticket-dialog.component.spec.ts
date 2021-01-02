@@ -11,6 +11,10 @@ import { TicketService } from '../../../../../../main/webapp/app/entities/ticket
 import { Ticket } from '../../../../../../main/webapp/app/entities/ticket/ticket.model';
 import { TransactionService } from '../../../../../../main/webapp/app/entities/transaction';
 import { SubtypeTransactionService } from '../../../../../../main/webapp/app/entities/subtype-transaction';
+import { ProductCatService } from '../../../../../../main/webapp/app/entities/product-cat';
+import { ContactTypeService } from '../../../../../../main/webapp/app/entities/contact-type';
+import { ImpactService } from '../../../../../../main/webapp/app/entities/impact';
+import { UrgencyService } from '../../../../../../main/webapp/app/entities/urgency';
 
 describe('Component Tests', () => {
 
@@ -28,6 +32,10 @@ describe('Component Tests', () => {
                 providers: [
                     TransactionService,
                     SubtypeTransactionService,
+                    ProductCatService,
+                    ContactTypeService,
+                    ImpactService,
+                    UrgencyService,
                     TicketService
                 ]
             })

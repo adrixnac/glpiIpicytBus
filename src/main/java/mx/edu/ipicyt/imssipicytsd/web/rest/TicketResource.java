@@ -1,14 +1,13 @@
 package mx.edu.ipicyt.imssipicytsd.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import io.github.jhipster.web.util.ResponseUtil;
-import mx.edu.ipicyt.imssipicytsd.domain.GlpiResponse;
 import mx.edu.ipicyt.imssipicytsd.domain.Ticket;
+
 import mx.edu.ipicyt.imssipicytsd.repository.TicketRepository;
-import mx.edu.ipicyt.imssipicytsd.service.TicketIpicytService;
 import mx.edu.ipicyt.imssipicytsd.web.rest.errors.BadRequestAlertException;
 import mx.edu.ipicyt.imssipicytsd.web.rest.util.HeaderUtil;
 import mx.edu.ipicyt.imssipicytsd.web.rest.util.PaginationUtil;
+import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -32,13 +32,13 @@ import java.util.Optional;
 public class TicketResource {
 
     private final Logger log = LoggerFactory.getLogger(TicketResource.class);
-    private static final String ENTITY_NAME = "ticket";
-    private final TicketRepository ticketRepository;
-    private final TicketIpicytService ticketIpicytService;
 
-    public TicketResource(TicketRepository ticketRepository, TicketIpicytService ticketIpicytService) {
+    private static final String ENTITY_NAME = "ticket";
+
+    private final TicketRepository ticketRepository;
+
+    public TicketResource(TicketRepository ticketRepository) {
         this.ticketRepository = ticketRepository;
-        this.ticketIpicytService = ticketIpicytService;
     }
 
     /**
@@ -56,10 +56,6 @@ public class TicketResource {
             throw new BadRequestAlertException("A new ticket cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Ticket result = ticketRepository.save(ticket);
-        GlpiResponse glpiResponse = new GlpiResponse();
-        glpiResponse = this.ticketIpicytService.createTicket(ticket);
-        log.debug("REST request to save GlpiResponse : {}", glpiResponse);
-
         return ResponseEntity.created(new URI("/api/tickets/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -82,8 +78,6 @@ public class TicketResource {
             return createTicket(ticket);
         }
         Ticket result = ticketRepository.save(ticket);
-        GlpiResponse glpiResponse = new GlpiResponse();
-        glpiResponse = this.ticketIpicytService.updateTicket(ticket);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, ticket.getId().toString()))
             .body(result);

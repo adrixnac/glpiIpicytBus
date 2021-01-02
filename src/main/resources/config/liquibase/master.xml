@@ -8,6 +8,11 @@
     <include file="config/liquibase/changelog/20201202041546_added_entity_Ticket.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210102170806_added_entity_Transaction.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210102172933_added_entity_SubtypeTransaction.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210102174939_added_entity_ProductCat.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210102204638_added_entity_RequestType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210102211348_added_entity_ContactType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210102212218_added_entity_Impact.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210102212657_added_entity_Urgency.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20201202041546_added_entity_constraints_Ticket.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->

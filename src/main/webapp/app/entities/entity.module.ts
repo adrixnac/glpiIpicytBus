@@ -3,6 +3,11 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IpicytBussTicketModule } from './ticket/ticket.module';
 import { IpicytBussTransactionModule } from './transaction/transaction.module';
 import { IpicytBussSubtypeTransactionModule } from './subtype-transaction/subtype-transaction.module';
+import { IpicytBussProductCatModule } from './product-cat/product-cat.module';
+import { IpicytBussRequestTypeModule } from './request-type/request-type.module';
+import { IpicytBussContactTypeModule } from './contact-type/contact-type.module';
+import { IpicytBussImpactModule } from './impact/impact.module';
+import { IpicytBussUrgencyModule } from './urgency/urgency.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -10,6 +15,11 @@ import { IpicytBussSubtypeTransactionModule } from './subtype-transaction/subtyp
         IpicytBussTicketModule,
         IpicytBussTransactionModule,
         IpicytBussSubtypeTransactionModule,
+        IpicytBussProductCatModule,
+        IpicytBussRequestTypeModule,
+        IpicytBussContactTypeModule,
+        IpicytBussImpactModule,
+        IpicytBussUrgencyModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

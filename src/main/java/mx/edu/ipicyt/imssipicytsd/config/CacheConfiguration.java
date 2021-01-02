@@ -47,6 +47,11 @@ public class CacheConfiguration {
             cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.Ticket.class.getName(), jcacheConfiguration);
             cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.Transaction.class.getName(), jcacheConfiguration);
             cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.SubtypeTransaction.class.getName(), jcacheConfiguration);
+            cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.ProductCat.class.getName(), jcacheConfiguration);
+            cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.RequestType.class.getName(), jcacheConfiguration);
+            cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.ContactType.class.getName(), jcacheConfiguration);
+            cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.Impact.class.getName(), jcacheConfiguration);
+            cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.Urgency.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

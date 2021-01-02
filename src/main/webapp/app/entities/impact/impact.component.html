@@ -1,0 +1,62 @@
+<div>
+    <h2>
+        <span jhiTranslate="ipicytBussApp.impact.home.title">Impacts</span>
+        <button class="btn btn-primary float-right jh-create-entity create-impact" [routerLink]="['/', { outlets: { popup: ['impact-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ipicytBussApp.impact.home.createLabel">
+            Create new Impact
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="impacts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="ipicytBussApp.impact.impactRemedy">Impact Remedy</span></th>
+            <th><span jhiTranslate="ipicytBussApp.impact.impactGlpi">Impact Glpi</span></th>
+            <th><span jhiTranslate="ipicytBussApp.impact.impactGlpiId">Impact Glpi Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let impact of impacts ;trackBy: trackId">
+                <td><a [routerLink]="['../impact', impact.id ]">{{impact.id}}</a></td>
+                <td>{{impact.impactRemedy}}</td>
+                <td>{{impact.impactGlpi}}</td>
+                <td>{{impact.impactGlpiId}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../impact', impact.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'impact/'+ impact.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'impact/'+ impact.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -11,6 +11,10 @@ import { TicketPopupService } from './ticket-popup.service';
 import { TicketService } from './ticket.service';
 import { Transaction, TransactionService } from '../transaction';
 import { SubtypeTransaction, SubtypeTransactionService } from '../subtype-transaction';
+import { ProductCat, ProductCatService } from '../product-cat';
+import { ContactType, ContactTypeService } from '../contact-type';
+import { Impact, ImpactService } from '../impact';
+import { Urgency, UrgencyService } from '../urgency';
 
 @Component({
     selector: 'jhi-ticket-dialog',
@@ -25,12 +29,24 @@ export class TicketDialogComponent implements OnInit {
 
     subtypetransactions: SubtypeTransaction[];
 
+    productcats: ProductCat[];
+
+    contacttypes: ContactType[];
+
+    impacts: Impact[];
+
+    urgencies: Urgency[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private ticketService: TicketService,
         private transactionService: TransactionService,
         private subtypeTransactionService: SubtypeTransactionService,
+        private productCatService: ProductCatService,
+        private contactTypeService: ContactTypeService,
+        private impactService: ImpactService,
+        private urgencyService: UrgencyService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -41,6 +57,14 @@ export class TicketDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<Transaction[]>) => { this.transactions = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.subtypeTransactionService.query()
             .subscribe((res: HttpResponse<SubtypeTransaction[]>) => { this.subtypetransactions = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.productCatService.query()
+            .subscribe((res: HttpResponse<ProductCat[]>) => { this.productcats = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.contactTypeService.query()
+            .subscribe((res: HttpResponse<ContactType[]>) => { this.contacttypes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.impactService.query()
+            .subscribe((res: HttpResponse<Impact[]>) => { this.impacts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.urgencyService.query()
+            .subscribe((res: HttpResponse<Urgency[]>) => { this.urgencies = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -82,6 +106,22 @@ export class TicketDialogComponent implements OnInit {
     }
 
     trackSubtypeTransactionById(index: number, item: SubtypeTransaction) {
+        return item.id;
+    }
+
+    trackProductCatById(index: number, item: ProductCat) {
+        return item.id;
+    }
+
+    trackContactTypeById(index: number, item: ContactType) {
+        return item.id;
+    }
+
+    trackImpactById(index: number, item: Impact) {
+        return item.id;
+    }
+
+    trackUrgencyById(index: number, item: Urgency) {
         return item.id;
     }
 }

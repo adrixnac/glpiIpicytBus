@@ -1,0 +1,24 @@
+
+{
+    "ipicytBussApp": {
+        "impact" : {
+            "home": {
+                "title": "Impacts",
+                "createLabel": "Crear nuevo Impact",
+                "createOrEditLabel": "Crear o editar Impact"
+            },
+            "created": "Un nuevo Impact ha sido creado con el identificador {{ param }}",
+            "updated": "Un Impact ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Impact ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Impact {{ id }}?"
+            },
+            "detail": {
+                "title": "Impact"
+            },
+            "impactRemedy": "Impact Remedy",
+            "impactGlpi": "Impact Glpi",
+            "impactGlpiId": "Impact Glpi Id"
+        }
+    }
+}

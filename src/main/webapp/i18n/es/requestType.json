@@ -1,0 +1,24 @@
+
+{
+    "ipicytBussApp": {
+        "requestType" : {
+            "home": {
+                "title": "Request Types",
+                "createLabel": "Crear nuevo Request Type",
+                "createOrEditLabel": "Crear o editar Request Type"
+            },
+            "created": "Un nuevo Request Type ha sido creado con el identificador {{ param }}",
+            "updated": "Un Request Type ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Request Type ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Request Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Request Type"
+            },
+            "requestTypeRemedy": "Request Type Remedy",
+            "requestTypeGlpi": "Request Type Glpi",
+            "requestTypeGlpiId": "Request Type Glpi Id"
+        }
+    }
+}

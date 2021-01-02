@@ -1,0 +1,24 @@
+
+{
+    "ipicytBussApp": {
+        "urgency" : {
+            "home": {
+                "title": "Urgencies",
+                "createLabel": "Crear nuevo Urgency",
+                "createOrEditLabel": "Crear o editar Urgency"
+            },
+            "created": "Un nuevo Urgency ha sido creado con el identificador {{ param }}",
+            "updated": "Un Urgency ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Urgency ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Urgency {{ id }}?"
+            },
+            "detail": {
+                "title": "Urgency"
+            },
+            "urgencyRemedy": "Urgency Remedy",
+            "urgencyGlpi": "Urgency Glpi",
+            "urgencyGlpiId": "Urgency Glpi Id"
+        }
+    }
+}

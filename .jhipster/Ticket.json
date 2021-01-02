@@ -12,6 +12,42 @@
             "otherEntityName": "subtypeTransaction",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "productCat01",
+            "otherEntityName": "productCat",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "productCat02",
+            "otherEntityName": "productCat",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "productCat03",
+            "otherEntityName": "productCat",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "contactTypes",
+            "otherEntityName": "contactType",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "impacts",
+            "otherEntityName": "impact",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "urgencies",
+            "otherEntityName": "urgency",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

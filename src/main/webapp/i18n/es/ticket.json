@@ -42,7 +42,13 @@
             "idGlpi": "Id Glpi",
             "idtypeReqSol": "Idtype Req Sol",
             "transaction": "Transaction",
-            "subtypeTransaction": "Subtype Transaction"
+            "subtypeTransaction": "Subtype Transaction",
+            "productCat01": "Product Cat 01",
+            "productCat02": "Product Cat 02",
+            "productCat03": "Product Cat 03",
+            "contactTypes": "Contact Types",
+            "impacts": "Impacts",
+            "urgencies": "Urgencies"
         }
     }
 }

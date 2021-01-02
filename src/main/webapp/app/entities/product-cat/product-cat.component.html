@@ -1,0 +1,62 @@
+<div>
+    <h2>
+        <span jhiTranslate="ipicytBussApp.productCat.home.title">Product Cats</span>
+        <button class="btn btn-primary float-right jh-create-entity create-product-cat" [routerLink]="['/', { outlets: { popup: ['product-cat-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ipicytBussApp.productCat.home.createLabel">
+            Create new Product Cat
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="productCats">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="ipicytBussApp.productCat.productCatRemedy">Product Cat Remedy</span></th>
+            <th><span jhiTranslate="ipicytBussApp.productCat.productCatGlpi">Product Cat Glpi</span></th>
+            <th><span jhiTranslate="ipicytBussApp.productCat.productCatGlpiId">Product Cat Glpi Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let productCat of productCats ;trackBy: trackId">
+                <td><a [routerLink]="['../product-cat', productCat.id ]">{{productCat.id}}</a></td>
+                <td>{{productCat.productCatRemedy}}</td>
+                <td>{{productCat.productCatGlpi}}</td>
+                <td>{{productCat.productCatGlpiId}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../product-cat', productCat.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'product-cat/'+ productCat.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'product-cat/'+ productCat.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

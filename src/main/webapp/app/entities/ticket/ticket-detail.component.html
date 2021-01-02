@@ -116,6 +116,42 @@
                 <a [routerLink]="['/subtype-transaction', ticket.subtypeTransaction?.id]">{{ticket.subtypeTransaction?.id}}</a>
             </div>
         </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.productCat01">Product Cat 01</span></dt>
+        <dd>
+            <div *ngIf="ticket.productCat01">
+                <a [routerLink]="['/product-cat', ticket.productCat01?.id]">{{ticket.productCat01?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.productCat02">Product Cat 02</span></dt>
+        <dd>
+            <div *ngIf="ticket.productCat02">
+                <a [routerLink]="['/product-cat', ticket.productCat02?.id]">{{ticket.productCat02?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.productCat03">Product Cat 03</span></dt>
+        <dd>
+            <div *ngIf="ticket.productCat03">
+                <a [routerLink]="['/product-cat', ticket.productCat03?.id]">{{ticket.productCat03?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.contactTypes">Contact Types</span></dt>
+        <dd>
+            <div *ngIf="ticket.contactTypes">
+                <a [routerLink]="['/contact-type', ticket.contactTypes?.id]">{{ticket.contactTypes?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.impacts">Impacts</span></dt>
+        <dd>
+            <div *ngIf="ticket.impacts">
+                <a [routerLink]="['/impact', ticket.impacts?.id]">{{ticket.impacts?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.urgencies">Urgencies</span></dt>
+        <dd>
+            <div *ngIf="ticket.urgencies">
+                <a [routerLink]="['/urgency', ticket.urgencies?.id]">{{ticket.urgencies?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"
