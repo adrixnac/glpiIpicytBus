@@ -1,21 +1,26 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7
-// Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a>
-// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen.
-// Generado el: 2020.12.22 a las 12:45:55 PM CST
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
+// Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Generado el: 2021.01.01 a las 09:12:46 PM CST 
 //
 
 
 package https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
 
 
 /**
  * <p>Clase Java para anonymous complex type.
- *
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;simpleContent>
@@ -29,8 +34,8 @@ import javax.xml.bind.annotation.*;
  *   &lt;/simpleContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -54,11 +59,11 @@ public class TicketResponse {
 
     /**
      * Obtiene el valor de la propiedad value.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getValue() {
         return value;
@@ -66,11 +71,11 @@ public class TicketResponse {
 
     /**
      * Define el valor de la propiedad value.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setValue(String value) {
         this.value = value;
@@ -78,11 +83,11 @@ public class TicketResponse {
 
     /**
      * Obtiene el valor de la propiedad typeTransaccion.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getTypeTransaccion() {
         return typeTransaccion;
@@ -90,11 +95,11 @@ public class TicketResponse {
 
     /**
      * Define el valor de la propiedad typeTransaccion.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setTypeTransaccion(String value) {
         this.typeTransaccion = value;
@@ -102,11 +107,11 @@ public class TicketResponse {
 
     /**
      * Obtiene el valor de la propiedad idReferenciaCliente.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getIdReferenciaCliente() {
         return idReferenciaCliente;
@@ -114,11 +119,11 @@ public class TicketResponse {
 
     /**
      * Define el valor de la propiedad idReferenciaCliente.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setIdReferenciaCliente(String value) {
         this.idReferenciaCliente = value;
@@ -126,11 +131,11 @@ public class TicketResponse {
 
     /**
      * Obtiene el valor de la propiedad glpiTicketsId.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getGlpiTicketsId() {
         return glpiTicketsId;
@@ -138,11 +143,11 @@ public class TicketResponse {
 
     /**
      * Define el valor de la propiedad glpiTicketsId.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setGlpiTicketsId(String value) {
         this.glpiTicketsId = value;
@@ -150,11 +155,11 @@ public class TicketResponse {
 
     /**
      * Obtiene el valor de la propiedad statusTransaccionId.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getStatusTransaccionId() {
         return statusTransaccionId;
@@ -162,11 +167,11 @@ public class TicketResponse {
 
     /**
      * Define el valor de la propiedad statusTransaccionId.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setStatusTransaccionId(String value) {
         this.statusTransaccionId = value;
@@ -174,11 +179,11 @@ public class TicketResponse {
 
     /**
      * Obtiene el valor de la propiedad resultMessage.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getResultMessage() {
         return resultMessage;
@@ -186,11 +191,11 @@ public class TicketResponse {
 
     /**
      * Define el valor de la propiedad resultMessage.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setResultMessage(String value) {
         this.resultMessage = value;

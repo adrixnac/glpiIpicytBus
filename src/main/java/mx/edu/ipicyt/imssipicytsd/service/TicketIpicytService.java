@@ -51,7 +51,7 @@ public class TicketIpicytService {
 
             log.debug("Entra al try:  {}", token);
 
-            Content content = Request.Post("http://10.100.10.3/apirest.php/Ticket/")
+            Content content = Request.Post("http://0.0.0.0/apirest.php/Ticket/")
 
                 // Add headers
                 .addHeader("Content-Type", "application/json")
@@ -60,7 +60,7 @@ public class TicketIpicytService {
                 .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
 
                 // Add body
-                .bodyString("{\"input\": {\"status\": 2,\"global_validation\": 1,\"\": \"\",\"itilcategories_id\": 1,\"priority\": 2,\"type\": 2,\"requesttypes_id\": 4,\"date\": \"2020-11-01 00:00:00\",\"time_to_resolve\": \"14-11-2020 00:00\",\"urgency\": 2,\"impact\": 1,\"locations_id\": 1,\"name\": \"REQ 2020Nov4: Solicitud de actualización de imagen institucional\",\"content\": \" Prueba en el req 2020Nov11\"}}", ContentType.APPLICATION_JSON)
+                .bodyString(this.generateJSON(ticket), ContentType.APPLICATION_JSON)
 
                 // Fetch request and return content
                 .execute().returnContent();
@@ -84,7 +84,7 @@ public class TicketIpicytService {
             }
 
         }
-        catch (IOException e) { System.out.println(e); }
+        catch (IOException | JSONException e) { System.out.println(e); }
 
         this.CloseSession(token);
         return null;
@@ -105,7 +105,7 @@ public class TicketIpicytService {
                 .addHeader("Authorization", "Basic " + this.glpiAuthorization)
                 .addHeader("App-Token", this.glpiToken)
                 // Add body
-                .bodyString(this.generateJSON(ticket), ContentType.APPLICATION_JSON)
+                .bodyString("{\"input\": {\"status\": 2,\"global_validation\": 1,\"\": \"\",\"itilcategories_id\": 1,\"priority\": 2,\"type\": 2,\"requesttypes_id\": 4,\"date\": \"2020-11-01 00:00:00\",\"time_to_resolve\": \"14-11-2020 00:00\",\"urgency\": 2,\"impact\": 1,\"locations_id\": 1,\"name\": \"REQ 2020Nov4: Solicitud de actualización de imagen institucional\",\"content\": \" Prueba en el req 2020Nov11\"}}", ContentType.APPLICATION_JSON)
                 // Fetch request and return content
                 .execute().returnContent();
 
@@ -115,7 +115,7 @@ public class TicketIpicytService {
 
 
         }
-        catch (IOException | JSONException e) { System.out.println(e); }
+        catch (IOException e) { System.out.println(e); }
 
         return null;
     }

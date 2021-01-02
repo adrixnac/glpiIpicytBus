@@ -1,23 +1,30 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7
-// Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a>
-// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen.
-// Generado el: 2020.12.22 a las 12:45:55 PM CST
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
+// Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Generado el: 2021.01.01 a las 09:12:46 PM CST 
 //
 
 
 package https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
  * <p>Clase Java para anonymous complex type.
- *
+ * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -31,8 +38,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -54,11 +61,11 @@ public class UsernameToken {
 
     /**
      * Obtiene el valor de la propiedad username.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getUsername() {
         return username;
@@ -66,11 +73,11 @@ public class UsernameToken {
 
     /**
      * Define el valor de la propiedad username.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setUsername(String value) {
         this.username = value;
@@ -78,11 +85,11 @@ public class UsernameToken {
 
     /**
      * Obtiene el valor de la propiedad password.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPassword() {
         return password;
@@ -90,11 +97,11 @@ public class UsernameToken {
 
     /**
      * Define el valor de la propiedad password.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPassword(String value) {
         this.password = value;
@@ -102,11 +109,11 @@ public class UsernameToken {
 
     /**
      * Obtiene el valor de la propiedad id.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getId() {
         return id;
@@ -114,11 +121,11 @@ public class UsernameToken {
 
     /**
      * Define el valor de la propiedad id.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setId(String value) {
         this.id = value;
