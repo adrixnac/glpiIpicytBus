@@ -6,37 +6,35 @@ import { Observable } from 'rxjs/Observable';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { IpicytBussTestModule } from '../../../test.module';
-import { TicketDialogComponent } from '../../../../../../main/webapp/app/entities/ticket/ticket-dialog.component';
-import { TicketService } from '../../../../../../main/webapp/app/entities/ticket/ticket.service';
-import { Ticket } from '../../../../../../main/webapp/app/entities/ticket/ticket.model';
-import { TransactionService } from '../../../../../../main/webapp/app/entities/transaction';
+import { TransactionDialogComponent } from '../../../../../../main/webapp/app/entities/transaction/transaction-dialog.component';
+import { TransactionService } from '../../../../../../main/webapp/app/entities/transaction/transaction.service';
+import { Transaction } from '../../../../../../main/webapp/app/entities/transaction/transaction.model';
 
 describe('Component Tests', () => {
 
-    describe('Ticket Management Dialog Component', () => {
-        let comp: TicketDialogComponent;
-        let fixture: ComponentFixture<TicketDialogComponent>;
-        let service: TicketService;
+    describe('Transaction Management Dialog Component', () => {
+        let comp: TransactionDialogComponent;
+        let fixture: ComponentFixture<TransactionDialogComponent>;
+        let service: TransactionService;
         let mockEventManager: any;
         let mockActiveModal: any;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [IpicytBussTestModule],
-                declarations: [TicketDialogComponent],
+                declarations: [TransactionDialogComponent],
                 providers: [
-                    TransactionService,
-                    TicketService
+                    TransactionService
                 ]
             })
-            .overrideTemplate(TicketDialogComponent, '')
+            .overrideTemplate(TransactionDialogComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(TicketDialogComponent);
+            fixture = TestBed.createComponent(TransactionDialogComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(TicketService);
+            service = fixture.debugElement.injector.get(TransactionService);
             mockEventManager = fixture.debugElement.injector.get(JhiEventManager);
             mockActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
         });
@@ -46,9 +44,9 @@ describe('Component Tests', () => {
                 inject([],
                     fakeAsync(() => {
                         // GIVEN
-                        const entity = new Ticket(123);
+                        const entity = new Transaction(123);
                         spyOn(service, 'update').and.returnValue(Observable.of(new HttpResponse({body: entity})));
-                        comp.ticket = entity;
+                        comp.transaction = entity;
                         // WHEN
                         comp.save();
                         tick(); // simulate async
@@ -56,7 +54,7 @@ describe('Component Tests', () => {
                         // THEN
                         expect(service.update).toHaveBeenCalledWith(entity);
                         expect(comp.isSaving).toEqual(false);
-                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'ticketListModification', content: 'OK'});
+                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'transactionListModification', content: 'OK'});
                         expect(mockActiveModal.dismissSpy).toHaveBeenCalled();
                     })
                 )
@@ -66,9 +64,9 @@ describe('Component Tests', () => {
                 inject([],
                     fakeAsync(() => {
                         // GIVEN
-                        const entity = new Ticket();
+                        const entity = new Transaction();
                         spyOn(service, 'create').and.returnValue(Observable.of(new HttpResponse({body: entity})));
-                        comp.ticket = entity;
+                        comp.transaction = entity;
                         // WHEN
                         comp.save();
                         tick(); // simulate async
@@ -76,7 +74,7 @@ describe('Component Tests', () => {
                         // THEN
                         expect(service.create).toHaveBeenCalledWith(entity);
                         expect(comp.isSaving).toEqual(false);
-                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'ticketListModification', content: 'OK'});
+                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'transactionListModification', content: 'OK'});
                         expect(mockActiveModal.dismissSpy).toHaveBeenCalled();
                     })
                 )

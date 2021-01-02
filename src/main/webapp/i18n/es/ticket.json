@@ -40,7 +40,8 @@
             "callerPhone": "Caller Phone",
             "typeTransaccion": "Type Transaccion",
             "idGlpi": "Id Glpi",
-            "idtypeReqSol": "Idtype Req Sol"
+            "idtypeReqSol": "Idtype Req Sol",
+            "transaction": "Transaction"
         }
     }
 }

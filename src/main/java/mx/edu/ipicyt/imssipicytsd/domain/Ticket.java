@@ -5,7 +5,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -118,6 +117,9 @@ public class Ticket implements Serializable {
 
     @Column(name = "idtype_req_sol")
     private String idtypeReqSol;
+
+    @ManyToOne
+    private Transaction transaction;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -451,6 +453,19 @@ public class Ticket implements Serializable {
 
     public void setIdtypeReqSol(String idtypeReqSol) {
         this.idtypeReqSol = idtypeReqSol;
+    }
+
+    public Transaction getTransaction() {
+        return transaction;
+    }
+
+    public Ticket transaction(Transaction transaction) {
+        this.transaction = transaction;
+        return this;
+    }
+
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

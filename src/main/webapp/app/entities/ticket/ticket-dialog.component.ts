@@ -4,11 +4,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Ticket } from './ticket.model';
 import { TicketPopupService } from './ticket-popup.service';
 import { TicketService } from './ticket.service';
+import { Transaction, TransactionService } from '../transaction';
 
 @Component({
     selector: 'jhi-ticket-dialog',
@@ -19,15 +20,21 @@ export class TicketDialogComponent implements OnInit {
     ticket: Ticket;
     isSaving: boolean;
 
+    transactions: Transaction[];
+
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiAlertService: JhiAlertService,
         private ticketService: TicketService,
+        private transactionService: TransactionService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.transactionService.query()
+            .subscribe((res: HttpResponse<Transaction[]>) => { this.transactions = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -58,6 +65,14 @@ export class TicketDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackTransactionById(index: number, item: Transaction) {
+        return item.id;
     }
 }
 

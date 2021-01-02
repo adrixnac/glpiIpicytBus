@@ -45,6 +45,7 @@ public class CacheConfiguration {
             cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.Ticket.class.getName(), jcacheConfiguration);
+            cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.Transaction.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

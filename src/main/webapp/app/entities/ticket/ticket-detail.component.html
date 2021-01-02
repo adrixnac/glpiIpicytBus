@@ -104,6 +104,12 @@
         <dd>
             <span>{{ticket.idtypeReqSol}}</span>
         </dd>
+        <dt><span jhiTranslate="ipicytBussApp.ticket.transaction">Transaction</span></dt>
+        <dd>
+            <div *ngIf="ticket.transaction">
+                <a [routerLink]="['/transaction', ticket.transaction?.id]">{{ticket.transaction?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

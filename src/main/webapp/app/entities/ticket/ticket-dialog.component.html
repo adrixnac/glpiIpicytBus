@@ -258,6 +258,13 @@
                 [(ngModel)]="ticket.idtypeReqSol" />
         </div>
 
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.transaction" for="field_transaction">Transaction</label>
+            <select class="form-control" id="field_transaction" name="transaction" [(ngModel)]="ticket.transaction" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="transactionOption.id === ticket.transaction?.id ? ticket.transaction : transactionOption" *ngFor="let transactionOption of transactions; trackBy: trackTransactionById">{{transactionOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
