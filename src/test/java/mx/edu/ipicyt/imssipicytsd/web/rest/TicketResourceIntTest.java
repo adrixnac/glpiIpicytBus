@@ -4,6 +4,7 @@ import mx.edu.ipicyt.imssipicytsd.IpicytBussApp;
 
 import mx.edu.ipicyt.imssipicytsd.domain.Ticket;
 import mx.edu.ipicyt.imssipicytsd.repository.TicketRepository;
+import mx.edu.ipicyt.imssipicytsd.service.TicketIpicytService;
 import mx.edu.ipicyt.imssipicytsd.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -137,7 +138,8 @@ public class TicketResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final TicketResource ticketResource = new TicketResource(ticketRepository);
+        TicketIpicytService ticketIpicytService = null;
+        final TicketResource ticketResource = new TicketResource(ticketRepository, ticketIpicytService);
         this.restTicketMockMvc = MockMvcBuilders.standaloneSetup(ticketResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

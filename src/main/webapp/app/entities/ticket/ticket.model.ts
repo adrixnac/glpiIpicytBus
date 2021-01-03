@@ -28,14 +28,6 @@ export class Ticket implements BaseEntity {
         public typeTransaccion?: string,
         public idGlpi?: string,
         public idtypeReqSol?: string,
-        public transaction?: BaseEntity,
-        public subtypeTransaction?: BaseEntity,
-        public productCat01?: BaseEntity,
-        public productCat02?: BaseEntity,
-        public productCat03?: BaseEntity,
-        public contactTypes?: BaseEntity,
-        public impacts?: BaseEntity,
-        public urgencies?: BaseEntity,
     ) {
     }
 }

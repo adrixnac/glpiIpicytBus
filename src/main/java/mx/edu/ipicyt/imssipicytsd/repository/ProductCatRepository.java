@@ -12,5 +12,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface ProductCatRepository extends JpaRepository<ProductCat, Long> {
-
+    ProductCat findProductCatByProductCatRemedy(String productCatRemedy);
 }

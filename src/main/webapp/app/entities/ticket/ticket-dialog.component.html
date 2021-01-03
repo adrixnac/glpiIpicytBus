@@ -258,62 +258,6 @@
                 [(ngModel)]="ticket.idtypeReqSol" />
         </div>
 
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.transaction" for="field_transaction">Transaction</label>
-            <select class="form-control" id="field_transaction" name="transaction" [(ngModel)]="ticket.transaction" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="transactionOption.id === ticket.transaction?.id ? ticket.transaction : transactionOption" *ngFor="let transactionOption of transactions; trackBy: trackTransactionById">{{transactionOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.subtypeTransaction" for="field_subtypeTransaction">Subtype Transaction</label>
-            <select class="form-control" id="field_subtypeTransaction" name="subtypeTransaction" [(ngModel)]="ticket.subtypeTransaction" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="subtypeTransactionOption.id === ticket.subtypeTransaction?.id ? ticket.subtypeTransaction : subtypeTransactionOption" *ngFor="let subtypeTransactionOption of subtypetransactions; trackBy: trackSubtypeTransactionById">{{subtypeTransactionOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.productCat01" for="field_productCat01">Product Cat 01</label>
-            <select class="form-control" id="field_productCat01" name="productCat01" [(ngModel)]="ticket.productCat01" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="productCatOption.id === ticket.productCat01?.id ? ticket.productCat01 : productCatOption" *ngFor="let productCatOption of productcats; trackBy: trackProductCatById">{{productCatOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.productCat02" for="field_productCat02">Product Cat 02</label>
-            <select class="form-control" id="field_productCat02" name="productCat02" [(ngModel)]="ticket.productCat02" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="productCatOption.id === ticket.productCat02?.id ? ticket.productCat02 : productCatOption" *ngFor="let productCatOption of productcats; trackBy: trackProductCatById">{{productCatOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.productCat03" for="field_productCat03">Product Cat 03</label>
-            <select class="form-control" id="field_productCat03" name="productCat03" [(ngModel)]="ticket.productCat03" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="productCatOption.id === ticket.productCat03?.id ? ticket.productCat03 : productCatOption" *ngFor="let productCatOption of productcats; trackBy: trackProductCatById">{{productCatOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.contactTypes" for="field_contactTypes">Contact Types</label>
-            <select class="form-control" id="field_contactTypes" name="contactTypes" [(ngModel)]="ticket.contactTypes" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="contactTypeOption.id === ticket.contactTypes?.id ? ticket.contactTypes : contactTypeOption" *ngFor="let contactTypeOption of contacttypes; trackBy: trackContactTypeById">{{contactTypeOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.impacts" for="field_impacts">Impacts</label>
-            <select class="form-control" id="field_impacts" name="impacts" [(ngModel)]="ticket.impacts" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="impactOption.id === ticket.impacts?.id ? ticket.impacts : impactOption" *ngFor="let impactOption of impacts; trackBy: trackImpactById">{{impactOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ipicytBussApp.ticket.urgencies" for="field_urgencies">Urgencies</label>
-            <select class="form-control" id="field_urgencies" name="urgencies" [(ngModel)]="ticket.urgencies" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="urgencyOption.id === ticket.urgencies?.id ? ticket.urgencies : urgencyOption" *ngFor="let urgencyOption of urgencies; trackBy: trackUrgencyById">{{urgencyOption.id}}</option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

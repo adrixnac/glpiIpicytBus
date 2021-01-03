@@ -12,5 +12,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface ImpactRepository extends JpaRepository<Impact, Long> {
-
+    Impact findImpactByImpactRemedy(String impactRemedy);
 }

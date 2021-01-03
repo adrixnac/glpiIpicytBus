@@ -12,5 +12,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface RequestTypeRepository extends JpaRepository<RequestType, Long> {
-
+    RequestType findRequestTypeByRequestTypeRemedy(String requestTypeRemedy);
 }

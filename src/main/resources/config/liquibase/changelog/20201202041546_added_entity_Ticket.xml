@@ -122,38 +122,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="transaction_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="subtype_transaction_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="product_cat01_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="product_cat02_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="product_cat03_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="contact_types_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="impacts_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="urgencies_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="ticket" columnName="actual_sys_date" columnDataType="datetime"/>

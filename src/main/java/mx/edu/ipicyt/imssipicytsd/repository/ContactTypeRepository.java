@@ -12,5 +12,6 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface ContactTypeRepository extends JpaRepository<ContactType, Long> {
-
+// SubtypeTransaction findSubtypeTransactionBySubTypeTransactionRemedy(String subTypeTransactionRemedy);
+    ContactType findContactTypeByContactTypeRemedy(String contacTypeRemedy);
 }

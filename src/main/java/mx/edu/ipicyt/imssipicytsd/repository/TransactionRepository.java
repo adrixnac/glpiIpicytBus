@@ -12,5 +12,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
-
+    Transaction findTransactionByTransactionRemedy(String transactionRemedy);
 }
