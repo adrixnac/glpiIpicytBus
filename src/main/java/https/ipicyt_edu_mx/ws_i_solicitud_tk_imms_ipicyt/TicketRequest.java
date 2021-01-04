@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.01.03 a las 01:28:55 PM CST 
+// Generado el: 2021.01.04 a las 01:37:18 PM CST 
 //
 
 
@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="nombre_producto" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="CatOp01" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="CatOp02" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CatOp03" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="glpi_tickets.requesttypes_id" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="contact_type" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Impact" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -79,6 +80,7 @@ import javax.xml.bind.annotation.XmlType;
     "nombreProducto",
     "catOp01",
     "catOp02",
+    "catOp03",
     "glpiTicketsRequesttypesId",
     "contactType",
     "impact",
@@ -127,6 +129,8 @@ public class TicketRequest {
     protected String catOp01;
     @XmlElement(name = "CatOp02", required = true)
     protected String catOp02;
+    @XmlElement(name = "CatOp03", required = true)
+    protected String catOp03;
     @XmlElement(name = "glpi_tickets.requesttypes_id", required = true)
     protected String glpiTicketsRequesttypesId;
     @XmlElement(name = "contact_type", required = true)
@@ -434,6 +438,30 @@ public class TicketRequest {
      */
     public void setCatOp02(String value) {
         this.catOp02 = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad catOp03.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCatOp03() {
+        return catOp03;
+    }
+
+    /**
+     * Define el valor de la propiedad catOp03.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCatOp03(String value) {
+        this.catOp03 = value;
     }
 
     /**

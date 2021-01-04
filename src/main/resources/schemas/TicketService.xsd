@@ -21,6 +21,7 @@
                 <xs:element name="nombre_producto" type="xs:string"/>
                 <xs:element name="CatOp01" type="xs:string"/>
                 <xs:element name="CatOp02" type="xs:string"/>
+                <xs:element name="CatOp03" type="xs:string"/>
                 <xs:element name="glpi_tickets.requesttypes_id" type="xs:string"/>
                 <xs:element name="contact_type" type="xs:string"/>
                 <xs:element name="Impact" type="xs:string"/>
