@@ -1,0 +1,62 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTransactionLabel" jhiTranslate="ipicytBussApp.transaction.home.createOrEditLabel">Create or edit a Transaction</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!transaction.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="transaction.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.transaction.transactionRemedy" for="field_transactionRemedy">Transaction Remedy</label>
+            <input type="text" class="form-control" name="transactionRemedy" id="field_transactionRemedy"
+                [(ngModel)]="transaction.transactionRemedy" required/>
+            <div [hidden]="!(editForm.controls.transactionRemedy?.dirty && editForm.controls.transactionRemedy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.transactionRemedy?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.transaction.transactionGlpi" for="field_transactionGlpi">Transaction Glpi</label>
+            <input type="text" class="form-control" name="transactionGlpi" id="field_transactionGlpi"
+                [(ngModel)]="transaction.transactionGlpi" required/>
+            <div [hidden]="!(editForm.controls.transactionGlpi?.dirty && editForm.controls.transactionGlpi?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.transactionGlpi?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.transaction.transactionGlpiId" for="field_transactionGlpiId">Transaction Glpi Id</label>
+            <input type="number" class="form-control" name="transactionGlpiId" id="field_transactionGlpiId"
+                [(ngModel)]="transaction.transactionGlpiId" required/>
+            <div [hidden]="!(editForm.controls.transactionGlpiId?.dirty && editForm.controls.transactionGlpiId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.transactionGlpiId?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.transactionGlpiId?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

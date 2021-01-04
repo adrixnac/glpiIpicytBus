@@ -1,0 +1,24 @@
+
+{
+    "ipicytBussApp": {
+        "subtypeTransaction" : {
+            "home": {
+                "title": "Subtype Transactions",
+                "createLabel": "Crear nuevo Subtype Transaction",
+                "createOrEditLabel": "Crear o editar Subtype Transaction"
+            },
+            "created": "Un nuevo Subtype Transaction ha sido creado con el identificador {{ param }}",
+            "updated": "Un Subtype Transaction ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Subtype Transaction ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Subtype Transaction {{ id }}?"
+            },
+            "detail": {
+                "title": "Subtype Transaction"
+            },
+            "subTypeTransactionRemedy": "Sub Type Transaction Remedy",
+            "subTypeTransactionGlpi": "Sub Type Transaction Glpi",
+            "subTypeTransactionId": "Sub Type Transaction Id"
+        }
+    }
+}

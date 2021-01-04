@@ -1,0 +1,34 @@
+
+<div *ngIf="impact">
+    <h2><span jhiTranslate="ipicytBussApp.impact.detail.title">Impact</span> {{impact.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ipicytBussApp.impact.impactRemedy">Impact Remedy</span></dt>
+        <dd>
+            <span>{{impact.impactRemedy}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.impact.impactGlpi">Impact Glpi</span></dt>
+        <dd>
+            <span>{{impact.impactGlpi}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.impact.impactGlpiId">Impact Glpi Id</span></dt>
+        <dd>
+            <span>{{impact.impactGlpiId}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'impact/'+ impact.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

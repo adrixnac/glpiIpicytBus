@@ -5,7 +5,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import java.io.Serializable;
 import java.time.Instant;

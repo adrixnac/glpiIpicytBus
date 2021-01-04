@@ -8,6 +8,7 @@ import mx.edu.ipicyt.imssipicytsd.domain.GlpiResponse;
 import mx.edu.ipicyt.imssipicytsd.domain.Session;
 import mx.edu.ipicyt.imssipicytsd.domain.Ticket;
 import mx.edu.ipicyt.imssipicytsd.repository.TicketRepository;
+import mx.edu.ipicyt.imssipicytsd.service.util.BussinessRules;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.ContentType;
@@ -30,28 +31,34 @@ public class TicketIpicytService {
     private final String glpiAuthorization;
     private final String glpiToken;
     private final String glpiURL;
+    private final BussinessRules bussinessRules;
 
-    public TicketIpicytService(TicketRepository ticketRepository, ApplicationProperties glpi) {
+    public TicketIpicytService(TicketRepository ticketRepository, ApplicationProperties glpi, BussinessRules bussinessRules) {
         this.ticketRepository = ticketRepository;
         this.glpiURL = glpi.getGlpiUrl();
         this.glpiAuthorization = glpi.getGlpiAuthorization();
         this.glpiToken = glpi.getGlpiToken();
+        this.bussinessRules = bussinessRules;
     }
 
     public GlpiResponse createTicket(@Valid @RequestBody Ticket ticket) throws URISyntaxException {
         log.debug("Contenido Ipicyt createTicket: ", ticket.toString());
+        String jsonArmed = this.bussinessRules.JsonGLPI(ticket);
+        log.debug("JSON ARMADO {}",jsonArmed);
         String token = "";
-
         log.debug("Session-Token {}", this.glpiToken);
         log.debug("App-Token {}", this.glpiToken);
         log.debug("Authorization {}", this.glpiAuthorization);
 
         token = this.GetSession().getSession_token();
-        try {
+
 
             log.debug("Entra al try:  {}", token);
 
-            Content content = Request.Post("http://10.100.10.3/apirest.php/Ticket/")
+        Content content = null;
+        try {
+            log.debug("JSON FORZADO {\"input\": {\"status\": 2,\"global_validation\": 1,\"\": \"\",\"itilcategories_id\": 1,\"priority\": 2,\"type\": 2,\"requesttypes_id\": 4,\"date\": \"2020-11-01 00:00:00\",\"time_to_resolve\": \"14-11-2020 00:00\",\"urgency\": 2,\"impact\": 1,\"locations_id\": 1,\"name\": \"REQ 2020Nov4: Solicitud de actualización de imagen institucional\",\"content\": \" Prueba en el req 2020Nov11\"}}");
+            content = Request.Post("http://10.100.10.3/apirest.php/Ticket/")
 
                 // Add headers
                 .addHeader("Content-Type", "application/json")
@@ -60,12 +67,15 @@ public class TicketIpicytService {
                 .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
 
                 // Add body
-                .bodyString("{\"input\": {\"status\": 2,\"global_validation\": 1,\"\": \"\",\"itilcategories_id\": 1,\"priority\": 2,\"type\": 2,\"requesttypes_id\": 4,\"date\": \"2020-11-01 00:00:00\",\"time_to_resolve\": \"14-11-2020 00:00\",\"urgency\": 2,\"impact\": 1,\"locations_id\": 1,\"name\": \"REQ 2020Nov4: Solicitud de actualización de imagen institucional\",\"content\": \" Prueba en el req 2020Nov11\"}}", ContentType.APPLICATION_JSON)
+                .bodyString(jsonArmed, ContentType.APPLICATION_JSON)
 
                 // Fetch request and return content
                 .execute().returnContent();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            // Print content
+        // Print content
             System.out.println("Contenido post"+ content);
             log.debug("Contenido Ipicyt: ", content.toString());
 
@@ -82,9 +92,6 @@ public class TicketIpicytService {
 
                 return glpiResponse;
             }
-
-        }
-        catch (IOException e) { System.out.println(e); }
 
         this.CloseSession(token);
         return null;
@@ -105,7 +112,7 @@ public class TicketIpicytService {
                 .addHeader("Authorization", "Basic " + this.glpiAuthorization)
                 .addHeader("App-Token", this.glpiToken)
                 // Add body
-                .bodyString(this.generateJSON(ticket), ContentType.APPLICATION_JSON)
+                .bodyString("{\"input\": {\"status\": 2,\"global_validation\": 1,\"\": \"\",\"itilcategories_id\": 1,\"priority\": 2,\"type\": 2,\"requesttypes_id\": 4,\"date\": \"2020-11-01 00:00:00\",\"time_to_resolve\": \"14-11-2020 00:00\",\"urgency\": 2,\"impact\": 1,\"locations_id\": 1,\"name\": \"REQ 2020Nov4: Solicitud de actualización de imagen institucional\",\"content\": \" Prueba en el req 2020Nov11\"}}", ContentType.APPLICATION_JSON)
                 // Fetch request and return content
                 .execute().returnContent();
 
@@ -115,7 +122,7 @@ public class TicketIpicytService {
 
 
         }
-        catch (IOException | JSONException e) { System.out.println(e); }
+        catch (IOException e) { System.out.println(e); }
 
         return null;
     }

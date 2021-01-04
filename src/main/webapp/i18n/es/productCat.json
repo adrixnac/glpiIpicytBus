@@ -1,0 +1,24 @@
+
+{
+    "ipicytBussApp": {
+        "productCat" : {
+            "home": {
+                "title": "Product Cats",
+                "createLabel": "Crear nuevo Product Cat",
+                "createOrEditLabel": "Crear o editar Product Cat"
+            },
+            "created": "Un nuevo Product Cat ha sido creado con el identificador {{ param }}",
+            "updated": "Un Product Cat ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Product Cat ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Product Cat {{ id }}?"
+            },
+            "detail": {
+                "title": "Product Cat"
+            },
+            "productCatRemedy": "Product Cat Remedy",
+            "productCatGlpi": "Product Cat Glpi",
+            "productCatGlpiId": "Product Cat Glpi Id"
+        }
+    }
+}
