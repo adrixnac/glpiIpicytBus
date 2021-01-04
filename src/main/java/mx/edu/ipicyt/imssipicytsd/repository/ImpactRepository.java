@@ -13,4 +13,5 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface ImpactRepository extends JpaRepository<Impact, Long> {
     Impact findImpactByImpactRemedy(String impactRemedy);
+    Impact findFirstByImpactRemedyEquals(String impactRemedy);
 }

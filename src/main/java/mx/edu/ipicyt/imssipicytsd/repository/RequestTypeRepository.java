@@ -13,4 +13,5 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface RequestTypeRepository extends JpaRepository<RequestType, Long> {
     RequestType findRequestTypeByRequestTypeRemedy(String requestTypeRemedy);
+    RequestType findFirstByRequestTypeRemedyEquals(String requestTypeRemedy);
 }

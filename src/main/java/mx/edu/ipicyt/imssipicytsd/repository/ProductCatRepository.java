@@ -13,4 +13,5 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface ProductCatRepository extends JpaRepository<ProductCat, Long> {
     ProductCat findProductCatByProductCatRemedy(String productCatRemedy);
+    ProductCat findFirstByProductCatRemedyEquals(String productCatRemedy);
 }

@@ -1,194 +1,128 @@
 package mx.edu.ipicyt.imssipicytsd.service.util;
 
+import io.github.jhipster.web.util.ResponseUtil;
+import mx.edu.ipicyt.imssipicytsd.domain.*;
+import mx.edu.ipicyt.imssipicytsd.repository.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.time.ZoneOffset;
+@Service
 public class BussinessRules {
 
+    private SubtypeTransactionRepository subtypeTransactionRepository;
+    private ImpactRepository impactRepository;
+    private UrgencyRepository urgencyRepository;
+    private ProductCatRepository productCatRepository;
+    private RequestTypeRepository requestTypeRepository;
+    private final Logger log = LoggerFactory.getLogger(BussinessRules.class);
 
-    private final MapeoValores mapeoValores;
 
-    public BussinessRules(MapeoValores mapeoValores) {
-        this.mapeoValores = mapeoValores;
+    public BussinessRules(SubtypeTransactionRepository subtypeTransactionRepository,
+                          ImpactRepository impactRepository,
+                          UrgencyRepository urgencyRepository,
+                          ProductCatRepository productCatRepository,
+                          RequestTypeRepository requestTypeRepository) {
+        this.subtypeTransactionRepository = subtypeTransactionRepository;
+        this.impactRepository = impactRepository;
+        this.urgencyRepository = urgencyRepository;
+        this.productCatRepository = productCatRepository;
+        this.requestTypeRepository = requestTypeRepository;
     }
 
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param idRemedyGlpi
-     * @return
-     */
-    public String idRemedyGlpi(String idRemedyGlpi) {
-        return idRemedyGlpi;
+    public String JsonGLPI (Ticket ticket){
+        String jsonString ="{ " +
+                "\"input\": { " +
+                    "\"name\" : \"" + this.procesaTitulo(ticket.getIdRemedyGlpi() , ticket.getIdReferenciaCliente(),  ticket.getGlpiTicketsName()) + "\"," +
+                    "\"date\" : \"" + this.procesaDate(ticket.getActualSysDate()) + "\"," +
+                    "\"content\" : \"" + this.procesaContent(ticket.getGlpiTicketsContent()) + "\"," +
+                    "\"status\" : " + this.procesaStatus(ticket.getSubTypeTransaction()) + "," +
+                    "\"urgency\" : " + this.procesaUrgency(ticket.getUrgency()) + "," +
+                    "\"impact\" : " + this.procesaImpact(ticket.getImpact()) + "," +
+                    "\"itilcategories_id\" : " + this.procesaCat(ticket.getCatOp03()) + "," +
+                    "\"requesttypes_id\" :" + this.procesaRequestTypesId(ticket.getGlpiTicketsRequesttypesId()) + "," +
+                    "\"type\" :" + this.procesaRequestTypesId(ticket.getGlpiTicketsRequesttypesId()) + "," +
+                    "\"global_validation\":" + "2," +
+                    "\"locations_id\":"+  "2";
+        jsonString += "}}";
+
+        return jsonString;
     }
 
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param idRemedyGlpi
-     * @return
-     */
-
-    public String subTypeTransaction(String idRemedyGlpi) {
-
-        return idRemedyGlpi;
-    }
-
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param idReferenciaCliente
-     * @return
-     */
-    public String idReferenciaCliente(String idReferenciaCliente) {
-        return idReferenciaCliente;
-    }
-
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param company
-     * @return
-     */
-    public String company(String company) {
-        return company;
-    }
-
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param prodCat01
-     * @return
-     */
-    public String prodCat(String prodCat01, String prodCat02, String prodCat03) {
-        return prodCat01;
-    }
-
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param glpiTicketsRequesttypesId
-     * @return
-     */
-    public String glpiTicketsRequesttypesId(String glpiTicketsRequesttypesId) {
+    private Integer procesaRequestTypesId(String glpiTicketsRequesttypesIdString) {
+        Integer glpiTicketsRequesttypesId = null;
+        RequestType requestType  = requestTypeRepository.findFirstByRequestTypeRemedyEquals(glpiTicketsRequesttypesIdString);
+        if( requestType != null){
+            glpiTicketsRequesttypesId = requestType.getRequestTypeGlpiId();
+        }else{
+            glpiTicketsRequesttypesId = 0;
+        }
         return glpiTicketsRequesttypesId;
+
     }
 
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param contactType
-     * @return
-     */
-    public String contactType(String contactType) {
-        return contactType;
+    private Integer procesaCat(String catOpString) {
+        Integer  catOp = null;
+        ProductCat productCat = productCatRepository.findFirstByProductCatRemedyEquals(catOpString);
+        if(productCat != null) {
+            catOp = Integer.valueOf(productCat.getProductCatGlpiId());
+        } else {
+            catOp = 0;
+        }
+        return catOp;
+
     }
 
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param impact
-     * @return
-     */
-    public String impact(String impact) {
+    private Integer procesaImpact(String impactString) {
+        Integer impact = null;
+        Impact impactObj = impactRepository.findFirstByImpactRemedyEquals(impactString);
+        if (impactObj != null) {
+            impact = Integer.valueOf(impactObj.getImpactGlpiId());
+        } else {
+            impact =0;
+        }
+
         return impact;
     }
 
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param urgency
-     * @return
-     */
-    public String urgency(String urgency) {
+    private Integer procesaUrgency(String urgencyString) {
+        Integer urgency = null;
+        log.debug("URGENCY {}", urgencyString);
+        Urgency urgencyObj = urgencyRepository.findFirstByUrgencyRemedyEquals(urgencyString);
+        log.debug("URGENCY {}", urgencyObj.toString());
+        if(urgencyObj != null){
+            urgency = Integer.valueOf(urgencyObj.getUrgencyGlpiId());
+        }else{
+            urgency = 0;
+        }
         return urgency;
+
     }
 
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param glpiTicketsName
-     * @return
-     */
-    public String glpiTicketsName(String glpiTicketsName) {
-        return glpiTicketsName;
+    private Integer procesaStatus(String subTypeTransaction) {
+        Integer status = null;
+        SubtypeTransaction  subtypeTransactionObj = subtypeTransactionRepository.findFirstBySubTypeTransactionRemedyEquals(subTypeTransaction);
+        if(subtypeTransactionObj != null){
+            status =  subtypeTransactionObj.getSubTypeTransactionId();
+        } else {
+            return 0;
+        }
+        return status;
     }
 
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param glpiTicketsContent
-     * @return
-     */
-    public String glpiTicketsContent(String glpiTicketsContent) {
-        return glpiTicketsContent;
+    private String procesaContent(String glpiTicketsContent) {
+        return glpiTicketsContent.trim();
     }
 
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param notes
-     * @return
-     */
-    public String notes(String notes) {
-        return notes;
+    private String procesaDate(Instant actualSysDate) {
+        return actualSysDate.atZone(ZoneOffset.UTC).getYear()+"-"+actualSysDate.atZone(ZoneOffset.UTC).getMonthValue()+"-"+actualSysDate.atZone(ZoneOffset.UTC).getDayOfMonth()+ " "+actualSysDate.atZone(ZoneOffset.UTC).getHour()+":"+actualSysDate.atZone(ZoneOffset.UTC).getMinute()+":"+actualSysDate.atZone(ZoneOffset.UTC).getSecond();
     }
 
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param actualSysDate
-     * @return
-     */
-    public String actualSysDate(String actualSysDate) {
-        return actualSysDate;
+    private String procesaTitulo(String idRemedyGlpi,  String idReferenciaCliente, String glpiTicketsName) {
+        return idReferenciaCliente + " - " + idRemedyGlpi + ", " + glpiTicketsName;
     }
 
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param caller
-     * @return
-     */
-    public String caller(String caller) {
-        return caller;
-    }
-
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param callerEmail
-     * @return
-     */
-    public String callerEmail(String callerEmail) {
-        return callerEmail;
-    }
-
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param callerPhone
-     * @return
-     */
-    public String callerPhone(String callerPhone) {
-        return callerPhone;
-    }
-
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param typeTransaccion
-     * @return
-     */
-    public String typeTransaccion(String typeTransaccion) {
-        return typeTransaccion;
-    }
-
-    /**
-     * Regla de negocio por implementar en caso de ser necesario
-     *
-     * @param idtypeReqSol
-     * @return
-     */
-    public String idtypeReqSol(String idtypeReqSol) {
-        return idtypeReqSol;
-    }
 
 }

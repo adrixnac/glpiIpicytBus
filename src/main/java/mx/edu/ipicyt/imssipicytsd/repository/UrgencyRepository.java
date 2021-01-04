@@ -13,4 +13,5 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface UrgencyRepository extends JpaRepository<Urgency, Long> {
     Urgency findUrgencyByUrgencyRemedy(String urgencyRemedy);
+    Urgency findFirstByUrgencyRemedyEquals(String urgencyRemedy);
 }

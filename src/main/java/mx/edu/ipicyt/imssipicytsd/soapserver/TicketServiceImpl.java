@@ -6,6 +6,7 @@ import mx.edu.ipicyt.imssipicytsd.domain.GlpiResponse;
 import mx.edu.ipicyt.imssipicytsd.domain.Ticket;
 import mx.edu.ipicyt.imssipicytsd.repository.TicketRepository;
 import mx.edu.ipicyt.imssipicytsd.service.TicketIpicytService;
+import mx.edu.ipicyt.imssipicytsd.service.util.Utils;
 import mx.edu.ipicyt.imssipicytsd.web.rest.TicketResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,11 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.net.URISyntaxException;
+import java.text.ParseException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -93,26 +99,20 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
-    public TicketResponse processTicketApplication(TicketRequest ticketRequest) {
+    public TicketResponse processTicketApplication(TicketRequest ticketRequest)  {
         TicketResponse ticketResponse = new TicketResponse();
+        Utils utils = new Utils();
+        log.debug("Fecha ingresada desde SOAP {}", ticketRequest.getActualSysDate());
         String ticketSolicitado = ticketRequest.getTicketIPICYT();
         log.debug("Ticket solicitado {}",ticketSolicitado.toString());
+
         Ticket ticket = new Ticket();
-        GregorianCalendar c = new GregorianCalendar();
-        c.setTime(new Date());
-        XMLGregorianCalendar xmlDate = null;
-        try {
-            xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-        } catch (DatatypeConfigurationException e) {
-            e.printStackTrace();
-        }
-        log.debug("Fecha Actual {}", xmlDate.toString());
 
         GlpiResponse glpiResponse = new GlpiResponse();
-        ticket.setActualSysDate(c.toInstant());
+        ticket.setActualSysDate(utils.convertStringToInstant(ticketRequest.getActualSysDate()));
         ticket.setIdGlpi(ticketSolicitado);
         ticket.setGlpiTicketsContent(ticketRequest.getGlpiTicketsContent());
-        ticket.setGlpiTicketsName(ticketRequest.getIdReferenciaCliente() +" " + ticketRequest.getNombreProducto() );
+        ticket.setGlpiTicketsName(ticketRequest.getGlpiTicketsName());
         ticket.setProdCat01(ticketRequest.getProdCat01());
         ticket.setProdCat02(ticketRequest.getProdCat02());
         ticket.setProdCat03(ticketRequest.getProdCat03());

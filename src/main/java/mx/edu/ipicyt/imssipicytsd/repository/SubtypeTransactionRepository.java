@@ -13,4 +13,5 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface SubtypeTransactionRepository extends JpaRepository<SubtypeTransaction, Long> {
     SubtypeTransaction findSubtypeTransactionBySubTypeTransactionRemedy(String subTypeTransactionRemedy);
+    SubtypeTransaction findFirstBySubTypeTransactionRemedyEquals(String subTypeTransactionRemedy);
 }
