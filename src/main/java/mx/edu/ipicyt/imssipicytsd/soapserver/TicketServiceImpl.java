@@ -11,19 +11,8 @@ import mx.edu.ipicyt.imssipicytsd.web.rest.TicketResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import com.google.common.base.Strings;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.net.URISyntaxException;
-import java.text.ParseException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.GregorianCalendar;
+
 
 
 @Service
@@ -89,10 +78,7 @@ public class TicketServiceImpl implements TicketService{
 
 
 
-        } else {
-            // actualiza un  ticket
         }
-
         // sí existe es una actualización
 
         return glpiResponse;
@@ -146,16 +132,19 @@ public class TicketServiceImpl implements TicketService{
             }
             log.debug("REST request to save GlpiResponse : {}", glpiResponse);
             ticketResponse.setTypeTransaccion("INSERT");
-            ticketResponse.setIdReferenciaCliente(glpiResponse.getId_referencia_cliente());
             ticketResponse.setStatusTransaccionId("COMPLETADO");
-            ticketResponse.setResultMessage("");
+            ticketResponse.setResultMessage("Ticket creado");
+            ticketResponse.setGlpiTicketsId(glpiResponse.getId());
+
         }else {
             log.debug("ticket para ser actualizado {}", ticket.toString());
             Ticket result = ticketRepository.save(ticket);
+            ticketResponse.setGlpiTicketsId(glpiResponse.getId());
             glpiResponse = this.ticketIpicytService.updateTicket(ticket);
             log.debug("ticket ya actualizado en GLPI{}", ticket.toString());
             log.debug("REST request to update GlpiResponse : {}", glpiResponse);
             ticketResponse.setTypeTransaccion("UPDATE");
+            ticketResponse.setGlpiTicketsId(glpiResponse.getGlpi_tickets_id());
             ticketResponse.setIdReferenciaCliente(glpiResponse.getId_referencia_cliente());
             ticketResponse.setStatusTransaccionId("COMPLETADO");
             ticketResponse.setResultMessage("");

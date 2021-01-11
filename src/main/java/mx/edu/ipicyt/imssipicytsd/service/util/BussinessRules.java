@@ -1,6 +1,5 @@
 package mx.edu.ipicyt.imssipicytsd.service.util;
 
-import io.github.jhipster.web.util.ResponseUtil;
 import mx.edu.ipicyt.imssipicytsd.domain.*;
 import mx.edu.ipicyt.imssipicytsd.repository.*;
 import org.slf4j.Logger;
