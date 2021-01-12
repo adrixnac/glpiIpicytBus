@@ -24,12 +24,12 @@
                 <xs:element name="CatOp03" type="xs:string"/>
                 <xs:element name="glpi_tickets.requesttypes_id" type="xs:string"/>
                 <xs:element name="contact_type" type="xs:string"/>
-                <xs:element name="Impact" type="xs:string"/>
-                <xs:element name="urgency" type="xs:string"/>
+                <xs:element name="Impact" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="urgency" type="xs:string" minOccurs="0" maxOccurs="1"/>
                 <xs:element name="glpi_tickets.name" type="xs:string" />
                 <xs:element name="glpi_tickets.content" type="xs:string" />
                 <xs:element name="notes" type="xs:string"/>
-                <xs:element name="actual_sys_date" type="xs:dateTime"/>
+                <xs:element name="actual_sys_date" type="xs:string"/>
                 <xs:element name="caller" type="xs:string"/>
                 <xs:element name="calle_email" type="xs:string"/>
                 <xs:element name="caller_phone" type="xs:string"/>

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.01.12 a las 06:44:26 AM CST 
+// Generado el: 2021.01.12 a las 12:07:49 PM CST 
 //
 
 
@@ -12,9 +12,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -41,12 +39,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="CatOp03" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="glpi_tickets.requesttypes_id" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="contact_type" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Impact" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="urgency" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Impact" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="urgency" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="glpi_tickets.name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="glpi_tickets.content" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="notes" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="actual_sys_date" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         &lt;element name="actual_sys_date" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="caller" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="calle_email" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="caller_phone" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -137,9 +135,8 @@ public class TicketRequest {
     protected String glpiTicketsRequesttypesId;
     @XmlElement(name = "contact_type", required = true)
     protected String contactType;
-    @XmlElement(name = "Impact", required = true)
+    @XmlElement(name = "Impact")
     protected String impact;
-    @XmlElement(required = true)
     protected String urgency;
     @XmlElement(name = "glpi_tickets.name", required = true)
     protected String glpiTicketsName;
@@ -148,8 +145,7 @@ public class TicketRequest {
     @XmlElement(required = true)
     protected String notes;
     @XmlElement(name = "actual_sys_date", required = true)
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar actualSysDate;
+    protected String actualSysDate;
     @XmlElement(required = true)
     protected String caller;
     @XmlElement(name = "calle_email", required = true)
@@ -640,10 +636,10 @@ public class TicketRequest {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getActualSysDate() {
+    public String getActualSysDate() {
         return actualSysDate;
     }
 
@@ -652,10 +648,10 @@ public class TicketRequest {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setActualSysDate(XMLGregorianCalendar value) {
+    public void setActualSysDate(String value) {
         this.actualSysDate = value;
     }
 
