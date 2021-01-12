@@ -88,10 +88,7 @@ public class TicketServiceImpl implements TicketService{
     public TicketResponse processTicketApplication(TicketRequest ticketRequest)  {
         TicketResponse ticketResponse = new TicketResponse();
         Utils utils = new Utils();
-        log.debug("Fecha ingresada desde SOAP {}", ticketRequest.getActualSysDate());
         String ticketSolicitado = ticketRequest.getTicketIPICYT();
-        log.debug("Ticket solicitado {}",ticketSolicitado.toString());
-
         Ticket ticket = new Ticket();
 
         GlpiResponse glpiResponse = new GlpiResponse();

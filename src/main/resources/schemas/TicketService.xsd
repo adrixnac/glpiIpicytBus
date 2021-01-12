@@ -29,7 +29,7 @@
                 <xs:element name="glpi_tickets.name" type="xs:string" />
                 <xs:element name="glpi_tickets.content" type="xs:string" />
                 <xs:element name="notes" type="xs:string"/>
-                <xs:element name="actual_sys_date" type="xs:string"/>
+                <xs:element name="actual_sys_date" type="xs:dateTime"/>
                 <xs:element name="caller" type="xs:string"/>
                 <xs:element name="calle_email" type="xs:string"/>
                 <xs:element name="caller_phone" type="xs:string"/>

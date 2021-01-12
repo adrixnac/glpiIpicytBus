@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.01.04 a las 02:38:27 PM CST 
+// Generado el: 2021.01.12 a las 06:44:26 AM CST 
 //
 
 
@@ -12,7 +12,9 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -44,7 +46,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="glpi_tickets.name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="glpi_tickets.content" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="notes" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="actual_sys_date" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="actual_sys_date" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="caller" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="calle_email" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="caller_phone" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -146,7 +148,8 @@ public class TicketRequest {
     @XmlElement(required = true)
     protected String notes;
     @XmlElement(name = "actual_sys_date", required = true)
-    protected String actualSysDate;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar actualSysDate;
     @XmlElement(required = true)
     protected String caller;
     @XmlElement(name = "calle_email", required = true)
@@ -637,10 +640,10 @@ public class TicketRequest {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getActualSysDate() {
+    public XMLGregorianCalendar getActualSysDate() {
         return actualSysDate;
     }
 
@@ -649,10 +652,10 @@ public class TicketRequest {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setActualSysDate(String value) {
+    public void setActualSysDate(XMLGregorianCalendar value) {
         this.actualSysDate = value;
     }
 
