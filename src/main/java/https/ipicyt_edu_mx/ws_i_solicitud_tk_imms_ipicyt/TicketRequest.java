@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.01.12 a las 12:07:49 PM CST 
+// Generado el: 2021.01.13 a las 09:20:00 AM CST 
 //
 
 
@@ -44,7 +44,13 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="glpi_tickets.name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="glpi_tickets.content" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="notes" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="actual_sys_date" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="actual_sys_date">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;pattern value="[0-3][0-9]/[01][0-9]/[0-9]{4} [0-2][0-9]:[0-5][0-9]:[0-6][0-9] [AP](M)"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *         &lt;element name="caller" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="calle_email" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="caller_phone" type="{http://www.w3.org/2001/XMLSchema}string"/>

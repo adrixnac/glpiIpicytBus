@@ -92,6 +92,7 @@ public class TicketServiceImpl implements TicketService{
         Ticket ticket = new Ticket();
 
         GlpiResponse glpiResponse = new GlpiResponse();
+        log.debug("FECHA ACTUAL - SOAP {}", ticketRequest.getActualSysDate());
         ticket.setActualSysDate(utils.convertStringToInstant(ticketRequest.getActualSysDate()));
         ticket.setIdGlpi(ticketSolicitado);
         ticket.setGlpiTicketsContent(ticketRequest.getGlpiTicketsContent());

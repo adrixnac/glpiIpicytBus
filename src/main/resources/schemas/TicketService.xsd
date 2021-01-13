@@ -29,7 +29,13 @@
                 <xs:element name="glpi_tickets.name" type="xs:string" />
                 <xs:element name="glpi_tickets.content" type="xs:string" />
                 <xs:element name="notes" type="xs:string"/>
-                <xs:element name="actual_sys_date" type="xs:string"/>
+                <xs:element name="actual_sys_date" >
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[0-3][0-9]/[01][0-9]/[0-9]{4} [0-2][0-9]:[0-5][0-9]:[0-6][0-9] [AP](M)" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
                 <xs:element name="caller" type="xs:string"/>
                 <xs:element name="calle_email" type="xs:string"/>
                 <xs:element name="caller_phone" type="xs:string"/>
