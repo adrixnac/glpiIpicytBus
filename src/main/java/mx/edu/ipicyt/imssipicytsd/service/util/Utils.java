@@ -14,39 +14,26 @@ public class Utils {
     private final Logger log = LoggerFactory.getLogger(Utils.class);
 
     public Instant convertStringToInstant(String actualSysDate)  {
-        log.debug("ACTUAL DATE {}", actualSysDate);
-       /*
-       // String year = actualSysDate.substring(0,4);
+        String year= actualSysDate.substring(6,10) ;
+        log.debug("- AÑO-  {}", year);
 
-        String month = actualSysDate.substring(5,7);
-        String day =  actualSysDate.substring(8,10);
+        String month = actualSysDate.substring(0,2);
+        log.debug(" MES {}", month);
+
+        String day = actualSysDate.substring(3,5);
+        log.debug(" day {}", day);
+
         String hour = actualSysDate.substring(11,13);
+        log.debug(" hour {}", hour);
+
         String minute = actualSysDate.substring(14,16);
+        log.debug(" minute {}", minute);
+
         String second = actualSysDate.substring(17,19);
+        log.debug(" second {}", second);
 
-        log.debug("Anio {}", year);
-        log.debug("Month {}", month);
-        log.debug("day  {}", day);
-        log.debug("Anio {}", hour);
-        log.debug("Month {}", minute);
-        log.debug("day  {}", second);
-
-        String horaParse = null;
-
-       return LocalDateTime.parse(
-            year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).atZone(ZoneId.of("America/Mexico_City")).toInstant();
-
-       */
-        String horaParse = null;
-        SimpleDateFormat date12Format = new SimpleDateFormat("hh:mm:ss a");
-        SimpleDateFormat date24Format = new SimpleDateFormat("HH:mm:ss");
-        try {
-            horaParse = date24Format.format(date12Format.parse(actualSysDate.substring(11,13)+":"+actualSysDate.substring(14,16)+":"+actualSysDate.substring(17,19)+" "+actualSysDate.substring(20,24).toUpperCase().replace(".","")));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         return LocalDateTime.parse(
-            actualSysDate.substring(6,10)+"-"+actualSysDate.substring(0,2)+"-"+actualSysDate.substring(3,5)+" "+horaParse, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).atZone(ZoneId.of("America/Mexico_City")).toInstant();
+            actualSysDate.substring(6,10)+"-"+actualSysDate.substring(0,2)+"-"+actualSysDate.substring(3,5)+" "+actualSysDate.substring(11,13)+":"+actualSysDate.substring(14,16)+":"+actualSysDate.substring(17,19), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).atZone(ZoneId.of("America/Mexico_City")).toInstant();
 
     }
 

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.01.13 a las 09:20:00 AM CST 
+// Generado el: 2021.01.14 a las 10:38:23 AM CST 
 //
 
 
@@ -47,7 +47,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="actual_sys_date">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *               &lt;pattern value="[0-3][0-9]/[01][0-9]/[0-9]{4} [0-2][0-9]:[0-5][0-9]:[0-6][0-9] [AP](M)"/>
+ *               &lt;pattern value="[01][0-9]/[0-3][0-9]//[0-9]{4} [0-2][0-9]:[0-5][0-9]:[0-6][0-9]-0600"/>
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>

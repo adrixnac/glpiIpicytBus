@@ -116,7 +116,13 @@ public class BussinessRules {
     }
 
     private String procesaDate(Instant actualSysDate) {
-        return actualSysDate.atZone(ZoneOffset.UTC).getYear()+"-"+actualSysDate.atZone(ZoneOffset.UTC).getMonthValue()+"-"+actualSysDate.atZone(ZoneOffset.UTC).getDayOfMonth()+ " "+actualSysDate.atZone(ZoneOffset.UTC).getHour()+":"+actualSysDate.atZone(ZoneOffset.UTC).getMinute()+":"+actualSysDate.atZone(ZoneOffset.UTC).getSecond();
+        String year = String.format("%04d",actualSysDate.atZone(ZoneOffset.UTC).getYear());
+        String month = String.format("%02d",actualSysDate.atZone(ZoneOffset.UTC).getMonthValue());
+        String day = String.format("%02d",actualSysDate.atZone(ZoneOffset.UTC).getDayOfMonth());
+        String hour = String.format("%02d", actualSysDate.atZone(ZoneOffset.UTC).getHour());
+        String minutes = String.format("%02d",actualSysDate.atZone(ZoneOffset.UTC).getMinute());
+        String seconds = String.format("%02d",actualSysDate.atZone(ZoneOffset.UTC).getSecond());
+        return year+"-"+month+"-"+day+ " "+hour+":"+minutes+":"+seconds;
     }
 
     private String procesaTitulo(String idRemedyGlpi,  String idReferenciaCliente, String glpiTicketsName) {
