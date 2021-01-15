@@ -1,0 +1,62 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPriorityLabel" jhiTranslate="ipicytBussApp.priority.home.createOrEditLabel">Create or edit a Priority</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!priority.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="priority.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.priority.priorityRemedy" for="field_priorityRemedy">Priority Remedy</label>
+            <input type="text" class="form-control" name="priorityRemedy" id="field_priorityRemedy"
+                [(ngModel)]="priority.priorityRemedy" required/>
+            <div [hidden]="!(editForm.controls.priorityRemedy?.dirty && editForm.controls.priorityRemedy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.priorityRemedy?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.priority.priorityGlpi" for="field_priorityGlpi">Priority Glpi</label>
+            <input type="text" class="form-control" name="priorityGlpi" id="field_priorityGlpi"
+                [(ngModel)]="priority.priorityGlpi" required/>
+            <div [hidden]="!(editForm.controls.priorityGlpi?.dirty && editForm.controls.priorityGlpi?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.priorityGlpi?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.priority.priorityGlpiId" for="field_priorityGlpiId">Priority Glpi Id</label>
+            <input type="number" class="form-control" name="priorityGlpiId" id="field_priorityGlpiId"
+                [(ngModel)]="priority.priorityGlpiId" required/>
+            <div [hidden]="!(editForm.controls.priorityGlpiId?.dirty && editForm.controls.priorityGlpiId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.priorityGlpiId?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.priorityGlpiId?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

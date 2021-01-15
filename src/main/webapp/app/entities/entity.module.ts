@@ -8,6 +8,7 @@ import { IpicytBussRequestTypeModule } from './request-type/request-type.module'
 import { IpicytBussContactTypeModule } from './contact-type/contact-type.module';
 import { IpicytBussImpactModule } from './impact/impact.module';
 import { IpicytBussUrgencyModule } from './urgency/urgency.module';
+import { IpicytBussPriorityModule } from './priority/priority.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -20,6 +21,7 @@ import { IpicytBussUrgencyModule } from './urgency/urgency.module';
         IpicytBussContactTypeModule,
         IpicytBussImpactModule,
         IpicytBussUrgencyModule,
+        IpicytBussPriorityModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

@@ -116,6 +116,7 @@ public class TicketServiceImpl implements TicketService{
         ticket.idReferenciaCliente(ticketRequest.getIdReferenciaCliente());
         ticket.caller(ticketRequest.getCaller());
         ticket.setSubTypeTransaction(ticketRequest.getSubTypeTransaction());
+        ticket.setIdPriority(ticketRequest.getPriority());
 
         // nuevo ticket
         if ( ticketSolicitado.isEmpty() ){

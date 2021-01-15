@@ -158,6 +158,10 @@
         {
             "fieldName": "idtypeReqSol",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "idPriority",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20201202041546",

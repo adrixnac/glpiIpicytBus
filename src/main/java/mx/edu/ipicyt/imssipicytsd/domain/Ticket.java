@@ -118,6 +118,9 @@ public class Ticket implements Serializable {
     @Column(name = "idtype_req_sol")
     private String idtypeReqSol;
 
+    @Column(name = "id_priority")
+    private String idPriority;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -451,6 +454,19 @@ public class Ticket implements Serializable {
     public void setIdtypeReqSol(String idtypeReqSol) {
         this.idtypeReqSol = idtypeReqSol;
     }
+
+    public String getIdPriority() {
+        return idPriority;
+    }
+
+    public Ticket idPriority(String idPriority) {
+        this.idPriority = idPriority;
+        return this;
+    }
+
+    public void setIdPriority(String idPriority) {
+        this.idPriority = idPriority;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -502,6 +518,7 @@ public class Ticket implements Serializable {
             ", typeTransaccion='" + getTypeTransaccion() + "'" +
             ", idGlpi='" + getIdGlpi() + "'" +
             ", idtypeReqSol='" + getIdtypeReqSol() + "'" +
+            ", idPriority='" + getIdPriority() + "'" +
             "}";
     }
 }

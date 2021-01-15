@@ -28,6 +28,7 @@ export class Ticket implements BaseEntity {
         public typeTransaccion?: string,
         public idGlpi?: string,
         public idtypeReqSol?: string,
+        public idPriority?: string,
     ) {
     }
 }

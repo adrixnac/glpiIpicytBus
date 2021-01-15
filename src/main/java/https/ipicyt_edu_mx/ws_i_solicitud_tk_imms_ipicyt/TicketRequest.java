@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.01.14 a las 10:38:23 AM CST 
+// Generado el: 2021.01.15 a las 01:40:37 PM CST 
 //
 
 
@@ -44,7 +44,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="glpi_tickets.name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="glpi_tickets.content" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="notes" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="actual_sys_date">
+ *         &lt;element name="priority" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="actual_sys_date" minOccurs="0">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *               &lt;pattern value="[01][0-9]/[0-3][0-9]//[0-9]{4} [0-2][0-9]:[0-5][0-9]:[0-6][0-9]-0600"/>
@@ -94,6 +95,7 @@ import javax.xml.bind.annotation.XmlType;
     "glpiTicketsName",
     "glpiTicketsContent",
     "notes",
+    "priority",
     "actualSysDate",
     "caller",
     "calleEmail",
@@ -150,7 +152,9 @@ public class TicketRequest {
     protected String glpiTicketsContent;
     @XmlElement(required = true)
     protected String notes;
-    @XmlElement(name = "actual_sys_date", required = true)
+    @XmlElement(required = true)
+    protected String priority;
+    @XmlElement(name = "actual_sys_date")
     protected String actualSysDate;
     @XmlElement(required = true)
     protected String caller;
@@ -635,6 +639,30 @@ public class TicketRequest {
      */
     public void setNotes(String value) {
         this.notes = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad priority.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPriority() {
+        return priority;
+    }
+
+    /**
+     * Define el valor de la propiedad priority.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPriority(String value) {
+        this.priority = value;
     }
 
     /**

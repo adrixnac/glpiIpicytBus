@@ -77,6 +77,12 @@
                             <span jhiTranslate="global.menu.entities.urgency">Urgency</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="priority" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.priority">Priority</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>
