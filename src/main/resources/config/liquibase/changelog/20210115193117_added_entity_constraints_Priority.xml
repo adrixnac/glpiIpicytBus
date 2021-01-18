@@ -7,7 +7,15 @@
         Added the constraints for entity Priority.
     -->
     <changeSet id="20210115193117-2" author="jhipster">
-        
+        <addColumn tableName="priority">
+            <column name="urgency_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="impact_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+
         <addForeignKeyConstraint baseColumnNames="urgency_id"
                                  baseTableName="priority"
                                  constraintName="fk_priority_urgency_id"
