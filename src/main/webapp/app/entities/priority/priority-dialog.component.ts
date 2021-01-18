@@ -4,11 +4,13 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Priority } from './priority.model';
 import { PriorityPopupService } from './priority-popup.service';
 import { PriorityService } from './priority.service';
+import { Urgency, UrgencyService } from '../urgency';
+import { Impact, ImpactService } from '../impact';
 
 @Component({
     selector: 'jhi-priority-dialog',
@@ -19,15 +21,26 @@ export class PriorityDialogComponent implements OnInit {
     priority: Priority;
     isSaving: boolean;
 
+    urgencies: Urgency[];
+
+    impacts: Impact[];
+
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiAlertService: JhiAlertService,
         private priorityService: PriorityService,
+        private urgencyService: UrgencyService,
+        private impactService: ImpactService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.urgencyService.query()
+            .subscribe((res: HttpResponse<Urgency[]>) => { this.urgencies = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.impactService.query()
+            .subscribe((res: HttpResponse<Impact[]>) => { this.impacts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -58,6 +71,18 @@ export class PriorityDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackUrgencyById(index: number, item: Urgency) {
+        return item.id;
+    }
+
+    trackImpactById(index: number, item: Impact) {
+        return item.id;
     }
 }
 

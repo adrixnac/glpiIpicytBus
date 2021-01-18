@@ -18,7 +18,9 @@
             },
             "priorityRemedy": "Priority Remedy",
             "priorityGlpi": "Priority Glpi",
-            "priorityGlpiId": "Priority Glpi Id"
+            "priorityGlpiId": "Priority Glpi Id",
+            "urgency": "Urgency",
+            "impact": "Impact"
         }
     }
 }

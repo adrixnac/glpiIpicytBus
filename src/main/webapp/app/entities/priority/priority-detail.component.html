@@ -16,6 +16,18 @@
         <dd>
             <span>{{priority.priorityGlpiId}}</span>
         </dd>
+        <dt><span jhiTranslate="ipicytBussApp.priority.urgency">Urgency</span></dt>
+        <dd>
+            <div *ngIf="priority.urgency">
+                <a [routerLink]="['/urgency', priority.urgency?.id]">{{priority.urgency?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.priority.impact">Impact</span></dt>
+        <dd>
+            <div *ngIf="priority.impact">
+                <a [routerLink]="['/impact', priority.impact?.id]">{{priority.impact?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

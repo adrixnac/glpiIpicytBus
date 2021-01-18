@@ -6,6 +6,8 @@ export class Priority implements BaseEntity {
         public priorityRemedy?: string,
         public priorityGlpi?: string,
         public priorityGlpiId?: number,
+        public urgency?: BaseEntity,
+        public impact?: BaseEntity,
     ) {
     }
 }

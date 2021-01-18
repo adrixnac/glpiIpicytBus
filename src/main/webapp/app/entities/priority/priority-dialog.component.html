@@ -50,6 +50,20 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.priority.urgency" for="field_urgency">Urgency</label>
+            <select class="form-control" id="field_urgency" name="urgency" [(ngModel)]="priority.urgency" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="urgencyOption.id === priority.urgency?.id ? priority.urgency : urgencyOption" *ngFor="let urgencyOption of urgencies; trackBy: trackUrgencyById">{{urgencyOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.priority.impact" for="field_impact">Impact</label>
+            <select class="form-control" id="field_impact" name="impact" [(ngModel)]="priority.impact" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="impactOption.id === priority.impact?.id ? priority.impact : impactOption" *ngFor="let impactOption of impacts; trackBy: trackImpactById">{{impactOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

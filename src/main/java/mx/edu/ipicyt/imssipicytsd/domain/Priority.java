@@ -35,6 +35,12 @@ public class Priority implements Serializable {
     @Column(name = "priority_glpi_id", nullable = false)
     private Integer priorityGlpiId;
 
+    @ManyToOne
+    private Urgency urgency;
+
+    @ManyToOne
+    private Impact impact;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -81,6 +87,32 @@ public class Priority implements Serializable {
 
     public void setPriorityGlpiId(Integer priorityGlpiId) {
         this.priorityGlpiId = priorityGlpiId;
+    }
+
+    public Urgency getUrgency() {
+        return urgency;
+    }
+
+    public Priority urgency(Urgency urgency) {
+        this.urgency = urgency;
+        return this;
+    }
+
+    public void setUrgency(Urgency urgency) {
+        this.urgency = urgency;
+    }
+
+    public Impact getImpact() {
+        return impact;
+    }
+
+    public Priority impact(Impact impact) {
+        this.impact = impact;
+        return this;
+    }
+
+    public void setImpact(Impact impact) {
+        this.impact = impact;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -15,6 +15,7 @@
     <include file="config/liquibase/changelog/20210102212657_added_entity_Urgency.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210115193117_added_entity_Priority.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210115193118_added_field_Priority.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210118193118_added_field_Priority" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-            <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

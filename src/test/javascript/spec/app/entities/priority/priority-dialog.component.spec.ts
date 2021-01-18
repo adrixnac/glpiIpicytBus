@@ -9,6 +9,8 @@ import { IpicytBussTestModule } from '../../../test.module';
 import { PriorityDialogComponent } from '../../../../../../main/webapp/app/entities/priority/priority-dialog.component';
 import { PriorityService } from '../../../../../../main/webapp/app/entities/priority/priority.service';
 import { Priority } from '../../../../../../main/webapp/app/entities/priority/priority.model';
+import { UrgencyService } from '../../../../../../main/webapp/app/entities/urgency';
+import { ImpactService } from '../../../../../../main/webapp/app/entities/impact';
 
 describe('Component Tests', () => {
 
@@ -24,6 +26,8 @@ describe('Component Tests', () => {
                 imports: [IpicytBussTestModule],
                 declarations: [PriorityDialogComponent],
                 providers: [
+                    UrgencyService,
+                    ImpactService,
                     PriorityService
                 ]
             })
