@@ -19,28 +19,28 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="ipicytBussApp.priority.priorityRemedy">Priority Remedy</span></th>
             <th><span jhiTranslate="ipicytBussApp.priority.priorityGlpi">Priority Glpi</span></th>
-            <th><span jhiTranslate="ipicytBussApp.priority.priorityGlpiId">Priority Glpi Id</span></th>
             <th><span jhiTranslate="ipicytBussApp.priority.urgency">Urgency</span></th>
             <th><span jhiTranslate="ipicytBussApp.priority.impact">Impact</span></th>
-            <th></th>
+            <th><span jhiTranslate="ipicytBussApp.priority.priorityGlpiId">Priority Glpi Id</span></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let priority of priorities ;trackBy: trackId">
                 <td><a [routerLink]="['../priority', priority.id ]">{{priority.id}}</a></td>
                 <td>{{priority.priorityRemedy}}</td>
-                <td>{{priority.priorityGlpi}}</td>
+
                 <td>{{priority.priorityGlpiId}}</td>
                 <td>
                     <div *ngIf="priority.urgency">
-                        <a [routerLink]="['../urgency', priority.urgency?.id ]" >{{priority.urgency?.id}}</a>
+                        <a [routerLink]="['../urgency', priority.urgency?.id ]" >{{priority.urgency?.urgencyGlpi}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="priority.impact">
-                        <a [routerLink]="['../impact', priority.impact?.id ]" >{{priority.impact?.id}}</a>
+                        <a [routerLink]="['../impact', priority.impact?.id ]" >{{priority.impact?.impactGlpi}}</a>
                     </div>
                 </td>
+                <td>{{priority.priorityGlpi}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

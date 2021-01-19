@@ -16,11 +16,11 @@
             "detail": {
                 "title": "Priority"
             },
-            "priorityRemedy": "Priority Remedy",
-            "priorityGlpi": "Priority Glpi",
-            "priorityGlpiId": "Priority Glpi Id",
-            "urgency": "Urgency",
-            "impact": "Impact"
+            "priorityRemedy": "Nombre de la prioridad en Remedy",
+            "priorityGlpi": "Nombre de la prioridad en Glpi",
+            "priorityGlpiId": "Prioridad Calculada",
+            "urgency": "Urgencia",
+            "impact": "Impacto"
         }
     }
 }
