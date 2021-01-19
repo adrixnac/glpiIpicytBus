@@ -40,7 +40,6 @@ public class TicketServiceImpl implements TicketService{
             ticket.setGlpiTicketsName(ticketRequest.getNombreProducto());
             ticket.setCaller(ticketRequest.getCaller());
             ticket.setGlpiTicketsRequesttypesId(ticketRequest.getGlpiTicketsRequesttypesId());
-            //ticket.setActualSysDate(request.getActualSysDate());
             ticket.setCallerEmail(ticketRequest.getCalleEmail());
             ticket.setCatOp01(ticketRequest.getCatOp01());
             ticket.setCatOp02(ticketRequest.getCatOp02());
@@ -101,6 +100,7 @@ public class TicketServiceImpl implements TicketService{
         ticket.setProdCat02(ticketRequest.getProdCat02());
         ticket.setProdCat03(ticketRequest.getProdCat03());
         ticket.setImpact(ticketRequest.getImpact());
+        log.debug("--------TICKET------- {}", ticketRequest.getGlpiTicketsRequesttypesId());
         ticket.setGlpiTicketsRequesttypesId(ticketRequest.getGlpiTicketsRequesttypesId());
         ticket.setCompany(ticketRequest.getCompany());
         ticket.setCatOp01(ticketRequest.getCatOp01());

@@ -81,6 +81,10 @@ public class TicketIpicytService {
                 log.debug("Entra al ticketRepository:  {}", ticketUpdate.toString());
                 ticketUpdate.setIdGlpi(glpiResponse.getId());
                 Ticket result = ticketRepository.save(ticketUpdate);
+                if(result  == null ){
+                    glpiResponse.setMessage("ha ocurrido un error al procesar en GLPI el ticket con valores: {}"+ ticket.toString() );
+                }
+
                 log.debug("Entra al result:  {}", result.toString());
 
                 return glpiResponse;

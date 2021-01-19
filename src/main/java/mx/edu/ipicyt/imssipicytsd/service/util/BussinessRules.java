@@ -36,7 +36,7 @@ public class BussinessRules {
                 "\"input\": { " +
                     "\"name\" : \"" + this.procesaTitulo(ticket.getIdRemedyGlpi() , ticket.getIdReferenciaCliente(),  ticket.getGlpiTicketsName()) + "\"," +
                     "\"date\" : \"" + this.procesaDate(ticket.getActualSysDate()) + "\"," +
-                    "\"content\" : \"" + this.procesaContent(ticket.getGlpiTicketsContent()) + "\"," +
+                    "\"content\" : \"" + this.procesaContent(ticket.getGlpiTicketsContent()) + "." + ticket.getNotes() + "\"," +
                     "\"status\" : " + this.procesaStatus(ticket.getSubTypeTransaction()) + "," +
                     "\"urgency\" : " + this.procesaUrgency(ticket.getUrgency()) + "," +
                     "\"impact\" : " + this.procesaImpact(ticket.getImpact()) + "," +
