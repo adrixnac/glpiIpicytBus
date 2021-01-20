@@ -44,7 +44,7 @@ public class BussinessRules {
                     "\"requesttypes_id\" :" + this.procesaRequestTypesId(ticket.getGlpiTicketsRequesttypesId()) + "," +
                     "\"type\" :" + this.procesaRequestTypesId(ticket.getGlpiTicketsRequesttypesId()) + "," +
                     "\"global_validation\":" + "2," +
-                    "\"priority\":" + ticket.getIdPriority() +
+                    "\"priority\":" + ticket.getIdPriority() + "," +
                     "\"locations_id\":"+  "2";
         jsonString += "}}";
 
