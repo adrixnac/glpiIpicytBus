@@ -100,13 +100,13 @@ public class TicketServiceImpl implements TicketService{
         ticket.setProdCat02(ticketRequest.getProdCat02());
         ticket.setProdCat03(ticketRequest.getProdCat03());
         ticket.setImpact(ticketRequest.getImpact());
-        log.debug("--------TICKET------- {}", ticketRequest.getGlpiTicketsRequesttypesId());
         ticket.setGlpiTicketsRequesttypesId(ticketRequest.getGlpiTicketsRequesttypesId());
         ticket.setCompany(ticketRequest.getCompany());
         ticket.setCatOp01(ticketRequest.getCatOp01());
         ticket.setCatOp02(ticketRequest.getCatOp02());
         ticket.setCatOp03(ticketRequest.getCatOp03());
         ticket.callerPhone(ticketRequest.getCallerPhone());
+        ticket.setNotes(ticketRequest.getNotes());
         ticket.setContactType(ticketRequest.getContactType());
         ticket.setIdRemedyGlpi(String.valueOf(ticketRequest.getIdRemedyGlpi()));
         ticket.setCallerPhone(ticketRequest.getCallerPhone());
