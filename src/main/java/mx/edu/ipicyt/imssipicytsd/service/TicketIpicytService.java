@@ -12,9 +12,6 @@ import mx.edu.ipicyt.imssipicytsd.service.util.BussinessRules;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.ContentType;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -51,7 +48,7 @@ public class TicketIpicytService {
 
         Content content = null;
         try {
-            content = Request.Post("http://10.100.10.3/apirest.php/Ticket/")
+            content = Request.Post("http://0.0.0.0/apirest.php/Ticket/")
 
                 // Add headers
                 .addHeader("Content-Type", "application/json")

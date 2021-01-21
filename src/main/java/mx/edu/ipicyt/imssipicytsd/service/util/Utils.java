@@ -1,6 +1,7 @@
 package mx.edu.ipicyt.imssipicytsd.service.util;
 
 import mx.edu.ipicyt.imssipicytsd.web.rest.ContactTypeResourceImp;
+import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,4 +38,11 @@ public class Utils {
 
     }
 
+    public String formatText(String notes) {
+        return Jsoup.parse(notes).wholeText().replaceAll("\n", "-_-");
+    }
+
+    public String unformatText(String notes){
+        return Jsoup.parse(notes).wholeText().replaceAll("-_-", "<br>");
+    }
 }

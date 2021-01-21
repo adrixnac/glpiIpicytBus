@@ -92,6 +92,7 @@ public class TicketServiceImpl implements TicketService{
 
         GlpiResponse glpiResponse = new GlpiResponse();
         log.debug("FECHA ACTUAL - SOAP {}", ticketRequest.getActualSysDate());
+        log.debug("-- TICKET tipo de Solicitud --  {}", ticketRequest.getGlpiTicketsRequesttypesId() );
         ticket.setActualSysDate(utils.convertStringToInstant(ticketRequest.getActualSysDate()));
         ticket.setIdGlpi(ticketSolicitado);
         ticket.setGlpiTicketsContent(ticketRequest.getGlpiTicketsContent());
@@ -106,7 +107,7 @@ public class TicketServiceImpl implements TicketService{
         ticket.setCatOp02(ticketRequest.getCatOp02());
         ticket.setCatOp03(ticketRequest.getCatOp03());
         ticket.callerPhone(ticketRequest.getCallerPhone());
-        ticket.setNotes(ticketRequest.getNotes());
+        ticket.setNotes(utils.formatText(ticketRequest.getNotes()));
         ticket.setContactType(ticketRequest.getContactType());
         ticket.setIdRemedyGlpi(String.valueOf(ticketRequest.getIdRemedyGlpi()));
         ticket.setCallerPhone(ticketRequest.getCallerPhone());
