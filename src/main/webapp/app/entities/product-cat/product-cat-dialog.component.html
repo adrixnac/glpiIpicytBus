@@ -13,17 +13,6 @@
                    [(ngModel)]="productCat.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ipicytBussApp.productCat.productCatRemedy" for="field_productCatRemedy">Product Cat Remedy</label>
-            <input type="text" class="form-control" name="productCatRemedy" id="field_productCatRemedy"
-                [(ngModel)]="productCat.productCatRemedy" required/>
-            <div [hidden]="!(editForm.controls.productCatRemedy?.dirty && editForm.controls.productCatRemedy?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.productCatRemedy?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="ipicytBussApp.productCat.productCatGlpi" for="field_productCatGlpi">Product Cat Glpi</label>
             <input type="text" class="form-control" name="productCatGlpi" id="field_productCatGlpi"
                 [(ngModel)]="productCat.productCatGlpi" required/>
@@ -36,11 +25,26 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="ipicytBussApp.productCat.productCatGlpiId" for="field_productCatGlpiId">Product Cat Glpi Id</label>
-            <input type="text" class="form-control" name="productCatGlpiId" id="field_productCatGlpiId"
+            <input type="number" class="form-control" name="productCatGlpiId" id="field_productCatGlpiId"
                 [(ngModel)]="productCat.productCatGlpiId" required/>
             <div [hidden]="!(editForm.controls.productCatGlpiId?.dirty && editForm.controls.productCatGlpiId?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.productCatGlpiId?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.productCatGlpiId?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.productCat.productCatStructure" for="field_productCatStructure">Product Cat Structure</label>
+            <input type="text" class="form-control" name="productCatStructure" id="field_productCatStructure"
+                [(ngModel)]="productCat.productCatStructure" required/>
+            <div [hidden]="!(editForm.controls.productCatStructure?.dirty && editForm.controls.productCatStructure?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.productCatStructure?.errors?.required" jhiTranslate="entity.validation.required">
                    This field is required.
                 </small>
             </div>

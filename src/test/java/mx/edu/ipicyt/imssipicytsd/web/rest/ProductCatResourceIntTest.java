@@ -38,14 +38,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = IpicytBussApp.class)
 public class ProductCatResourceIntTest {
 
-    private static final String DEFAULT_PRODUCT_CAT_REMEDY = "AAAAAAAAAA";
-    private static final String UPDATED_PRODUCT_CAT_REMEDY = "BBBBBBBBBB";
-
     private static final String DEFAULT_PRODUCT_CAT_GLPI = "AAAAAAAAAA";
     private static final String UPDATED_PRODUCT_CAT_GLPI = "BBBBBBBBBB";
 
-    private static final String DEFAULT_PRODUCT_CAT_GLPI_ID = "AAAAAAAAAA";
-    private static final String UPDATED_PRODUCT_CAT_GLPI_ID = "BBBBBBBBBB";
+    private static final Integer DEFAULT_PRODUCT_CAT_GLPI_ID = 1;
+    private static final Integer UPDATED_PRODUCT_CAT_GLPI_ID = 2;
+
+    private static final String DEFAULT_PRODUCT_CAT_STRUCTURE = "AAAAAAAAAA";
+    private static final String UPDATED_PRODUCT_CAT_STRUCTURE = "BBBBBBBBBB";
 
     @Autowired
     private ProductCatRepository productCatRepository;
@@ -85,9 +85,9 @@ public class ProductCatResourceIntTest {
      */
     public static ProductCat createEntity(EntityManager em) {
         ProductCat productCat = new ProductCat()
-            .productCatRemedy(DEFAULT_PRODUCT_CAT_REMEDY)
             .productCatGlpi(DEFAULT_PRODUCT_CAT_GLPI)
-            .productCatGlpiId(DEFAULT_PRODUCT_CAT_GLPI_ID);
+            .productCatGlpiId(DEFAULT_PRODUCT_CAT_GLPI_ID)
+            .productCatStructure(DEFAULT_PRODUCT_CAT_STRUCTURE);
         return productCat;
     }
 
@@ -111,9 +111,9 @@ public class ProductCatResourceIntTest {
         List<ProductCat> productCatList = productCatRepository.findAll();
         assertThat(productCatList).hasSize(databaseSizeBeforeCreate + 1);
         ProductCat testProductCat = productCatList.get(productCatList.size() - 1);
-        assertThat(testProductCat.getProductCatRemedy()).isEqualTo(DEFAULT_PRODUCT_CAT_REMEDY);
         assertThat(testProductCat.getProductCatGlpi()).isEqualTo(DEFAULT_PRODUCT_CAT_GLPI);
         assertThat(testProductCat.getProductCatGlpiId()).isEqualTo(DEFAULT_PRODUCT_CAT_GLPI_ID);
+        assertThat(testProductCat.getProductCatStructure()).isEqualTo(DEFAULT_PRODUCT_CAT_STRUCTURE);
     }
 
     @Test
@@ -133,24 +133,6 @@ public class ProductCatResourceIntTest {
         // Validate the ProductCat in the database
         List<ProductCat> productCatList = productCatRepository.findAll();
         assertThat(productCatList).hasSize(databaseSizeBeforeCreate);
-    }
-
-    @Test
-    @Transactional
-    public void checkProductCatRemedyIsRequired() throws Exception {
-        int databaseSizeBeforeTest = productCatRepository.findAll().size();
-        // set the field null
-        productCat.setProductCatRemedy(null);
-
-        // Create the ProductCat, which fails.
-
-        restProductCatMockMvc.perform(post("/api/product-cats")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(productCat)))
-            .andExpect(status().isBadRequest());
-
-        List<ProductCat> productCatList = productCatRepository.findAll();
-        assertThat(productCatList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -191,6 +173,24 @@ public class ProductCatResourceIntTest {
 
     @Test
     @Transactional
+    public void checkProductCatStructureIsRequired() throws Exception {
+        int databaseSizeBeforeTest = productCatRepository.findAll().size();
+        // set the field null
+        productCat.setProductCatStructure(null);
+
+        // Create the ProductCat, which fails.
+
+        restProductCatMockMvc.perform(post("/api/product-cats")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(productCat)))
+            .andExpect(status().isBadRequest());
+
+        List<ProductCat> productCatList = productCatRepository.findAll();
+        assertThat(productCatList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllProductCats() throws Exception {
         // Initialize the database
         productCatRepository.saveAndFlush(productCat);
@@ -200,9 +200,9 @@ public class ProductCatResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(productCat.getId().intValue())))
-            .andExpect(jsonPath("$.[*].productCatRemedy").value(hasItem(DEFAULT_PRODUCT_CAT_REMEDY.toString())))
             .andExpect(jsonPath("$.[*].productCatGlpi").value(hasItem(DEFAULT_PRODUCT_CAT_GLPI.toString())))
-            .andExpect(jsonPath("$.[*].productCatGlpiId").value(hasItem(DEFAULT_PRODUCT_CAT_GLPI_ID.toString())));
+            .andExpect(jsonPath("$.[*].productCatGlpiId").value(hasItem(DEFAULT_PRODUCT_CAT_GLPI_ID)))
+            .andExpect(jsonPath("$.[*].productCatStructure").value(hasItem(DEFAULT_PRODUCT_CAT_STRUCTURE.toString())));
     }
 
     @Test
@@ -216,9 +216,9 @@ public class ProductCatResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(productCat.getId().intValue()))
-            .andExpect(jsonPath("$.productCatRemedy").value(DEFAULT_PRODUCT_CAT_REMEDY.toString()))
             .andExpect(jsonPath("$.productCatGlpi").value(DEFAULT_PRODUCT_CAT_GLPI.toString()))
-            .andExpect(jsonPath("$.productCatGlpiId").value(DEFAULT_PRODUCT_CAT_GLPI_ID.toString()));
+            .andExpect(jsonPath("$.productCatGlpiId").value(DEFAULT_PRODUCT_CAT_GLPI_ID))
+            .andExpect(jsonPath("$.productCatStructure").value(DEFAULT_PRODUCT_CAT_STRUCTURE.toString()));
     }
 
     @Test
@@ -241,9 +241,9 @@ public class ProductCatResourceIntTest {
         // Disconnect from session so that the updates on updatedProductCat are not directly saved in db
         em.detach(updatedProductCat);
         updatedProductCat
-            .productCatRemedy(UPDATED_PRODUCT_CAT_REMEDY)
             .productCatGlpi(UPDATED_PRODUCT_CAT_GLPI)
-            .productCatGlpiId(UPDATED_PRODUCT_CAT_GLPI_ID);
+            .productCatGlpiId(UPDATED_PRODUCT_CAT_GLPI_ID)
+            .productCatStructure(UPDATED_PRODUCT_CAT_STRUCTURE);
 
         restProductCatMockMvc.perform(put("/api/product-cats")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -254,9 +254,9 @@ public class ProductCatResourceIntTest {
         List<ProductCat> productCatList = productCatRepository.findAll();
         assertThat(productCatList).hasSize(databaseSizeBeforeUpdate);
         ProductCat testProductCat = productCatList.get(productCatList.size() - 1);
-        assertThat(testProductCat.getProductCatRemedy()).isEqualTo(UPDATED_PRODUCT_CAT_REMEDY);
         assertThat(testProductCat.getProductCatGlpi()).isEqualTo(UPDATED_PRODUCT_CAT_GLPI);
         assertThat(testProductCat.getProductCatGlpiId()).isEqualTo(UPDATED_PRODUCT_CAT_GLPI_ID);
+        assertThat(testProductCat.getProductCatStructure()).isEqualTo(UPDATED_PRODUCT_CAT_STRUCTURE);
     }
 
     @Test

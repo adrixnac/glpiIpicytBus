@@ -45,7 +45,7 @@ public class BussinessRules {
                     "\"status\" : " + this.procesaStatus(ticket.getSubTypeTransaction()) + "," +
                     "\"urgency\" : " + this.procesaUrgency(ticket.getUrgency()) + "," +
                     "\"impact\" : " + this.procesaImpact(ticket.getImpact()) + "," +
-                    "\"itilcategories_id\" : " + this.procesaCat(ticket.getCatOp03()) + "," +
+                    "\"itilcategories_id\" : " + this.procesaCat(ticket.getCatOp01(), ticket.getCatOp02(), ticket.getCatOp03()) + "," +
                     "\"requesttypes_id\" :" + this.procesaRequestTypesId(ticket.getGlpiTicketsRequesttypesId()) + "," +
                     "\"type\" :" + this.procesaRequestTypesId(ticket.getGlpiTicketsRequesttypesId()) + "," +
                     "\"global_validation\":" + "7," +
@@ -55,41 +55,6 @@ public class BussinessRules {
         return jsonString;
     }
 
-    private String procesaPriority(String urgency, String impact) {
-        log.debug("---- procesaPriority --- URGENCY {}", urgency);
-        log.debug("---- procesaPriority --- IMPACT {}", impact);
-        String priority = "4";
-        String muyAltaUrgencia = "1";
-        String altaUrgencia = "2";
-        String mediaUrgencia = "3";
-        String bajaUrgencia = "4";
-        String muyAltaImpacto = "1";
-        String altaImpacto = "1";
-        String medioImpacto = "1";
-        String bajoImpacto = "1";
-
-        if (urgency.equals(muyAltaUrgencia) && impact.equals(muyAltaImpacto))  return "5";
-        if (urgency.equals(muyAltaUrgencia) && impact.equals(altaImpacto)    )  return "5";
-        if (urgency.equals(altaUrgencia) && impact.equals(muyAltaImpacto))  return "5";
-
-        if (urgency.equals(muyAltaUrgencia) && impact == medioImpacto   )  return "4";
-        if (urgency == muyAltaUrgencia && impact == bajoImpacto    )  return "4";
-        if (urgency == altaUrgencia    && impact == altaImpacto    )  return "4";
-        if (urgency == mediaUrgencia   && impact == muyAltaImpacto )  return "4";
-        if (urgency == altaUrgencia    && impact == medioImpacto   )  return "4";
-
-        if (urgency == altaUrgencia    && impact == bajoImpacto    )  return "3";
-        if (urgency == mediaUrgencia   && impact == altaImpacto    )  return "3";
-        if (urgency == mediaUrgencia   && impact == medioImpacto   )  return "3";
-        if (urgency == mediaUrgencia   && impact == bajoImpacto    )  return "3";
-
-        if (urgency == bajaUrgencia    && impact == muyAltaImpacto )  return "2";
-        if (urgency == bajaUrgencia    && impact == altaImpacto    )  return "2";
-        if (urgency == bajaUrgencia    && impact == medioImpacto   )  return "2";
-        if (urgency == bajaUrgencia    && impact == bajoImpacto    )  return "2";
-
-        return priority;
-    }
 
     private Integer procesaRequestTypesId(String glpiTicketsRequesttypesIdString) {
         log.debug("Procesa tipo de solicitud {}", glpiTicketsRequesttypesIdString);
@@ -106,15 +71,26 @@ public class BussinessRules {
 
     }
 
-    private Integer procesaCat(String catOpString) {
-        Integer  catOp = null;
-        ProductCat productCat = productCatRepository.findFirstByProductCatRemedyEquals(catOpString);
-        if(productCat != null) {
-            catOp = Integer.valueOf(productCat.getProductCatGlpiId());
-        } else {
-            catOp = 0;
-        }
-        return catOp;
+    private Integer procesaCat(String catOpString1, String catOpString2, String catOpString3) {
+        Integer catOp = 1;
+        String productCatStructure = "";
+        log.debug("Procesa categoria 1 {}", catOpString1);
+        log.debug("Procesa categoria 2 {}", catOpString2);
+        log.debug("Procesa categoria 3 {}", catOpString3);
+
+        ProductCat productCat1 = productCatRepository.findFirstByProductCatGlpi(catOpString1);
+        ProductCat productCat2 = productCatRepository.findFirstByProductCatGlpi(catOpString2);
+        ProductCat productCat3 = productCatRepository.findFirstByProductCatGlpi(catOpString3);
+        log.debug("productCat1 {}", productCat1);
+        log.debug("productCat2 {}", productCat2);
+        log.debug("productCat3 {}", productCat3);
+        productCatStructure = "{\""+productCat1.getProductCatGlpiId()+"\":"+productCat1.getProductCatGlpiId()+",\""+productCat2.getProductCatGlpiId()+"\":"+productCat2.getProductCatGlpiId()+"}";
+        log.debug("Json de Categorías {}", productCatStructure);
+        log.debug("productCat3.getProductCatGlpiId() {}", productCat3.getProductCatGlpiId());
+        ProductCat productCatResult = productCatRepository.findFirstByProductCatGlpiIdAndProductCatStructureContains(productCat3.getProductCatGlpiId(),productCatStructure);
+        log.debug("producto Resultado  {}", productCatResult);
+
+        return productCatResult.getProductCatGlpiId();
 
     }
 

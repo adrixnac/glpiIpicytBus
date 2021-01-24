@@ -16,9 +16,9 @@
             "detail": {
                 "title": "Product Cat"
             },
-            "productCatRemedy": "Product Cat Remedy",
             "productCatGlpi": "Product Cat Glpi",
-            "productCatGlpiId": "Product Cat Glpi Id"
+            "productCatGlpiId": "Product Cat Glpi Id",
+            "productCatStructure": "Product Cat Structure"
         }
     }
 }
