@@ -3,13 +3,6 @@
     "relationships": [],
     "fields": [
         {
-            "fieldName": "productCatRemedy",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "productCatGlpi",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -18,6 +11,13 @@
         },
         {
             "fieldName": "productCatGlpiId",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "productCatStructure",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"

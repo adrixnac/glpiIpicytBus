@@ -1,6 +1,5 @@
 package mx.edu.ipicyt.imssipicytsd.service.util;
 
-import io.github.jhipster.web.util.ResponseUtil;
 import mx.edu.ipicyt.imssipicytsd.domain.*;
 import mx.edu.ipicyt.imssipicytsd.repository.*;
 import org.slf4j.Logger;
@@ -12,6 +11,7 @@ import java.time.ZoneOffset;
 @Service
 public class BussinessRules {
 
+    private PriorityRepository priorityRepository;
     private SubtypeTransactionRepository subtypeTransactionRepository;
     private ImpactRepository impactRepository;
     private UrgencyRepository urgencyRepository;
@@ -24,34 +24,40 @@ public class BussinessRules {
                           ImpactRepository impactRepository,
                           UrgencyRepository urgencyRepository,
                           ProductCatRepository productCatRepository,
-                          RequestTypeRepository requestTypeRepository) {
+                          RequestTypeRepository requestTypeRepository,
+                          PriorityRepository priorityRepository) {
         this.subtypeTransactionRepository = subtypeTransactionRepository;
         this.impactRepository = impactRepository;
         this.urgencyRepository = urgencyRepository;
         this.productCatRepository = productCatRepository;
         this.requestTypeRepository = requestTypeRepository;
+        this.priorityRepository = priorityRepository;
     }
 
     public String JsonGLPI (Ticket ticket){
+        Utils utils = new Utils();
+        log.debug("-- TICKET tipo de Solicitud --  {}", ticket.getGlpiTicketsRequesttypesId() );
         String jsonString ="{ " +
                 "\"input\": { " +
                     "\"name\" : \"" + this.procesaTitulo(ticket.getIdRemedyGlpi() , ticket.getIdReferenciaCliente(),  ticket.getGlpiTicketsName()) + "\"," +
                     "\"date\" : \"" + this.procesaDate(ticket.getActualSysDate()) + "\"," +
-                    "\"content\" : \"" + this.procesaContent(ticket.getGlpiTicketsContent()) + "\"," +
+                    "\"content\" : \"" + this.procesaContent(ticket.getGlpiTicketsContent()) + "." + utils.unformatText(ticket.getNotes())  + "\"," +
                     "\"status\" : " + this.procesaStatus(ticket.getSubTypeTransaction()) + "," +
                     "\"urgency\" : " + this.procesaUrgency(ticket.getUrgency()) + "," +
                     "\"impact\" : " + this.procesaImpact(ticket.getImpact()) + "," +
-                    "\"itilcategories_id\" : " + this.procesaCat(ticket.getCatOp03()) + "," +
+                    "\"itilcategories_id\" : " + this.procesaCat(ticket.getCatOp01(), ticket.getCatOp02(), ticket.getCatOp03()) + "," +
                     "\"requesttypes_id\" :" + this.procesaRequestTypesId(ticket.getGlpiTicketsRequesttypesId()) + "," +
                     "\"type\" :" + this.procesaRequestTypesId(ticket.getGlpiTicketsRequesttypesId()) + "," +
-                    "\"global_validation\":" + "2," +
+                    "\"global_validation\":" + "7," +
                     "\"locations_id\":"+  "2";
         jsonString += "}}";
 
         return jsonString;
     }
 
+
     private Integer procesaRequestTypesId(String glpiTicketsRequesttypesIdString) {
+        log.debug("Procesa tipo de solicitud {}", glpiTicketsRequesttypesIdString);
         Integer glpiTicketsRequesttypesId = null;
         RequestType requestType  = requestTypeRepository.findFirstByRequestTypeRemedyEquals(glpiTicketsRequesttypesIdString);
         if( requestType != null){
@@ -59,19 +65,32 @@ public class BussinessRules {
         }else{
             glpiTicketsRequesttypesId = 0;
         }
+
+        log.debug("Procesa tipo de solicitud {}", glpiTicketsRequesttypesId);
         return glpiTicketsRequesttypesId;
 
     }
 
-    private Integer procesaCat(String catOpString) {
-        Integer  catOp = null;
-        ProductCat productCat = productCatRepository.findFirstByProductCatRemedyEquals(catOpString);
-        if(productCat != null) {
-            catOp = Integer.valueOf(productCat.getProductCatGlpiId());
-        } else {
-            catOp = 0;
-        }
-        return catOp;
+    private Integer procesaCat(String catOpString1, String catOpString2, String catOpString3) {
+        Integer catOp = 1;
+        String productCatStructure = "";
+        log.debug("Procesa categoria 1 {}", catOpString1);
+        log.debug("Procesa categoria 2 {}", catOpString2);
+        log.debug("Procesa categoria 3 {}", catOpString3);
+
+        ProductCat productCat1 = productCatRepository.findFirstByProductCatGlpi(catOpString1);
+        ProductCat productCat2 = productCatRepository.findFirstByProductCatGlpi(catOpString2);
+        ProductCat productCat3 = productCatRepository.findFirstByProductCatGlpi(catOpString3);
+        log.debug("productCat1 {}", productCat1);
+        log.debug("productCat2 {}", productCat2);
+        log.debug("productCat3 {}", productCat3);
+        productCatStructure = "{\""+productCat1.getProductCatGlpiId()+"\":"+productCat1.getProductCatGlpiId()+",\""+productCat2.getProductCatGlpiId()+"\":"+productCat2.getProductCatGlpiId()+"}";
+        log.debug("Json de Categorías {}", productCatStructure);
+        log.debug("productCat3.getProductCatGlpiId() {}", productCat3.getProductCatGlpiId());
+        ProductCat productCatResult = productCatRepository.findFirstByProductCatGlpiIdAndProductCatStructureContains(productCat3.getProductCatGlpiId(),productCatStructure);
+        log.debug("producto Resultado  {}", productCatResult);
+
+        return productCatResult.getProductCatGlpiId();
 
     }
 
@@ -117,7 +136,14 @@ public class BussinessRules {
     }
 
     private String procesaDate(Instant actualSysDate) {
-        return actualSysDate.atZone(ZoneOffset.UTC).getYear()+"-"+actualSysDate.atZone(ZoneOffset.UTC).getMonthValue()+"-"+actualSysDate.atZone(ZoneOffset.UTC).getDayOfMonth()+ " "+actualSysDate.atZone(ZoneOffset.UTC).getHour()+":"+actualSysDate.atZone(ZoneOffset.UTC).getMinute()+":"+actualSysDate.atZone(ZoneOffset.UTC).getSecond();
+        String year = String.format("%04d",actualSysDate.atZone(ZoneOffset.UTC).getYear());
+        String month = String.format("%02d",actualSysDate.atZone(ZoneOffset.UTC).getMonthValue());
+        String day = String.format("%02d",actualSysDate.atZone(ZoneOffset.UTC).getDayOfMonth());
+        log.debug(" --- HORA ---- {}",actualSysDate.atZone(ZoneOffset.UTC).getHour() -6);
+        String hour = String.format("%02d", actualSysDate.atZone(ZoneOffset.UTC).getHour()-6);
+        String minutes = String.format("%02d",actualSysDate.atZone(ZoneOffset.UTC).getMinute());
+        String seconds = String.format("%02d",actualSysDate.atZone(ZoneOffset.UTC).getSecond());
+        return year+"-"+month+"-"+day+ " "+hour+":"+minutes+":"+seconds;
     }
 
     private String procesaTitulo(String idRemedyGlpi,  String idReferenciaCliente, String glpiTicketsName) {

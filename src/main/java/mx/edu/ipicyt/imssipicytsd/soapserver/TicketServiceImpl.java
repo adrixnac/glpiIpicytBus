@@ -11,19 +11,8 @@ import mx.edu.ipicyt.imssipicytsd.web.rest.TicketResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import com.google.common.base.Strings;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.net.URISyntaxException;
-import java.text.ParseException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.GregorianCalendar;
+
 
 
 @Service
@@ -51,7 +40,6 @@ public class TicketServiceImpl implements TicketService{
             ticket.setGlpiTicketsName(ticketRequest.getNombreProducto());
             ticket.setCaller(ticketRequest.getCaller());
             ticket.setGlpiTicketsRequesttypesId(ticketRequest.getGlpiTicketsRequesttypesId());
-            //ticket.setActualSysDate(request.getActualSysDate());
             ticket.setCallerEmail(ticketRequest.getCalleEmail());
             ticket.setCatOp01(ticketRequest.getCatOp01());
             ticket.setCatOp02(ticketRequest.getCatOp02());
@@ -89,10 +77,7 @@ public class TicketServiceImpl implements TicketService{
 
 
 
-        } else {
-            // actualiza un  ticket
         }
-
         // sí existe es una actualización
 
         return glpiResponse;
@@ -102,13 +87,12 @@ public class TicketServiceImpl implements TicketService{
     public TicketResponse processTicketApplication(TicketRequest ticketRequest)  {
         TicketResponse ticketResponse = new TicketResponse();
         Utils utils = new Utils();
-        log.debug("Fecha ingresada desde SOAP {}", ticketRequest.getActualSysDate());
         String ticketSolicitado = ticketRequest.getTicketIPICYT();
-        log.debug("Ticket solicitado {}",ticketSolicitado.toString());
-
         Ticket ticket = new Ticket();
 
         GlpiResponse glpiResponse = new GlpiResponse();
+        log.debug("FECHA ACTUAL - SOAP {}", ticketRequest.getActualSysDate());
+        log.debug("-- TICKET tipo de Solicitud --  {}", ticketRequest.getGlpiTicketsRequesttypesId() );
         ticket.setActualSysDate(utils.convertStringToInstant(ticketRequest.getActualSysDate()));
         ticket.setIdGlpi(ticketSolicitado);
         ticket.setGlpiTicketsContent(ticketRequest.getGlpiTicketsContent());
@@ -121,8 +105,9 @@ public class TicketServiceImpl implements TicketService{
         ticket.setCompany(ticketRequest.getCompany());
         ticket.setCatOp01(ticketRequest.getCatOp01());
         ticket.setCatOp02(ticketRequest.getCatOp02());
-        ticket.setCatOp03(ticketRequest.getCatOp02());
+        ticket.setCatOp03(ticketRequest.getCatOp03());
         ticket.callerPhone(ticketRequest.getCallerPhone());
+        ticket.setNotes(utils.formatText(ticketRequest.getNotes()));
         ticket.setContactType(ticketRequest.getContactType());
         ticket.setIdRemedyGlpi(String.valueOf(ticketRequest.getIdRemedyGlpi()));
         ticket.setCallerPhone(ticketRequest.getCallerPhone());
@@ -132,6 +117,7 @@ public class TicketServiceImpl implements TicketService{
         ticket.idReferenciaCliente(ticketRequest.getIdReferenciaCliente());
         ticket.caller(ticketRequest.getCaller());
         ticket.setSubTypeTransaction(ticketRequest.getSubTypeTransaction());
+        ticket.setIdPriority(ticketRequest.getPriority());
 
         // nuevo ticket
         if ( ticketSolicitado.isEmpty() ){
@@ -146,16 +132,19 @@ public class TicketServiceImpl implements TicketService{
             }
             log.debug("REST request to save GlpiResponse : {}", glpiResponse);
             ticketResponse.setTypeTransaccion("INSERT");
-            ticketResponse.setIdReferenciaCliente(glpiResponse.getId_referencia_cliente());
             ticketResponse.setStatusTransaccionId("COMPLETADO");
-            ticketResponse.setResultMessage("");
+            ticketResponse.setResultMessage("Ticket creado");
+            ticketResponse.setGlpiTicketsId(glpiResponse.getId());
+
         }else {
             log.debug("ticket para ser actualizado {}", ticket.toString());
             Ticket result = ticketRepository.save(ticket);
+            ticketResponse.setGlpiTicketsId(glpiResponse.getId());
             glpiResponse = this.ticketIpicytService.updateTicket(ticket);
             log.debug("ticket ya actualizado en GLPI{}", ticket.toString());
             log.debug("REST request to update GlpiResponse : {}", glpiResponse);
             ticketResponse.setTypeTransaccion("UPDATE");
+            ticketResponse.setGlpiTicketsId(glpiResponse.getGlpi_tickets_id());
             ticketResponse.setIdReferenciaCliente(glpiResponse.getId_referencia_cliente());
             ticketResponse.setStatusTransaccionId("COMPLETADO");
             ticketResponse.setResultMessage("");

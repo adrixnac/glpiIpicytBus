@@ -15,6 +15,7 @@
                 "contactType": "Contact Type",
                 "impact": "Impact",
                 "urgency": "Urgency",
+                "priority": "Priority",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -136,5 +137,5 @@
         "emailexists": "Email is already in use!",
         "idexists": "A new {{entityName}} cannot already have an ID"
     },
-    "footer": "pie de página"
+    "footer": "Derechos Reservados © IPICYT, 2001-2018."
 }

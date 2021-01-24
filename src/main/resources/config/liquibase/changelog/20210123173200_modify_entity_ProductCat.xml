@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the entity Priority.
+    -->
+    <changeSet id="20210123173200-1" author="jhipster">
+        <dropColumn tableName="product_cat">
+            <column  name="product_cat_remedy"/>
+        </dropColumn>
+        <dropColumn tableName="product_cat">
+            <column  name="product_cat_glpi_id"/>
+        </dropColumn>
+    </changeSet>
+    <changeSet id="20210123173200-2" author="jhipster">
+        <addColumn tableName="product_cat">
+            <column  name="product_cat_glpi_id" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column  name="product_cat_structure" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

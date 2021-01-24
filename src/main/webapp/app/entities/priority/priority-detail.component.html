@@ -1,0 +1,46 @@
+
+<div *ngIf="priority">
+    <h2><span jhiTranslate="ipicytBussApp.priority.detail.title">Priority</span> {{priority.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ipicytBussApp.priority.priorityRemedy">Priority Remedy</span></dt>
+        <dd>
+            <span>{{priority.priorityRemedy}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.priority.priorityGlpi">Priority Glpi</span></dt>
+        <dd>
+            <span>{{priority.priorityGlpi}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.priority.priorityGlpiId">Priority Glpi Id</span></dt>
+        <dd>
+            <span>{{priority.priorityGlpiId}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.priority.urgency">Urgency</span></dt>
+        <dd>
+            <div *ngIf="priority.urgency">
+                <a [routerLink]="['/urgency', priority.urgency?.id]">{{priority.urgency?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.priority.impact">Impact</span></dt>
+        <dd>
+            <div *ngIf="priority.impact">
+                <a [routerLink]="['/impact', priority.impact?.id]">{{priority.impact?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'priority/'+ priority.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

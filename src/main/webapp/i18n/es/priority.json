@@ -1,0 +1,26 @@
+
+{
+    "ipicytBussApp": {
+        "priority" : {
+            "home": {
+                "title": "Priorities",
+                "createLabel": "Crear nuevo Priority",
+                "createOrEditLabel": "Crear o editar Priority"
+            },
+            "created": "Un nuevo Priority ha sido creado con el identificador {{ param }}",
+            "updated": "Un Priority ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Priority ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Priority {{ id }}?"
+            },
+            "detail": {
+                "title": "Priority"
+            },
+            "priorityRemedy": "Nombre de la prioridad en Remedy",
+            "priorityGlpi": "Nombre de la prioridad en Glpi",
+            "priorityGlpiId": "Prioridad Calculada",
+            "urgency": "Urgencia",
+            "impact": "Impacto"
+        }
+    }
+}

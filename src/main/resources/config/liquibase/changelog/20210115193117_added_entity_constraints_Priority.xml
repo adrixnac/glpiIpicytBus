@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Priority.
+    -->
+    <changeSet id="20210115193117-2" author="jhipster">
+        <addColumn tableName="priority">
+            <column name="urgency_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="impact_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseColumnNames="urgency_id"
+                                 baseTableName="priority"
+                                 constraintName="fk_priority_urgency_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="urgency"/>
+
+        <addForeignKeyConstraint baseColumnNames="impact_id"
+                                 baseTableName="priority"
+                                 constraintName="fk_priority_impact_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="impact"/>
+
+    </changeSet>
+</databaseChangeLog>

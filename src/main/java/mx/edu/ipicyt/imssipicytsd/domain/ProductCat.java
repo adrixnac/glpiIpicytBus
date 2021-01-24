@@ -24,16 +24,16 @@ public class ProductCat implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "product_cat_remedy", nullable = false)
-    private String productCatRemedy;
-
-    @NotNull
     @Column(name = "product_cat_glpi", nullable = false)
     private String productCatGlpi;
 
     @NotNull
     @Column(name = "product_cat_glpi_id", nullable = false)
-    private String productCatGlpiId;
+    private Integer productCatGlpiId;
+
+    @NotNull
+    @Column(name = "product_cat_structure", nullable = false)
+    private String productCatStructure;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -42,19 +42,6 @@ public class ProductCat implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getProductCatRemedy() {
-        return productCatRemedy;
-    }
-
-    public ProductCat productCatRemedy(String productCatRemedy) {
-        this.productCatRemedy = productCatRemedy;
-        return this;
-    }
-
-    public void setProductCatRemedy(String productCatRemedy) {
-        this.productCatRemedy = productCatRemedy;
     }
 
     public String getProductCatGlpi() {
@@ -70,17 +57,30 @@ public class ProductCat implements Serializable {
         this.productCatGlpi = productCatGlpi;
     }
 
-    public String getProductCatGlpiId() {
+    public Integer getProductCatGlpiId() {
         return productCatGlpiId;
     }
 
-    public ProductCat productCatGlpiId(String productCatGlpiId) {
+    public ProductCat productCatGlpiId(Integer productCatGlpiId) {
         this.productCatGlpiId = productCatGlpiId;
         return this;
     }
 
-    public void setProductCatGlpiId(String productCatGlpiId) {
+    public void setProductCatGlpiId(Integer productCatGlpiId) {
         this.productCatGlpiId = productCatGlpiId;
+    }
+
+    public String getProductCatStructure() {
+        return productCatStructure;
+    }
+
+    public ProductCat productCatStructure(String productCatStructure) {
+        this.productCatStructure = productCatStructure;
+        return this;
+    }
+
+    public void setProductCatStructure(String productCatStructure) {
+        this.productCatStructure = productCatStructure;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -108,9 +108,9 @@ public class ProductCat implements Serializable {
     public String toString() {
         return "ProductCat{" +
             "id=" + getId() +
-            ", productCatRemedy='" + getProductCatRemedy() + "'" +
             ", productCatGlpi='" + getProductCatGlpi() + "'" +
-            ", productCatGlpiId='" + getProductCatGlpiId() + "'" +
+            ", productCatGlpiId=" + getProductCatGlpiId() +
+            ", productCatStructure='" + getProductCatStructure() + "'" +
             "}";
     }
 }

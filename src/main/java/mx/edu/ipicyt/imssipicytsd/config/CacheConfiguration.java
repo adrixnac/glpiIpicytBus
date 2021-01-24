@@ -52,6 +52,7 @@ public class CacheConfiguration {
             cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.ContactType.class.getName(), jcacheConfiguration);
             cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.Impact.class.getName(), jcacheConfiguration);
             cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.Urgency.class.getName(), jcacheConfiguration);
+            cm.createCache(mx.edu.ipicyt.imssipicytsd.domain.Priority.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

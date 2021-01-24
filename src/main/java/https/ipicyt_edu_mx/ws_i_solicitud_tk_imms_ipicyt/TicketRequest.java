@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.01.03 a las 01:28:55 PM CST 
+// Generado el: 2021.01.23 a las 08:49:02 PM CST 
 //
 
 
@@ -36,14 +36,22 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="nombre_producto" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="CatOp01" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="CatOp02" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CatOp03" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="glpi_tickets.requesttypes_id" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="contact_type" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Impact" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="urgency" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Impact" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="urgency" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="glpi_tickets.name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="glpi_tickets.content" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="notes" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="actual_sys_date" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="priority" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="actual_sys_date" minOccurs="0">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;pattern value="[01][0-9]/[0-3][0-9]//[0-9]{4} [0-2][0-9]:[0-5][0-9]:[0-6][0-9]-0600"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *         &lt;element name="caller" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="calle_email" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="caller_phone" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -79,6 +87,7 @@ import javax.xml.bind.annotation.XmlType;
     "nombreProducto",
     "catOp01",
     "catOp02",
+    "catOp03",
     "glpiTicketsRequesttypesId",
     "contactType",
     "impact",
@@ -86,6 +95,7 @@ import javax.xml.bind.annotation.XmlType;
     "glpiTicketsName",
     "glpiTicketsContent",
     "notes",
+    "priority",
     "actualSysDate",
     "caller",
     "calleEmail",
@@ -127,13 +137,14 @@ public class TicketRequest {
     protected String catOp01;
     @XmlElement(name = "CatOp02", required = true)
     protected String catOp02;
+    @XmlElement(name = "CatOp03", required = true)
+    protected String catOp03;
     @XmlElement(name = "glpi_tickets.requesttypes_id", required = true)
     protected String glpiTicketsRequesttypesId;
     @XmlElement(name = "contact_type", required = true)
     protected String contactType;
-    @XmlElement(name = "Impact", required = true)
+    @XmlElement(name = "Impact")
     protected String impact;
-    @XmlElement(required = true)
     protected String urgency;
     @XmlElement(name = "glpi_tickets.name", required = true)
     protected String glpiTicketsName;
@@ -141,7 +152,9 @@ public class TicketRequest {
     protected String glpiTicketsContent;
     @XmlElement(required = true)
     protected String notes;
-    @XmlElement(name = "actual_sys_date", required = true)
+    @XmlElement(required = true)
+    protected String priority;
+    @XmlElement(name = "actual_sys_date")
     protected String actualSysDate;
     @XmlElement(required = true)
     protected String caller;
@@ -437,6 +450,30 @@ public class TicketRequest {
     }
 
     /**
+     * Obtiene el valor de la propiedad catOp03.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCatOp03() {
+        return catOp03;
+    }
+
+    /**
+     * Define el valor de la propiedad catOp03.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCatOp03(String value) {
+        this.catOp03 = value;
+    }
+
+    /**
      * Obtiene el valor de la propiedad glpiTicketsRequesttypesId.
      * 
      * @return
@@ -602,6 +639,30 @@ public class TicketRequest {
      */
     public void setNotes(String value) {
         this.notes = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad priority.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPriority() {
+        return priority;
+    }
+
+    /**
+     * Define el valor de la propiedad priority.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPriority(String value) {
+        this.priority = value;
     }
 
     /**
