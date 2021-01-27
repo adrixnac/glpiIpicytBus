@@ -85,7 +85,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="id_remedy_glpi" type="xs:string"/>        <!-- ID de Peticion -->
-                <xs:element name="type_transaccion" type="xs:string"/>      <!-- Ticket Proveedor --> 
+                <xs:element name="Ticket_ipicyt" type="xs:string"/>         <!-- Ticket Proveedor --> 
                 <xs:element name="type_transaccion" type="xs:string"/>      <!-- Ticket de Transaccion --> 
                 <xs:element name="sub_type_transaction" type="xs:string"/>  <!-- Status -->
                 <xs:element name="Id_referencia_cliente" type="xs:string"/> <!-- ID ticket referecia Cliente -->
@@ -108,7 +108,7 @@
                     </xs:simpleType>
                 </xs:element>
                 <xs:element name="id_remedy_glpi" type="xs:string"/>        <!-- ID de Peticion -->
-                <xs:element name="type_transaccion" type="xs:string"/>      <!-- Ticket Proveedor --> 
+                <xs:element name="Ticket_ipicyt" type="xs:string"/>         <!-- Ticket Proveedor --> 
                 <xs:element name="type_transaccion" type="xs:string"/>      <!-- Ticket de Transaccion --> 
                 <xs:element name="sub_type_transaction" type="xs:string"/>  <!-- Status -->
                 <xs:element name="Id_referencia_cliente" type="xs:string"/> <!-- ID ticket referecia Cliente -->
