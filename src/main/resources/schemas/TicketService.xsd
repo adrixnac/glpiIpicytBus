@@ -90,8 +90,8 @@
                 <xs:element name="sub_type_transaction" type="xs:string"/>  <!-- Status -->
                 <xs:element name="Id_referencia_cliente" type="xs:string"/> <!-- ID ticket referecia Cliente -->
                 <xs:element name="Company" type="xs:string"/>               <!-- Empresa -->
-                <xs:element name="Worklog_Summary" type="xs:string"/>       <!-- Worklog Summary -->
-                <xs:element name="Work_Info_Notes" type="xs:string"/>       <!-- Work_Info_Notes -->
+                <xs:element name="WorklogSummary" type="xs:string"/>        <!-- Worklog Summary -->
+                <xs:element name="WorkInfoNotes" type="xs:string"/>         <!-- Work Info Notes -->
                 <xs:element name="Attachment.FileName1" type="xs:string"/>  <!-- Nombre del Archivo -->
                 <xs:element name="Attachment.FileType1" type="xs:string"/>  <!-- Tipo de archivo 1 (ext) -->
                 <xs:element name="Attachment.Data1" type="xs:base64Binary"/><!-- Archivo 1 -->
@@ -113,8 +113,8 @@
                 <xs:element name="sub_type_transaction" type="xs:string"/>  <!-- Status -->
                 <xs:element name="Id_referencia_cliente" type="xs:string"/> <!-- ID ticket referecia Cliente -->
                 <xs:element name="Company" type="xs:string"/>               <!-- Empresa -->
-                <xs:element name="Worklog_Summary" type="xs:string"/>       <!-- Worklog Summary -->
-                <xs:element name="Work_Info_Notes" type="xs:string"/>       <!-- Work_Info_Notes -->
+                <xs:element name="WorklogSummary" type="xs:string"/>        <!-- Worklog Summary -->
+                <xs:element name="WorkInfoNotes" type="xs:string"/>         <!-- Work Info Notes -->
                 <xs:element name="Attachment.FileName1" type="xs:string"/>  <!-- Nombre del Archivo -->
                 <xs:element name="Attachment.FileType1" type="xs:string"/>  <!-- Tipo de archivo 1 (ext) -->
                 <xs:element name="Attachment.Data1" type="xs:base64Binary"/><!-- Archivo 1 -->
