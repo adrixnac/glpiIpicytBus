@@ -107,20 +107,23 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
-                <xs:element name="caller" type="xs:string"/>
-                <xs:element name="calle_email" type="xs:string"/>
-                <xs:element name="caller_phone" type="xs:string"/>
-                <xs:element name="id_glpi" type="xs:string" />
-                <xs:element name="Ticket_IPICYT" type="xs:string" />
-                <xs:element name="Attachment.FileName1" type="xs:string" />
-                <xs:element name="Attachment.FileType1" type="xs:string" />
-                <xs:element name="Attachment.FileData1" type="xs:base64Binary" />
-                <xs:element name="Attachment.FileName2" type="xs:string" />
-                <xs:element name="Attachment.FileType2" type="xs:string" />
-                <xs:element name="Attachment.FileData2" type="xs:base64Binary" />
-                <xs:element name="Attachment.FileName3" type="xs:string" />
-                <xs:element name="Attachment.FileType3" type="xs:string" />
-                <xs:element name="Attachment.FileData3" type="xs:base64Binary" />
+                <xs:element name="id_remedy_glpi" type="xs:string"/>        <!-- ID de Peticion -->
+                <xs:element name="type_transaccion" type="xs:string"/>      <!-- Ticket Proveedor --> 
+                <xs:element name="type_transaccion" type="xs:string"/>      <!-- Ticket de Transaccion --> 
+                <xs:element name="sub_type_transaction" type="xs:string"/>  <!-- Status -->
+                <xs:element name="Id_referencia_cliente" type="xs:string"/> <!-- ID ticket referecia Cliente -->
+                <xs:element name="Company" type="xs:string"/>               <!-- Empresa -->
+                <xs:element name="Worklog_Summary" type="xs:string"/>       <!-- Worklog Summary -->
+                <xs:element name="Work_Info_Notes" type="xs:string"/>       <!-- Work_Info_Notes -->
+                <xs:element name="Attachment.FileName1" type="xs:string"/>  <!-- Nombre del Archivo -->
+                <xs:element name="Attachment.FileType1" type="xs:string"/>  <!-- Tipo de archivo 1 (ext) -->
+                <xs:element name="Attachment.Data1" type="xs:base64Binary"/><!-- Archivo 1 -->
+                <xs:element name="Attachment.FileName2" type="xs:string"/>  <!-- Nombre del Archivo 2 -->
+                <xs:element name="Attachment.FileType2" type="xs:string"/>  <!-- Tipo de archivo 2(ext) -->
+                <xs:element name="Attachment.Data2" type="xs:base64Binary"/><!-- Archivo 2 -->
+                <xs:element name="Attachment.FileName3" type="xs:string"/>  <!-- Nombre del Archivo 3 -->
+                <xs:element name="Attachment.FileType3" type="xs:string"/>  <!-- Tipo de archivo 3(ext) -->
+                <xs:element name="Attachment.Data3" type="xs:base64Binary"/><!-- Archivo 3 -->
 
             </xs:sequence>
         </xs:complexType>
