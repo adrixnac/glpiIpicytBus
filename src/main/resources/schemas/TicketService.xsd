@@ -79,4 +79,76 @@
             </xs:simpleContent>
         </xs:complexType>
     </xs:element>
+    
+    <!-- SOAP IN -->
+    <xs:element name="FileRequest" >
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id_remedy_glpi" type="xs:string"/>        <!-- ID de Peticion -->
+                <xs:element name="type_transaccion" type="xs:string"/>      <!-- Ticket Proveedor --> 
+                <xs:element name="type_transaccion" type="xs:string"/>      <!-- Ticket de Transaccion --> 
+                <xs:element name="sub_type_transaction" type="xs:string"/>  <!-- Status -->
+                <xs:element name="Id_referencia_cliente" type="xs:string"/> <!-- ID ticket referecia Cliente -->
+                <xs:element name="Company" type="xs:string"/>               <!-- Empresa -->
+                <xs:element name="Worklog_Summary" type="xs:string"/>       <!-- Worklog Summary -->
+                <xs:element name="Work_Info_Notes" type="xs:string"/>       <!-- Work_Info_Notes -->
+                <xs:element name="Attachment.FileName1" type="xs:string"/>  <!-- Nombre del Archivo -->
+                <xs:element name="Attachment.FileType1" type="xs:string"/>  <!-- Tipo de archivo 1 (ext) -->
+                <xs:element name="Attachment.Data1" type="xs:base64Binary"/><!-- Archivo 1 -->
+                <xs:element name="Attachment.FileName2" type="xs:string"/>  <!-- Nombre del Archivo 2 -->
+                <xs:element name="Attachment.FileType2" type="xs:string"/>  <!-- Tipo de archivo 2(ext) -->
+                <xs:element name="Attachment.Data2" type="xs:base64Binary"/><!-- Archivo 2 -->
+                <xs:element name="Attachment.FileName3" type="xs:string"/>  <!-- Nombre del Archivo 3 -->
+                <xs:element name="Attachment.FileType3" type="xs:string"/>  <!-- Tipo de archivo 3(ext) -->
+                <xs:element name="Attachment.Data3" type="xs:base64Binary"/><!-- Archivo 3 -->
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[01][0-9]/[0-3][0-9]//[0-9]{4} [0-2][0-9]:[0-5][0-9]:[0-6][0-9]-0600" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="caller" type="xs:string"/>
+                <xs:element name="calle_email" type="xs:string"/>
+                <xs:element name="caller_phone" type="xs:string"/>
+                <xs:element name="id_glpi" type="xs:string" />
+                <xs:element name="Ticket_IPICYT" type="xs:string" />
+                <xs:element name="Attachment.FileName1" type="xs:string" />
+                <xs:element name="Attachment.FileType1" type="xs:string" />
+                <xs:element name="Attachment.FileData1" type="xs:base64Binary" />
+                <xs:element name="Attachment.FileName2" type="xs:string" />
+                <xs:element name="Attachment.FileType2" type="xs:string" />
+                <xs:element name="Attachment.FileData2" type="xs:base64Binary" />
+                <xs:element name="Attachment.FileName3" type="xs:string" />
+                <xs:element name="Attachment.FileType3" type="xs:string" />
+                <xs:element name="Attachment.FileData3" type="xs:base64Binary" />
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UsernameToken">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Username" type="xs:string" />
+                <xs:element name="Password" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="Id" type="xs:ID"/>
+        </xs:complexType></xs:element>
+
+    <!-- SOAP OUT -->
+    <xs:element name="FileResponse">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute type="xs:string" name="type_transaccion"/>
+                    <xs:attribute type="xs:string" name="Id_referencia_cliente"/>
+                    <xs:attribute type="xs:string" name="glpi_tickets.id"/>
+                    <xs:attribute type="xs:string" name="status_transaccion.id"/>
+                    <xs:attribute type="xs:string" name="result_message"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    
+    
 </xs:schema>
