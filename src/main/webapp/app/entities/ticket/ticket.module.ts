@@ -14,6 +14,8 @@ import {
     ticketRoute,
     ticketPopupRoute,
     TicketResolvePagingParams,
+    TicketUpdateDialogComponent,
+    TicketUpdatePopupComponent
 } from './';
 
 const ENTITY_STATES = [
@@ -31,8 +33,10 @@ const ENTITY_STATES = [
         TicketDetailComponent,
         TicketDialogComponent,
         TicketDeleteDialogComponent,
+        TicketUpdateDialogComponent,
         TicketPopupComponent,
         TicketDeletePopupComponent,
+        TicketUpdatePopupComponent
     ],
     entryComponents: [
         TicketComponent,
@@ -40,6 +44,8 @@ const ENTITY_STATES = [
         TicketPopupComponent,
         TicketDeleteDialogComponent,
         TicketDeletePopupComponent,
+        TicketUpdateDialogComponent,
+        TicketUpdatePopupComponent,
     ],
     providers: [
         TicketService,
