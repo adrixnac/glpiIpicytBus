@@ -79,6 +79,6 @@ export class TicketService {
     }
 
     translate(id: number): Observable<HttpResponse<any>> {
-        return this.http.put<any>(`${this.resourceUrl}/${id}/translate`, { observe: 'response'});
+        return this.http.put<any>(`${this.resourceUrl}/translate/${id}`, { observe: 'response'});
     }
 }

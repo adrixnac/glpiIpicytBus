@@ -200,4 +200,6 @@ public class TicketIpicytService {
     }
 
 
+    public void remedyUpdate(Ticket ticket) {
+    }
 }

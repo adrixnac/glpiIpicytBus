@@ -41,7 +41,7 @@ public class BussinessRules {
                 "\"input\": { " +
                     "\"name\" : \"" + this.procesaTitulo(ticket.getIdRemedyGlpi() , ticket.getIdReferenciaCliente(),  ticket.getGlpiTicketsName()) + "\"," +
                     "\"date\" : \"" + this.procesaDate(ticket.getActualSysDate()) + "\"," +
-                    "\"content\" : \"" + this.procesaContent(ticket.getGlpiTicketsContent()) + "." + utils.unformatText(ticket.getNotes())  + "\"," +
+                    "\"content\" : \"" + this.procesaContent(ticket.getGlpiTicketsContent()) + "." + utils.unformatText(ticket.getNotes())  + this.procesaCatProd(ticket) +"\"," +
                     "\"status\" : " + this.procesaStatus(ticket.getSubTypeTransaction()) + "," +
                     "\"urgency\" : " + this.procesaUrgency(ticket.getUrgency()) + "," +
                     "\"impact\" : " + this.procesaImpact(ticket.getImpact()) + "," +
@@ -148,6 +148,12 @@ public class BussinessRules {
 
     private String procesaTitulo(String idRemedyGlpi,  String idReferenciaCliente, String glpiTicketsName) {
         return idReferenciaCliente + " - " + idRemedyGlpi + ", " + glpiTicketsName;
+    }
+
+    private String procesaCatProd(Ticket ticket){
+        String cateProd = " ";
+        cateProd = "<<" + ticket.getProdCat01() + "> " + ticket.getProdCat02() + " > " + ticket.getProdCat03() + ">>";
+        return cateProd;
     }
 
 

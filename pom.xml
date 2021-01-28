@@ -434,6 +434,27 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.11.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaLanguage>WSDL</schemaLanguage>
+                    <generatePackage>mx.edu.ipicyt.imssipicytsd.soapclient</generatePackage>
+                    <schemas>
+                        <schema>
+                            <url>https://ipicytbuss-glpi-mesas-qa.cloudapps.imss.gob.mx/ws_i_solicitud_tk_imms_ipicyt/getTicket.wsdl</url>
+                        </schema>
+                    </schemas>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>${maven-enforcer-plugin.version}</version>
