@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.01.28 a las 01:20:04 PM CST 
+// Generado el: 2021.01.31 a las 05:45:32 PM CST 
 //
 
 
@@ -37,19 +37,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link FileResponse }
+     * 
+     */
+    public FileResponse createFileResponse() {
+        return new FileResponse();
+    }
+
+    /**
+     * Create an instance of {@link FileRequest }
+     * 
+     */
+    public FileRequest createFileRequest() {
+        return new FileRequest();
+    }
+
+    /**
      * Create an instance of {@link TicketResponse }
      * 
      */
     public TicketResponse createTicketResponse() {
         return new TicketResponse();
-    }
-
-    /**
-     * Create an instance of {@link UsernameToken }
-     * 
-     */
-    public UsernameToken createUsernameToken() {
-        return new UsernameToken();
     }
 
     /**

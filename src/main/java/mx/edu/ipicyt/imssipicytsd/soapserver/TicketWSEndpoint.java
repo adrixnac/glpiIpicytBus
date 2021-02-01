@@ -21,7 +21,7 @@ public class TicketWSEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "TicketRequest")
     @ResponsePayload
-    public TicketResponse TicketApplication(@RequestPayload TicketRequest ticketApplicationRequest) throws Exception {
+    public TicketResponse ticketApplication(@RequestPayload TicketRequest ticketApplicationRequest) throws Exception {
         if (ticketApplicationRequest != null) {
             ticketService.writeTicketApplication(ticketApplicationRequest);
         }

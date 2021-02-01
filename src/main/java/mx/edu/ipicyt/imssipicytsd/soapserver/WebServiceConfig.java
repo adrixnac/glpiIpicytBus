@@ -41,4 +41,19 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     public XsdSchema ticketServiceSchema() {
         return new SimpleXsdSchema(new ClassPathResource("schemas/TicketService.xsd"));
     }
+
+    @Bean(name = "getFile")
+    public DefaultWsdl11Definition defaultFileWsdl11Definition(XsdSchema fileServiceSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("FileServicePort");
+        wsdl11Definition.setLocationUri("https://ipicytbuss-glpi-mesas-qa.cloudapps.imss.gob.mx/ws_i_solicitud_tk_imms_ipicyt");
+        wsdl11Definition.setTargetNamespace("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt");
+        wsdl11Definition.setSchema(fileServiceSchema);
+        return wsdl11Definition;
+    }
+
+    @Bean
+    public XsdSchema fileServiceSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("schemas/TicketService.xsd"));
+    }
 }

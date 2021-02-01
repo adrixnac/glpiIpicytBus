@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlType(name = "", propOrder = {
     "value"
 })
-@XmlRootElement(name = "TicketResponse")
-public class TicketResponse {
+@XmlRootElement(name = "FileResponse")
+public class FileResponse {
 
     @XmlValue
     protected String value;

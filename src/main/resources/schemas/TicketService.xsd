@@ -6,7 +6,7 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
 
-    <!-- SOAP IN -->
+    <!-- TICKETS -->
     <xs:element name="TicketRequest" >
         <xs:complexType>
             <xs:sequence>
@@ -51,22 +51,46 @@
                 <xs:element name="Attachment.FileName3" type="xs:string" />
                 <xs:element name="Attachment.FileType3" type="xs:string" />
                 <xs:element name="Attachment.FileData3" type="xs:base64Binary" />
-
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-
-    <xs:element name="UsernameToken">
+    <xs:element name="TicketResponse">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute type="xs:string" name="type_transaccion"/>
+                    <xs:attribute type="xs:string" name="Id_referencia_cliente"/>
+                    <xs:attribute type="xs:string" name="glpi_tickets.id"/>
+                    <xs:attribute type="xs:string" name="status_transaccion.id"/>
+                    <xs:attribute type="xs:string" name="result_message"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <!-- FILES -->
+    <xs:element name="FileRequest" >
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Username" type="xs:string" />
-                <xs:element name="Password" type="xs:string" minOccurs="0" />
+                <xs:element name="id_remedy_glpi" type="xs:string"/>
+                <xs:element name="type_transaccion" type="xs:string"/>
+                <xs:element name="sub_type_transaction" type="xs:string"/>
+                <xs:element name="Id_referencia_cliente" type="xs:string"/>
+                <xs:element name="Company" type="xs:string"/>
+                <xs:element name="WorklogSummary" type="xs:string"/>
+                <xs:element name="WorkInfoNotes" type="xs:string"/>
+                <xs:element name="Attachment.FileName1" type="xs:string" />
+                <xs:element name="Attachment.FileType1" type="xs:string" />
+                <xs:element name="Attachment.FileData1" type="xs:base64Binary" />
+                <xs:element name="Attachment.FileName2" type="xs:string" />
+                <xs:element name="Attachment.FileType2" type="xs:string" />
+                <xs:element name="Attachment.FileData2" type="xs:base64Binary" />
+                <xs:element name="Attachment.FileName3" type="xs:string" />
+                <xs:element name="Attachment.FileType3" type="xs:string" />
+                <xs:element name="Attachment.FileData3" type="xs:base64Binary" />
             </xs:sequence>
-            <xs:attribute name="Id" type="xs:ID"/>
-        </xs:complexType></xs:element>
-
-    <!-- SOAP OUT -->
-    <xs:element name="TicketResponse">
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="FileResponse">
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">

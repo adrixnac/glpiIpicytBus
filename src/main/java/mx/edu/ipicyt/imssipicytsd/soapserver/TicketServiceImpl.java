@@ -19,7 +19,7 @@ import java.net.URISyntaxException;
 public class TicketServiceImpl implements TicketService{
     private final TicketRepository ticketRepository;
     private final TicketIpicytService ticketIpicytService;
-    private final Logger log = LoggerFactory.getLogger(TicketResource.class);
+    private final Logger log = LoggerFactory.getLogger(TicketServiceImpl.class);
 
 
     public TicketServiceImpl(TicketRepository ticketRepository, TicketIpicytService ticketIpicytService) {
