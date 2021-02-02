@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.01.31 a las 05:45:32 PM CST 
+// Generado el: 2021.01.31 a las 07:40:09 PM CST 
 //
 
 
@@ -30,17 +30,17 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="sub_type_transaction" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Id_referencia_cliente" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Company" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="WorklogSummary" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="WorkInfoNotes" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Attachment.FileName1" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Attachment.FileType1" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Attachment.FileData1" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
- *         &lt;element name="Attachment.FileName2" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Attachment.FileType2" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Attachment.FileData2" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
- *         &lt;element name="Attachment.FileName3" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Attachment.FileType3" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Attachment.FileData3" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
+ *         &lt;element name="WorklogSummary" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="WorkInfoNotes" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="Attachment.FileName1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="Attachment.FileType1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="Attachment.FileData1" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
+ *         &lt;element name="Attachment.FileName2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="Attachment.FileType2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="Attachment.FileData2" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
+ *         &lt;element name="Attachment.FileName3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="Attachment.FileType3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="Attachment.FileData3" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -81,27 +81,27 @@ public class FileRequest {
     protected String idReferenciaCliente;
     @XmlElement(name = "Company", required = true)
     protected String company;
-    @XmlElement(name = "WorklogSummary", required = true)
+    @XmlElement(name = "WorklogSummary")
     protected String worklogSummary;
-    @XmlElement(name = "WorkInfoNotes", required = true)
+    @XmlElement(name = "WorkInfoNotes")
     protected String workInfoNotes;
-    @XmlElement(name = "Attachment.FileName1", required = true)
+    @XmlElement(name = "Attachment.FileName1")
     protected String attachmentFileName1;
-    @XmlElement(name = "Attachment.FileType1", required = true)
+    @XmlElement(name = "Attachment.FileType1")
     protected String attachmentFileType1;
-    @XmlElement(name = "Attachment.FileData1", required = true)
+    @XmlElement(name = "Attachment.FileData1")
     protected byte[] attachmentFileData1;
-    @XmlElement(name = "Attachment.FileName2", required = true)
+    @XmlElement(name = "Attachment.FileName2")
     protected String attachmentFileName2;
-    @XmlElement(name = "Attachment.FileType2", required = true)
+    @XmlElement(name = "Attachment.FileType2")
     protected String attachmentFileType2;
-    @XmlElement(name = "Attachment.FileData2", required = true)
+    @XmlElement(name = "Attachment.FileData2")
     protected byte[] attachmentFileData2;
-    @XmlElement(name = "Attachment.FileName3", required = true)
+    @XmlElement(name = "Attachment.FileName3")
     protected String attachmentFileName3;
-    @XmlElement(name = "Attachment.FileType3", required = true)
+    @XmlElement(name = "Attachment.FileType3")
     protected String attachmentFileType3;
-    @XmlElement(name = "Attachment.FileData3", required = true)
+    @XmlElement(name = "Attachment.FileData3")
     protected byte[] attachmentFileData3;
 
     /**

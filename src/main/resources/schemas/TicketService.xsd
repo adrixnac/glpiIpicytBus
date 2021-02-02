@@ -42,15 +42,6 @@
                 <xs:element name="caller_phone" type="xs:string"/>
                 <xs:element name="id_glpi" type="xs:string" />
                 <xs:element name="Ticket_IPICYT" type="xs:string" />
-                <xs:element name="Attachment.FileName1" type="xs:string" />
-                <xs:element name="Attachment.FileType1" type="xs:string" />
-                <xs:element name="Attachment.FileData1" type="xs:base64Binary" />
-                <xs:element name="Attachment.FileName2" type="xs:string" />
-                <xs:element name="Attachment.FileType2" type="xs:string" />
-                <xs:element name="Attachment.FileData2" type="xs:base64Binary" />
-                <xs:element name="Attachment.FileName3" type="xs:string" />
-                <xs:element name="Attachment.FileType3" type="xs:string" />
-                <xs:element name="Attachment.FileData3" type="xs:base64Binary" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -76,17 +67,17 @@
                 <xs:element name="sub_type_transaction" type="xs:string"/>
                 <xs:element name="Id_referencia_cliente" type="xs:string"/>
                 <xs:element name="Company" type="xs:string"/>
-                <xs:element name="WorklogSummary" type="xs:string"/>
-                <xs:element name="WorkInfoNotes" type="xs:string"/>
-                <xs:element name="Attachment.FileName1" type="xs:string" />
-                <xs:element name="Attachment.FileType1" type="xs:string" />
-                <xs:element name="Attachment.FileData1" type="xs:base64Binary" />
-                <xs:element name="Attachment.FileName2" type="xs:string" />
-                <xs:element name="Attachment.FileType2" type="xs:string" />
-                <xs:element name="Attachment.FileData2" type="xs:base64Binary" />
-                <xs:element name="Attachment.FileName3" type="xs:string" />
-                <xs:element name="Attachment.FileType3" type="xs:string" />
-                <xs:element name="Attachment.FileData3" type="xs:base64Binary" />
+                <xs:element name="WorklogSummary" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="WorkInfoNotes" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="Attachment.FileName1" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="Attachment.FileType1" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="Attachment.FileData1" type="xs:base64Binary"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="Attachment.FileName2" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="Attachment.FileType2" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="Attachment.FileData2" type="xs:base64Binary"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="Attachment.FileName3" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="Attachment.FileType3" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="Attachment.FileData3" type="xs:base64Binary"  minOccurs="0" maxOccurs="1" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>

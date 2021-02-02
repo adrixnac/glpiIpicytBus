@@ -7,7 +7,6 @@ import mx.edu.ipicyt.imssipicytsd.domain.Ticket;
 import mx.edu.ipicyt.imssipicytsd.repository.TicketRepository;
 import mx.edu.ipicyt.imssipicytsd.service.TicketIpicytService;
 import mx.edu.ipicyt.imssipicytsd.service.util.Utils;
-import mx.edu.ipicyt.imssipicytsd.web.rest.TicketResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
