@@ -122,7 +122,7 @@ public class FileIpicytService {
             .build();
 
         // Create request
-        Content content = Request.Post("http://0.0.0.0/apirest.php/Ticket/2021010060/ITILFollowup")
+        Content content = Request.Post("http://10.100.10.3/apirest.php/Ticket/"+fileRequest.getIdReferenciaCliente()+"/ITILFollowup")
 
             // Add headers
             .addHeader("Content-Type", "multipart/form-data")
@@ -150,7 +150,7 @@ public class FileIpicytService {
         String token = this.GetSession().getSession_token();
         Content content = null;
         try {
-            content = Request.Post("http://0.0.0.0/apirest.php/Ticket/"+idReferenciaCliente+"/ITILFollowup")
+            content = Request.Post("http://10.100.10.3/apirest.php/Ticket/"+idReferenciaCliente+"/ITILFollowup")
                                 .addHeader("Content-Type", "application/json")
                                 .addHeader("Session-Token", token)
                                 .addHeader("App-Token", "Dd&WSgu9qGn")
