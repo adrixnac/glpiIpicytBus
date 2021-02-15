@@ -41,56 +41,60 @@ public class FileIpicytService {
         String fileAPath= "";
         String fileBPath= "";
         String fileCPath= "";
-
+        String ptr = null;
         String fileA= "";
         String fileB= "";
         String fileC= "";
 
-        log.debug("fileRequest.getAttachmentFileData1() {}", fileRequest.getAttachmentFileName1().length());
+//        log.debug("fileRequest.getAttachmentFileData1() {}", fileRequest.getAttachmentFileName1().length());
         /* la nota no tiene un archivo*/
-        if( fileRequest.getAttachmentFileName1().isEmpty() &&
-            fileRequest.getAttachmentFileName2().isEmpty() &&
-            fileRequest.getAttachmentFileName3().isEmpty() ) {
-            log.debug("procesa file sin archivo");
-            jsonString =  this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(), fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
-            this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente() );
-        }else {
-            if(!fileRequest.getAttachmentFileName1().isEmpty()){
-                log.debug("procesa atachment 1");
-                try {
-                    fileAPath = this.procesaFileToHost(fileRequest.getAttachmentFileName1(), fileRequest.getAttachmentFileData1(), fileRequest.getAttachmentFileType1());
-                    fileA = fileRequest.getAttachmentFileName1()+"."+fileRequest.getAttachmentFileType1();
-                    log.debug("--- FILE A ---- {}", fileAPath);
-                } catch (IOException e) {
-                    e.printStackTrace();
+        try {
+            if (fileRequest.getAttachmentFileName1() == null || fileRequest.getAttachmentFileName2() == null || fileRequest.getAttachmentFileName3() == null ) {
+                log.debug("procesa file sin archivo");
+                jsonString = this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(), fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
+                this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
+            } else {
+                if (!fileRequest.getAttachmentFileName1().isEmpty()) {
+                    log.debug("procesa atachment 1");
+                    try {
+                        fileAPath = this.procesaFileToHost(fileRequest.getAttachmentFileName1(), fileRequest.getAttachmentFileData1(), fileRequest.getAttachmentFileType1());
+                        fileA = fileRequest.getAttachmentFileName1() + "." + fileRequest.getAttachmentFileType1();
+                        log.debug("--- FILE A ---- {}", fileAPath);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    this.insertaArchivos(fileRequest, fileAPath, fileA);
                 }
-                this.insertaArchivos(fileRequest, fileAPath, fileA);
-            }
 
-            if(!fileRequest.getAttachmentFileName2().isEmpty()){
-                log.debug("procesa atachment 2");
-                try {
-                    fileBPath = this.procesaFileToHost(fileRequest.getAttachmentFileName2(), fileRequest.getAttachmentFileData2(), fileRequest.getAttachmentFileType2());
-                    fileB = fileRequest.getAttachmentFileName2()+"."+fileRequest.getAttachmentFileType2();
-                    log.debug("--- FILE B ---- {}", fileBPath);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (!fileRequest.getAttachmentFileName2().isEmpty()) {
+                    log.debug("procesa atachment 2");
+                    try {
+                        fileBPath = this.procesaFileToHost(fileRequest.getAttachmentFileName2(), fileRequest.getAttachmentFileData2(), fileRequest.getAttachmentFileType2());
+                        fileB = fileRequest.getAttachmentFileName2() + "." + fileRequest.getAttachmentFileType2();
+                        log.debug("--- FILE B ---- {}", fileBPath);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    this.insertaArchivos(fileRequest, fileBPath, fileB);
                 }
-                this.insertaArchivos(fileRequest, fileBPath, fileB);
-            }
 
-            if(!fileRequest.getAttachmentFileName3().isEmpty()){
-                log.debug("procesa atachment 3");
-                try {
-                    fileCPath = this.procesaFileToHost(fileRequest.getAttachmentFileName3(), fileRequest.getAttachmentFileData3(), fileRequest.getAttachmentFileType3());
-                    fileC = fileRequest.getAttachmentFileName3()+"."+fileRequest.getAttachmentFileType3();
-                    log.debug("--- FILE C ---- {}", fileCPath);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (!fileRequest.getAttachmentFileName3().isEmpty()) {
+                    log.debug("procesa atachment 3");
+                    try {
+                        fileCPath = this.procesaFileToHost(fileRequest.getAttachmentFileName3(), fileRequest.getAttachmentFileData3(), fileRequest.getAttachmentFileType3());
+                        fileC = fileRequest.getAttachmentFileName3() + "." + fileRequest.getAttachmentFileType3();
+                        log.debug("--- FILE C ---- {}", fileCPath);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    this.insertaArchivos(fileRequest, fileCPath, fileC);
                 }
-                this.insertaArchivos(fileRequest, fileCPath, fileC);
-            }
 
+            }
+        }
+        catch(NullPointerException e)
+        {
+            System.out.print("Caught NullPointerException");
         }
 
 
@@ -108,7 +112,7 @@ public class FileIpicytService {
         String token = this.GetSession().getSession_token();
         log.debug("PROCESA FILE  insertaArchivos {}", fileA);
         try {
-            HttpEntity entity = MultipartEntityBuilder.create()
+           /* HttpEntity entity = MultipartEntityBuilder.create()
                 .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
                 .addTextBody("uploadManifest",
                     "{ \"input\": { \"itemtype\": \"Ticket\", " +
@@ -119,7 +123,14 @@ public class FileIpicytService {
                         "\"_filename\" : [\""+fileA+"\"]}};" +
                         "type=application/json")
             .addTextBody("filename[0]", fileAPath)
+            .build();*/
+
+            HttpEntity entity = MultipartEntityBuilder.create()
+                .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
+                .addTextBody("uploadManifest", "{ \"input\": { \"itemtype\": \"Ticket\", \"items_id\": \"2021010134\", \"is_private\": \"0\",\"requesttypes_id\": \"1\", \"content\": \"Followup contents\",\"_filename\" : [\"file.txt\"]}};type=application/json")
+            .addTextBody("filename[0]", "@/tmp/prueba.pdf")
             .build();
+
 
         // Create request
         Content content = Request.Post("http://10.100.10.3/apirest.php/Ticket/"+fileRequest.getIdReferenciaCliente()+"/ITILFollowup")
@@ -173,6 +184,8 @@ public class FileIpicytService {
         log.debug("insertaNotas  idReferenciaCliente {}", idReferenciaCliente);
         log.debug("insertaNotas  idRemedyGlpi {}", idRemedyGlpi);
         String json= "{\"input\": {\"items_id\": \""+idRemedyGlpi+"\",\"itemtype\": \"Ticket\",\"is_private\": \"0\",\"requesttypes_id\": \"1\",\"content\":\""+idRemedyGlpi+":"+worklogSummary+"<br>"+workInfoNotes+ "\"}}";
+
+        log.debug("JSON RESULTADO {}", json);
         return json;
     }
 
