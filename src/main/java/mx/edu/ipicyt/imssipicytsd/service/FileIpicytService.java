@@ -172,17 +172,7 @@ public class FileIpicytService {
         log.debug("insertaNotas  worklogSummary {}", worklogSummary);
         log.debug("insertaNotas  idReferenciaCliente {}", idReferenciaCliente);
         log.debug("insertaNotas  idRemedyGlpi {}", idRemedyGlpi);
-
-        String json = "{ \"input\": " +
-            "{" +
-            " \"itemtype\": \"Ticket\", " +
-            "\"items_id\": \""+idReferenciaCliente+"\", " +
-            "\"is_private\": \"0\", " +
-            "\"requesttypes_id\": \"1\", " +
-            "\"content\": \""+idRemedyGlpi+":"+worklogSummary+"<b>"+workInfoNotes+"\" " +
-            "}" +
-            "}";
-
+        String json= "{\"input\": {\"items_id\": \""+idRemedyGlpi+"\",\"itemtype\": \"Ticket\",\"is_private\": \"0\",\"requesttypes_id\": \"1\",\"content\":\""+idRemedyGlpi+":"+worklogSummary+"<br>"+workInfoNotes+ "\"}}";
         return json;
     }
 
