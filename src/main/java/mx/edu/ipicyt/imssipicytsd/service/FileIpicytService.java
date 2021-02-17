@@ -112,26 +112,14 @@ public class FileIpicytService {
         String token = this.GetSession().getSession_token();
         log.debug("PROCESA FILE  insertaArchivos {}", fileA);
         try {
-           /* HttpEntity entity = MultipartEntityBuilder.create()
-                .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
-                .addTextBody("uploadManifest",
-                    "{ \"input\": { \"itemtype\": \"Ticket\", " +
-                        "\"items_id\": \" "+fileRequest.getIdReferenciaCliente()+" \", " +
-                        "\"is_private\": \"0\"," +
-                        "\"requesttypes_id\": \"1\", " +
-                        "\"content\": \"\"+idRemedyGlpi+\":\"+worklogSummary+\"<b>\"+workInfoNotes+\"\"," +
-                        "\"_filename\" : [\""+fileA+"\"]}};" +
-                        "type=application/json")
-            .addTextBody("filename[0]", fileAPath)
-            .build();*/
-
             HttpEntity entity = MultipartEntityBuilder.create()
                 .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
-                .addTextBody("uploadManifest", "{ \"input\": { \"itemtype\": \"Ticket\", \"items_id\": \"2021010134\", \"is_private\": \"0\",\"requesttypes_id\": \"1\", \"content\": \"Followup contents\",\"_filename\" : [\"file.txt\"]}};type=application/json")
-            .addTextBody("filename[0]", "@/tmp/prueba.pdf")
-            .build();
-
-
+                .addTextBody(
+                    "uploadManifest", "{\"input\": {\"items_id\":\""+fileRequest.getIdRemedyGlpi()+"\",\"name\": \""+fileRequest.getWorklogSummary()+"\", \"requesttypes_id\":\"1\",\"content\": \""+fileRequest.getWorkInfoNotes()+"\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\""+fileA+"\"]}}"
+                )
+                .addTextBody("filename[0]","@"+fileAPath)
+                .build();
+            log.debug("CURL {}", entity.toString());
         // Create request
         Content content = Request.Post("http://10.100.10.3/apirest.php/Ticket/"+fileRequest.getIdReferenciaCliente()+"/ITILFollowup")
 
