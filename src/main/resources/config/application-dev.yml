@@ -15,9 +15,9 @@
 
 logging:
     level:
-        ROOT: DEBUG
-        mx.edu.ipicyt.imssipicytsd: DEBUG
-        io.github.jhipster: DEBUG
+        ROOT: TRACE
+        mx.edu.ipicyt.imssipicytsd: TRACE
+        io.github.jhipster: TRACE
 
 eureka:
     instance:

@@ -8,18 +8,24 @@ import https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt.FileResponse;
 import mx.edu.ipicyt.imssipicytsd.config.ApplicationProperties;
 import mx.edu.ipicyt.imssipicytsd.domain.Session;
 import org.apache.commons.io.FileUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import java.io.IOException;
-import org.apache.http.HttpEntity;
-import java.io.File;
-import  org.apache.http.entity.mime.MultipartEntityBuilder;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 @Service
 public class FileIpicytService {
@@ -27,6 +33,7 @@ public class FileIpicytService {
     private final String glpiAuthorization;
     private final String glpiToken;
     private final String glpiURL;
+    private static final String BOUNDARY = "------------------------f34ed144c46e1ca7";
 
     public FileIpicytService(ApplicationProperties glpi) {
         this.glpiURL = glpi.getGlpiUrl();
@@ -63,32 +70,9 @@ public class FileIpicytService {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    this.insertaArchivos(fileRequest, fileAPath, fileA);
+                    this.insertaArchivos(fileRequest, fileAPath);
                 }
 
-                if (!fileRequest.getAttachmentFileName2().isEmpty()) {
-                    log.debug("procesa atachment 2");
-                    try {
-                        fileBPath = this.procesaFileToHost(fileRequest.getAttachmentFileName2(), fileRequest.getAttachmentFileData2(), fileRequest.getAttachmentFileType2());
-                        fileB = fileRequest.getAttachmentFileName2() + "." + fileRequest.getAttachmentFileType2();
-                        log.debug("--- FILE B ---- {}", fileBPath);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    this.insertaArchivos(fileRequest, fileBPath, fileB);
-                }
-
-                if (!fileRequest.getAttachmentFileName3().isEmpty()) {
-                    log.debug("procesa atachment 3");
-                    try {
-                        fileCPath = this.procesaFileToHost(fileRequest.getAttachmentFileName3(), fileRequest.getAttachmentFileData3(), fileRequest.getAttachmentFileType3());
-                        fileC = fileRequest.getAttachmentFileName3() + "." + fileRequest.getAttachmentFileType3();
-                        log.debug("--- FILE C ---- {}", fileCPath);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    this.insertaArchivos(fileRequest, fileCPath, fileC);
-                }
 
             }
         }
@@ -108,38 +92,49 @@ public class FileIpicytService {
 
     }
 
-    private void insertaArchivos(FileRequest fileRequest, String fileAPath, String fileA) {
+    private void insertaArchivos(FileRequest fileRequest, String fileAttachment) {
+        log.debug("insertaArchivos - fileRequest {}",fileRequest );
+        log.debug("insertaArchivos - fileAPath {}",fileAttachment );
         String token = this.GetSession().getSession_token();
-        log.debug("PROCESA FILE  insertaArchivos {}", fileA);
+        File file = new File(fileAttachment);
+        String urlString = "http://0.0.0.0/apirest.php/Ticket/"+fileRequest.getIdRemedyGlpi()+"/ITILFollowup";
+        HttpClient client = new DefaultHttpClient();
+        HttpPost postRequest = new HttpPost(urlString) ;
+        MultipartEntity multiPartEntity = new MultipartEntity();
+
         try {
-            HttpEntity entity = MultipartEntityBuilder.create()
-                .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
-                .addTextBody(
-                    "uploadManifest", "{\"input\": {\"items_id\":\""+fileRequest.getIdRemedyGlpi()+"\",\"name\": \""+fileRequest.getWorklogSummary()+"\", \"requesttypes_id\":\"1\",\"content\": \""+fileRequest.getWorkInfoNotes()+"\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\""+fileA+"\"]}}"
-                )
-                .addTextBody("filename[0]","@"+fileAPath)
-                .build();
-            log.debug("CURL {}", entity.toString());
-        // Create request
-        Content content = Request.Post("http://10.100.10.3/apirest.php/Ticket/"+fileRequest.getIdReferenciaCliente()+"/ITILFollowup")
+            multiPartEntity.addPart("uploadManifest",new StringBody("{\"input\": {\"items_id\":\"2021010060\",\"name\": \"Uploaded document\", \"requesttypes_id\":\"1\",\"content\": \"Contenido eddy\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\"prueba.pdf\"]}};type=application/json"));
 
-            // Add headers
-            .addHeader("Content-Type", "multipart/form-data")
-            .addHeader("Session-Token", token)
-            .addHeader("App-Token", "Dd&WSgu9qGn")
-            .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
+            FileBody fileBody = new FileBody(file, "application/octet-stream") ;
+            multiPartEntity.addPart("filename[0]", fileBody);
+            multiPartEntity.addPart("fileDescription", new StringBody("archivo Remedy")) ;
+            multiPartEntity.addPart("fileName", new StringBody("prueba.pdf")) ;
+            postRequest.setEntity(multiPartEntity) ;
+            postRequest.addHeader("Content-Type", "multipart/form-data;boundary="+BOUNDARY);
+            postRequest.addHeader("Session-Token", token);
+            postRequest.addHeader("App-Token", "Dd&WSgu9qGn");
+            postRequest.addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==");
 
-            // Add body
-            .body(entity)
 
-            // Fetch request and return content
-            .execute().returnContent();
+            log.debug("---postRequest getRequestLine --- {}", postRequest.getRequestLine());
+            log.debug("---postRequest getMethod --- {}", postRequest.getMethod());
+            HttpResponse response = client.execute(postRequest) ;
+            log.debug("---insertaArchivos response --- {}", response.toString());
 
-        // Print content
-        System.out.println(content);
-    }
-    catch (IOException e) { System.out.println(e); }
-
+            if (response != null)
+            {
+                System.out.println(response.getStatusLine().getStatusCode());
+            }
+        } catch (UnsupportedEncodingException e) {
+            log.debug("---insertaArchivos catch 1  ---");
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
+            log.debug("---insertaArchivos catch 2  --- ");
+            e.printStackTrace();
+        } catch (IOException e) {
+            log.debug("---insertaArchivos catch 3  ---");
+            e.printStackTrace();
+        }
 
     }
 
@@ -149,7 +144,7 @@ public class FileIpicytService {
         String token = this.GetSession().getSession_token();
         Content content = null;
         try {
-            content = Request.Post("http://10.100.10.3/apirest.php/Ticket/"+idReferenciaCliente+"/ITILFollowup")
+            content = Request.Post("http://localhost/apirest.php/Ticket/"+idReferenciaCliente+"/ITILFollowup")
                                 .addHeader("Content-Type", "application/json")
                                 .addHeader("Session-Token", token)
                                 .addHeader("App-Token", "Dd&WSgu9qGn")
