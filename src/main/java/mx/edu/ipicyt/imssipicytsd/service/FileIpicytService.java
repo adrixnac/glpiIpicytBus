@@ -8,17 +8,23 @@ import https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt.FileResponse;
 import mx.edu.ipicyt.imssipicytsd.config.ApplicationProperties;
 import mx.edu.ipicyt.imssipicytsd.domain.Session;
 import org.apache.commons.io.FileUtils;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -95,29 +101,55 @@ public class FileIpicytService {
     private void insertaArchivos(FileRequest fileRequest, String fileAttachment) {
         log.debug("insertaArchivos - fileRequest {}",fileRequest );
         log.debug("insertaArchivos - fileAPath {}",fileAttachment );
+        CloseableHttpClient httpClient = HttpClients.createDefault();
         String token = this.GetSession().getSession_token();
         File file = new File(fileAttachment);
-        String urlString = "http://0.0.0.0/apirest.php/Ticket/"+fileRequest.getIdRemedyGlpi()+"/ITILFollowup";
-        HttpClient client = new DefaultHttpClient();
-        HttpPost postRequest = new HttpPost(urlString) ;
-        MultipartEntity multiPartEntity = new MultipartEntity();
+        MultipartEntityBuilder multiPartEntity = null;
+        HttpPost postRequest = new HttpPost("http://10.100.10.3/apirest.php/Ticket/"+fileRequest.getIdRemedyGlpi()+"/ITILFollowup");
 
+        //FileBody fileBody = new FileBody(file, ContentType.DEFAULT_BINARY);
+/*
+        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+        HttpPost post = new HttpPost("http://0.0.0.0/apirest.php/Ticket/"+fileRequest.getIdRemedyGlpi()+"/ITILFollowup");
+        post.addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==");
+        post.addHeader("App-Token", "Dd&WSgu9qGn");
+        post.addHeader("Session-Token", token);
+
+        multipartEntityBuilder.addTextBody("uploadManifest","{\"input\": {\"items_id\":\"2021010060\",\"name\": \"Uploaded document\", \"requesttypes_id\":\"1\",\"content\": \"Contenido eddy\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\"prueba.pdf\"]}};type=application/json");
+        multipartEntityBuilder.addPart("filename[0]",fileBody);
+        HttpEntity entity = multipartEntityBuilder.build();
+        post.setEntity(entity);
         try {
+            CloseableHttpResponse response = httpClient.execute(post);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+          MultipartEntityBuilder.create().setBoundary(BOUNDARY)
+                .addTextBody("uploadManifest","{\"input\": {\"items_id\":\"2021010060\",\"name\": \"Uploaded document\", \"requesttypes_id\":\"1\",\"content\": \"Contenido eddy\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\"prueba.pdf\"]}};type=application/json")
+*/
+        try {
+
+
             multiPartEntity.addPart("uploadManifest",new StringBody("{\"input\": {\"items_id\":\"2021010060\",\"name\": \"Uploaded document\", \"requesttypes_id\":\"1\",\"content\": \"Contenido eddy\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\"prueba.pdf\"]}};type=application/json"));
 
             FileBody fileBody = new FileBody(file, "application/octet-stream") ;
             multiPartEntity.addPart("filename[0]", fileBody);
             multiPartEntity.addPart("fileDescription", new StringBody("archivo Remedy")) ;
             multiPartEntity.addPart("fileName", new StringBody("prueba.pdf")) ;
-            postRequest.setEntity(multiPartEntity) ;
-            postRequest.addHeader("Content-Type", "multipart/form-data;boundary="+BOUNDARY);
+            postRequest.setEntity(multiPartEntity.build()) ;
+            postRequest.addHeader("Content-Type", "multipart/form-data;");
             postRequest.addHeader("Session-Token", token);
             postRequest.addHeader("App-Token", "Dd&WSgu9qGn");
             postRequest.addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==");
+            postRequest.addHeader("Accept","");
 
 
             log.debug("---postRequest getRequestLine --- {}", postRequest.getRequestLine());
             log.debug("---postRequest getMethod --- {}", postRequest.getMethod());
+            HttpClient client = new DefaultHttpClient();
             HttpResponse response = client.execute(postRequest) ;
             log.debug("---insertaArchivos response --- {}", response.toString());
 
@@ -132,7 +164,6 @@ public class FileIpicytService {
             log.debug("---insertaArchivos catch 2  --- ");
             e.printStackTrace();
         } catch (IOException e) {
-            log.debug("---insertaArchivos catch 3  ---");
             e.printStackTrace();
         }
 
@@ -144,7 +175,7 @@ public class FileIpicytService {
         String token = this.GetSession().getSession_token();
         Content content = null;
         try {
-            content = Request.Post("http://localhost/apirest.php/Ticket/"+idReferenciaCliente+"/ITILFollowup")
+            content = Request.Post("http://10.100.10.3/apirest.php/Ticket/"+idReferenciaCliente+"/ITILFollowup")
                                 .addHeader("Content-Type", "application/json")
                                 .addHeader("Session-Token", token)
                                 .addHeader("App-Token", "Dd&WSgu9qGn")
