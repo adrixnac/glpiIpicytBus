@@ -99,73 +99,43 @@ public class FileIpicytService {
     }
 
     private void insertaArchivos(FileRequest fileRequest, String fileAttachment) {
-        log.debug("insertaArchivos - fileRequest {}",fileRequest );
-        log.debug("insertaArchivos - fileAPath {}",fileAttachment );
+        log.debug("---  insertaArchivos.fileRequest {}", fileRequest);
+        log.debug("--- insertaArchivos.fileAttachment {}", fileAttachment);
         CloseableHttpClient httpClient = HttpClients.createDefault();
         String token = this.GetSession().getSession_token();
-        File file = new File(fileAttachment);
-        MultipartEntityBuilder multiPartEntity = null;
-        HttpPost postRequest = new HttpPost("http://10.100.10.3/apirest.php/Ticket/"+fileRequest.getIdRemedyGlpi()+"/ITILFollowup");
-
-        //FileBody fileBody = new FileBody(file, ContentType.DEFAULT_BINARY);
-/*
-        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-        HttpPost post = new HttpPost("http://0.0.0.0/apirest.php/Ticket/"+fileRequest.getIdRemedyGlpi()+"/ITILFollowup");
-        post.addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==");
-        post.addHeader("App-Token", "Dd&WSgu9qGn");
-        post.addHeader("Session-Token", token);
-
-        multipartEntityBuilder.addTextBody("uploadManifest","{\"input\": {\"items_id\":\"2021010060\",\"name\": \"Uploaded document\", \"requesttypes_id\":\"1\",\"content\": \"Contenido eddy\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\"prueba.pdf\"]}};type=application/json");
-        multipartEntityBuilder.addPart("filename[0]",fileBody);
-        HttpEntity entity = multipartEntityBuilder.build();
-        post.setEntity(entity);
+        HttpPost uploadFile = new HttpPost("http://0.0.0.0/apirest.php/Ticket/"+fileRequest.getIdRemedyGlpi()+"/ITILFollowup");
+        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+        uploadFile.addHeader("Content-Type","multipart/form-data;boundary="+BOUNDARY);
+        uploadFile.addHeader("Session-Token",token);
+        uploadFile.addHeader("App-Token", "Dd&WSgu9qGn");
+        uploadFile.addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==");
+        uploadFile.addHeader("Content-Type","multipart/form-data;boundary="+BOUNDARY);
+        builder.addTextBody("uploadManifest","{\"input\": {\"items_id\":\"2021010060\",\"name\": \"Uploaded document\", \"requesttypes_id\":\"1\",\"content\": \"Contenido Feliz\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\"/tmp/prueba.pdf\"]}};type=application/json",ContentType.TEXT_PLAIN.withCharset("UTF-8"));
+        //File f = new File("[/tmp/prueba.pdf]");
+        File f = new File(fileAttachment);
         try {
-            CloseableHttpResponse response = httpClient.execute(post);
-        } catch (IOException e) {
+            builder.addBinaryBody(
+                "file",
+                new FileInputStream(f),
+                ContentType.APPLICATION_OCTET_STREAM,
+                f.getName()
+            );
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-
-
-          MultipartEntityBuilder.create().setBoundary(BOUNDARY)
-                .addTextBody("uploadManifest","{\"input\": {\"items_id\":\"2021010060\",\"name\": \"Uploaded document\", \"requesttypes_id\":\"1\",\"content\": \"Contenido eddy\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\"prueba.pdf\"]}};type=application/json")
-*/
+        HttpEntity multipart = builder.build();
+        uploadFile.setEntity(multipart);
+        CloseableHttpResponse response = null;
         try {
-
-
-            multiPartEntity.addPart("uploadManifest",new StringBody("{\"input\": {\"items_id\":\"2021010060\",\"name\": \"Uploaded document\", \"requesttypes_id\":\"1\",\"content\": \"Contenido eddy\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\"prueba.pdf\"]}};type=application/json"));
-
-            FileBody fileBody = new FileBody(file, "application/octet-stream") ;
-            multiPartEntity.addPart("filename[0]", fileBody);
-            multiPartEntity.addPart("fileDescription", new StringBody("archivo Remedy")) ;
-            multiPartEntity.addPart("fileName", new StringBody("prueba.pdf")) ;
-            postRequest.setEntity(multiPartEntity.build()) ;
-            postRequest.addHeader("Content-Type", "multipart/form-data;");
-            postRequest.addHeader("Session-Token", token);
-            postRequest.addHeader("App-Token", "Dd&WSgu9qGn");
-            postRequest.addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==");
-            postRequest.addHeader("Accept","");
-
-
-            log.debug("---postRequest getRequestLine --- {}", postRequest.getRequestLine());
-            log.debug("---postRequest getMethod --- {}", postRequest.getMethod());
-            HttpClient client = new DefaultHttpClient();
-            HttpResponse response = client.execute(postRequest) ;
-            log.debug("---insertaArchivos response --- {}", response.toString());
-
-            if (response != null)
-            {
-                System.out.println(response.getStatusLine().getStatusCode());
-            }
-        } catch (UnsupportedEncodingException e) {
-            log.debug("---insertaArchivos catch 1  ---");
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            log.debug("---insertaArchivos catch 2  --- ");
-            e.printStackTrace();
+            response = httpClient.execute(uploadFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        HttpEntity responseEntity = response.getEntity();
+
+        log.debug("---- insertaArchivos.responseEntity---- {}", responseEntity.toString());
+
 
     }
 
