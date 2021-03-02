@@ -7,6 +7,7 @@ import com.google.gson.JsonParser;
 import https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt.FileRequest;
 import https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt.FileResponse;
 import mx.edu.ipicyt.imssipicytsd.config.ApplicationProperties;
+import mx.edu.ipicyt.imssipicytsd.domain.FilesNotes;
 import mx.edu.ipicyt.imssipicytsd.domain.Session;
 import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpEntity;
@@ -50,7 +51,7 @@ public class FileIpicytService {
         this.glpiToken = glpi.getGlpiToken();
     }
 
-    public FileResponse procesaFile(FileRequest fileRequest) {
+    public FileResponse procesaFile(FileRequest fileRequest, FilesNotes result) {
         log.debug("PROCESA FILE {}", fileRequest.toString());
         FileResponse fileResponse = new FileResponse();
         String jsonString = "";
@@ -79,7 +80,7 @@ public class FileIpicytService {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    this.insertaArchivos(fileRequest, fileAPath);
+                    this.insertaArchivos(fileRequest, fileAPath, result);
                 }
 
 
@@ -101,67 +102,15 @@ public class FileIpicytService {
 
     }
 
-    private void insertaArchivos(FileRequest fileRequest, String fileAttachment) {
+    private void insertaArchivos(FileRequest fileRequest, String fileAttachment, FilesNotes result) {
         log.debug("--- insertaArchivos.fileRequest --- {}", fileRequest);
         log.debug("--- insertaArchivos.fileAttachment --- {}", fileAttachment);
-        /*String token              = this.GetSession().getSession_token();
-        File file                 = new File(fileAttachment);
-        HttpPost post             = new HttpPost("http://0.0.0.0/apirest.php/Ticket/2021010134/ITILFollowup");
-        FileBody fileBody         = new FileBody(file, ContentType.DEFAULT_BINARY);
-        HttpClient client = new DefaultHttpClient();
-        post.addHeader("Session-Token",token);
-        post.addHeader("App-Token", "Dd&WSgu9qGn");
-        post.addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==");
-        StringBody uploadManifest = new StringBody("{\"input\": {\"items_id\":\"2021010134\",\"name\": \"Uploaded document\", \"requesttypes_id\":\"1\",\"content\": \"Contenido a\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\"a11y.pdf\"]}}",ContentType.APPLICATION_JSON);
-        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-        builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-        builder.addTextBody("uploadManifest", "{\"input\": {\"items_id\":\"2021010134\",\"name\": \"Uploaded document\", \"requesttypes_id\":\"1\",\"content\": \"Contenido a\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\"a11y.pdf\"]}}",ContentType.APPLICATION_JSON);
-        builder.addPart("filename[0]", fileBody);
-        HttpEntity entity = builder.build();
-        post.setEntity(entity);
-        try {
-            HttpResponse response = client.execute(post);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        log.debug("--- insertaArchivos.result --- {}", result.toString());
+        fileRequest.setWorklogSummary(fileRequest.getWorklogSummary() + "<br /><strong>Para consultar el archivo visite el siguiente enlace</strong>:<br><a target='_blank' href='https://ipicytbuss-glpi-mesas-qa.cloudapps.imss.gob.mx/#/files-notes/"+result.getId()+"'>GLPI-Remedy Bus</a> " );
 
-        log.debug("---  insertaArchivos.fileRequest {}", fileRequest);
-        log.debug("--- insertaArchivos.fileAttachment {}", fileAttachment);
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        String token = this.GetSession().getSession_token();
-        HttpPost uploadFile = new HttpPost("http://0.0.0.0/apirest.php/Ticket/"+fileRequest.getIdRemedyGlpi()+"/ITILFollowup");
-        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-        uploadFile.addHeader("Content-Type","multipart/form-data;boundary="+BOUNDARY);
-        uploadFile.addHeader("Session-Token",token);
-        uploadFile.addHeader("App-Token", "Dd&WSgu9qGn");
-        uploadFile.addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==");
-        uploadFile.addHeader("Content-Type","multipart/form-data;boundary="+BOUNDARY);
-        builder.addTextBody("uploadManifest","{\"input\": {\"items_id\":\"2021010060\",\"name\": \"Uploaded document\", \"requesttypes_id\":\"1\",\"content\": \"Contenido Feliz\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\"/tmp/prueba.pdf\"]}};type=application/json",ContentType.TEXT_PLAIN.withCharset("UTF-8"));
-        //File f = new File("[/tmp/prueba.pdf]");
-        File f = new File(fileAttachment);
-        try {
-            builder.addBinaryBody(
-                "file",
-                new FileInputStream(f),
-                ContentType.APPLICATION_OCTET_STREAM,
-                f.getName()
-            );
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
-        HttpEntity multipart = builder.build();
-        uploadFile.setEntity(multipart);
-        CloseableHttpResponse response = null;
-        try {
-            response = httpClient.execute(uploadFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        HttpEntity responseEntity = response.getEntity();
-
-        log.debug("---- insertaArchivos.responseEntity---- {}", responseEntity.toString());
-*/
+        String jsonString = this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(), fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
+        this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
 
     }
 
@@ -258,5 +207,6 @@ public class FileIpicytService {
         }
         catch (IOException e) { System.out.println(e); }
     }
+
 
 }

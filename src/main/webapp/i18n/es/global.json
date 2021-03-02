@@ -16,6 +16,7 @@
                 "impact": "Impact",
                 "urgency": "Urgency",
                 "priority": "Priority",
+                "filesNotes": "Files Notes",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -1,0 +1,97 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "idRemedyGlpi",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "typeTransaccion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "subTypeTransaction",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "idReferenciaCliente",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "company",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "workLogSummary",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "workInfoNotes",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "attachmentFileName1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attachmentFileType1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attachmentFileData1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attachmentFileName2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attachmentFileType2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attachmentFileData2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attachmentFileName3",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attachmentFileType3",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attachmentFileData3",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20210302123527",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "files_notes",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

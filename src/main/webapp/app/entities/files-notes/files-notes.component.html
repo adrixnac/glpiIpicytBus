@@ -1,0 +1,88 @@
+<div>
+    <h2>
+        <span jhiTranslate="ipicytBussApp.filesNotes.home.title">Files Notes</span>
+        <button class="btn btn-primary float-right jh-create-entity create-files-notes" [routerLink]="['/', { outlets: { popup: ['files-notes-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ipicytBussApp.filesNotes.home.createLabel">
+            Create new Files Notes
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="filesNotes">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.idRemedyGlpi">Id Remedy Glpi</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.typeTransaccion">Type Transaccion</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.subTypeTransaction">Sub Type Transaction</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.idReferenciaCliente">Id Referencia Cliente</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.company">Company</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.workLogSummary">Work Log Summary</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.workInfoNotes">Work Info Notes</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileName1">Attachment File Name 1</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileType1">Attachment File Type 1</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileData1">Attachment File Data 1</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileName2">Attachment File Name 2</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileType2">Attachment File Type 2</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileData2">Attachment File Data 2</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileName3">Attachment File Name 3</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileType3">Attachment File Type 3</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileData3">Attachment File Data 3</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let filesNotes of filesNotes ;trackBy: trackId">
+                <td><a [routerLink]="['../files-notes', filesNotes.id ]">{{filesNotes.id}}</a></td>
+                <td>{{filesNotes.idRemedyGlpi}}</td>
+                <td>{{filesNotes.typeTransaccion}}</td>
+                <td>{{filesNotes.subTypeTransaction}}</td>
+                <td>{{filesNotes.idReferenciaCliente}}</td>
+                <td>{{filesNotes.company}}</td>
+                <td>{{filesNotes.workLogSummary}}</td>
+                <td>{{filesNotes.workInfoNotes}}</td>
+                <td>{{filesNotes.attachmentFileName1}}</td>
+                <td>{{filesNotes.attachmentFileType1}}</td>
+                <td>{{filesNotes.attachmentFileData1}}</td>
+                <td>{{filesNotes.attachmentFileName2}}</td>
+                <td>{{filesNotes.attachmentFileType2}}</td>
+                <td>{{filesNotes.attachmentFileData2}}</td>
+                <td>{{filesNotes.attachmentFileName3}}</td>
+                <td>{{filesNotes.attachmentFileType3}}</td>
+                <td>{{filesNotes.attachmentFileData3}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../files-notes', filesNotes.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'files-notes/'+ filesNotes.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'files-notes/'+ filesNotes.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

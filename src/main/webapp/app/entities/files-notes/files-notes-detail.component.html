@@ -1,0 +1,86 @@
+
+<div *ngIf="filesNotes">
+    <h2><span jhiTranslate="ipicytBussApp.filesNotes.detail.title">Files Notes</span> {{filesNotes.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.idRemedyGlpi">Id Remedy Glpi</span></dt>
+        <dd>
+            <span>{{filesNotes.idRemedyGlpi}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.typeTransaccion">Type Transaccion</span></dt>
+        <dd>
+            <span>{{filesNotes.typeTransaccion}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.subTypeTransaction">Sub Type Transaction</span></dt>
+        <dd>
+            <span>{{filesNotes.subTypeTransaction}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.idReferenciaCliente">Id Referencia Cliente</span></dt>
+        <dd>
+            <span>{{filesNotes.idReferenciaCliente}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.company">Company</span></dt>
+        <dd>
+            <span>{{filesNotes.company}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.workLogSummary">Work Log Summary</span></dt>
+        <dd>
+            <span>{{filesNotes.workLogSummary}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.workInfoNotes">Work Info Notes</span></dt>
+        <dd>
+            <span>{{filesNotes.workInfoNotes}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileName1">Attachment File Name 1</span></dt>
+        <dd>
+            <span>{{filesNotes.attachmentFileName1}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileType1">Attachment File Type 1</span></dt>
+        <dd>
+            <span>{{filesNotes.attachmentFileType1}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileData1">Attachment File Data 1</span></dt>
+        <dd>
+            <span>{{filesNotes.attachmentFileData1}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileName2">Attachment File Name 2</span></dt>
+        <dd>
+            <span>{{filesNotes.attachmentFileName2}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileType2">Attachment File Type 2</span></dt>
+        <dd>
+            <span>{{filesNotes.attachmentFileType2}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileData2">Attachment File Data 2</span></dt>
+        <dd>
+            <span>{{filesNotes.attachmentFileData2}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileName3">Attachment File Name 3</span></dt>
+        <dd>
+            <span>{{filesNotes.attachmentFileName3}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileType3">Attachment File Type 3</span></dt>
+        <dd>
+            <span>{{filesNotes.attachmentFileType3}}</span>
+        </dd>
+        <dt><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileData3">Attachment File Data 3</span></dt>
+        <dd>
+            <span>{{filesNotes.attachmentFileData3}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'files-notes/'+ filesNotes.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
