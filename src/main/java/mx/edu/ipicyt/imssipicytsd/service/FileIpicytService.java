@@ -123,8 +123,45 @@ public class FileIpicytService {
             HttpResponse response = client.execute(post);
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
 
+        log.debug("---  insertaArchivos.fileRequest {}", fileRequest);
+        log.debug("--- insertaArchivos.fileAttachment {}", fileAttachment);
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        String token = this.GetSession().getSession_token();
+        HttpPost uploadFile = new HttpPost("http://0.0.0.0/apirest.php/Ticket/"+fileRequest.getIdRemedyGlpi()+"/ITILFollowup");
+        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+        uploadFile.addHeader("Content-Type","multipart/form-data;boundary="+BOUNDARY);
+        uploadFile.addHeader("Session-Token",token);
+        uploadFile.addHeader("App-Token", "Dd&WSgu9qGn");
+        uploadFile.addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==");
+        uploadFile.addHeader("Content-Type","multipart/form-data;boundary="+BOUNDARY);
+        builder.addTextBody("uploadManifest","{\"input\": {\"items_id\":\"2021010060\",\"name\": \"Uploaded document\", \"requesttypes_id\":\"1\",\"content\": \"Contenido Feliz\", \"itemtype\": \"Ticket\" ,\"_filename\" : [\"/tmp/prueba.pdf\"]}};type=application/json",ContentType.TEXT_PLAIN.withCharset("UTF-8"));
+        //File f = new File("[/tmp/prueba.pdf]");
+        File f = new File(fileAttachment);
+        try {
+            builder.addBinaryBody(
+                "file",
+                new FileInputStream(f),
+                ContentType.APPLICATION_OCTET_STREAM,
+                f.getName()
+            );
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        HttpEntity multipart = builder.build();
+        uploadFile.setEntity(multipart);
+        CloseableHttpResponse response = null;
+        try {
+            response = httpClient.execute(uploadFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        HttpEntity responseEntity = response.getEntity();
+
+        log.debug("---- insertaArchivos.responseEntity---- {}", responseEntity.toString());
+*/
 
     }
 
