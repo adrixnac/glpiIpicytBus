@@ -1,6 +1,5 @@
 package mx.edu.ipicyt.imssipicytsd.service;
 
-import com.codahale.metrics.InstrumentedExecutorService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -10,32 +9,14 @@ import mx.edu.ipicyt.imssipicytsd.config.ApplicationProperties;
 import mx.edu.ipicyt.imssipicytsd.domain.FilesNotes;
 import mx.edu.ipicyt.imssipicytsd.domain.Session;
 import org.apache.commons.io.FileUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.net.URLConnection;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 @Service
 public class FileIpicytService {
@@ -69,7 +50,7 @@ public class FileIpicytService {
             if (fileRequest.getAttachmentFileName1() == null && fileRequest.getAttachmentFileName2() == null && fileRequest.getAttachmentFileName3() == null ) {
                 log.debug("procesa file sin archivo");
                 jsonString = this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(), fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
-                this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
+                fileResponse =this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
             } else {
                 if (!fileRequest.getAttachmentFileName1().isEmpty()) {
                     log.debug("procesa atachment 1");
@@ -78,7 +59,7 @@ public class FileIpicytService {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    this.insertaArchivos(fileRequest, fileAPath, result);
+                    fileResponse = this.insertaArchivos(fileRequest, fileAPath, result);
                 }
 
 
@@ -100,7 +81,7 @@ public class FileIpicytService {
 
     }
 
-    private void insertaArchivos(FileRequest fileRequest, String fileAttachment, FilesNotes result) {
+    private FileResponse insertaArchivos(FileRequest fileRequest, String fileAttachment, FilesNotes result) {
         log.debug("--- insertaArchivos.fileRequest --- {}", fileRequest);
         log.debug("--- insertaArchivos.fileAttachment --- {}", fileAttachment);
         log.debug("--- insertaArchivos.result --- {}", result.toString());
@@ -108,11 +89,12 @@ public class FileIpicytService {
 
 
         String jsonString = this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(), fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
-        this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
+        return this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
 
     }
 
-    private void updateTIcketGLPI(String jsonString, String idReferenciaCliente) {
+    private FileResponse updateTIcketGLPI(String jsonString, String idReferenciaCliente) {
+        FileResponse fileResponse = new FileResponse();
         log.debug("updateTIcketGLPI jsonString {}", jsonString);
         log.debug("updateTIcketGLPI idReferenciaCliente {}", idReferenciaCliente);
         String token = this.GetSession().getSession_token();
@@ -128,9 +110,23 @@ public class FileIpicytService {
 
         } catch (IOException e) {
             e.printStackTrace();
+            fileResponse.setValue("NULL");
+            fileResponse.setGlpiTicketsId("");
+            fileResponse.setResultMessage(e.getCause().toString());
+            fileResponse.setIdReferenciaCliente(idReferenciaCliente);
+            fileResponse.setStatusTransaccionId("ERROR");
+            return fileResponse;
         }
+
         System.out.println("Contenido post"+ content);
         log.debug("Contenido Ipicyt: ", content.toString());
+        fileResponse.setValue("NULL");
+        fileResponse.setGlpiTicketsId("");
+        fileResponse.setResultMessage(content.toString());
+        fileResponse.setIdReferenciaCliente(idReferenciaCliente);
+        fileResponse.setStatusTransaccionId("SUCCESS");
+
+        return fileResponse;
 
     }
 
