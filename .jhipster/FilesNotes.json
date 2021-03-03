@@ -86,6 +86,10 @@
         {
             "fieldName": "attachmentFileData3",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "createDate",
+            "fieldType": "Instant"
         }
     ],
     "changelogDate": "20210302123527",

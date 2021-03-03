@@ -20,6 +20,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -87,6 +89,8 @@ public class FilesNotesResourceIntTest {
     private static final String DEFAULT_ATTACHMENT_FILE_DATA_3 = "AAAAAAAAAA";
     private static final String UPDATED_ATTACHMENT_FILE_DATA_3 = "BBBBBBBBBB";
 
+    private static final Instant DEFAULT_CREATE_DATE = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_CREATE_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
     @Autowired
     private FilesNotesRepository filesNotesRepository;
 
@@ -141,7 +145,8 @@ public class FilesNotesResourceIntTest {
             .attachmentFileData2(DEFAULT_ATTACHMENT_FILE_DATA_2)
             .attachmentFileName3(DEFAULT_ATTACHMENT_FILE_NAME_3)
             .attachmentFileType3(DEFAULT_ATTACHMENT_FILE_TYPE_3)
-            .attachmentFileData3(DEFAULT_ATTACHMENT_FILE_DATA_3);
+            .attachmentFileData3(DEFAULT_ATTACHMENT_FILE_DATA_3)
+            .createDate(DEFAULT_CREATE_DATE);
         return filesNotes;
     }
 
@@ -181,6 +186,7 @@ public class FilesNotesResourceIntTest {
         assertThat(testFilesNotes.getAttachmentFileName3()).isEqualTo(DEFAULT_ATTACHMENT_FILE_NAME_3);
         assertThat(testFilesNotes.getAttachmentFileType3()).isEqualTo(DEFAULT_ATTACHMENT_FILE_TYPE_3);
         assertThat(testFilesNotes.getAttachmentFileData3()).isEqualTo(DEFAULT_ATTACHMENT_FILE_DATA_3);
+        assertThat(testFilesNotes.getCreateDate()).isEqualTo(DEFAULT_CREATE_DATE);
     }
 
     @Test
@@ -354,7 +360,8 @@ public class FilesNotesResourceIntTest {
             .andExpect(jsonPath("$.[*].attachmentFileData2").value(hasItem(DEFAULT_ATTACHMENT_FILE_DATA_2.toString())))
             .andExpect(jsonPath("$.[*].attachmentFileName3").value(hasItem(DEFAULT_ATTACHMENT_FILE_NAME_3.toString())))
             .andExpect(jsonPath("$.[*].attachmentFileType3").value(hasItem(DEFAULT_ATTACHMENT_FILE_TYPE_3.toString())))
-            .andExpect(jsonPath("$.[*].attachmentFileData3").value(hasItem(DEFAULT_ATTACHMENT_FILE_DATA_3.toString())));
+            .andExpect(jsonPath("$.[*].attachmentFileData3").value(hasItem(DEFAULT_ATTACHMENT_FILE_DATA_3.toString())))
+            .andExpect(jsonPath("$.[*].createDate").value(hasItem(DEFAULT_CREATE_DATE.toString())));
     }
 
     @Test
@@ -383,7 +390,8 @@ public class FilesNotesResourceIntTest {
             .andExpect(jsonPath("$.attachmentFileData2").value(DEFAULT_ATTACHMENT_FILE_DATA_2.toString()))
             .andExpect(jsonPath("$.attachmentFileName3").value(DEFAULT_ATTACHMENT_FILE_NAME_3.toString()))
             .andExpect(jsonPath("$.attachmentFileType3").value(DEFAULT_ATTACHMENT_FILE_TYPE_3.toString()))
-            .andExpect(jsonPath("$.attachmentFileData3").value(DEFAULT_ATTACHMENT_FILE_DATA_3.toString()));
+            .andExpect(jsonPath("$.attachmentFileData3").value(DEFAULT_ATTACHMENT_FILE_DATA_3.toString()))
+            .andExpect(jsonPath("$.createDate").value(DEFAULT_CREATE_DATE.toString()));
     }
 
     @Test
@@ -421,7 +429,8 @@ public class FilesNotesResourceIntTest {
             .attachmentFileData2(UPDATED_ATTACHMENT_FILE_DATA_2)
             .attachmentFileName3(UPDATED_ATTACHMENT_FILE_NAME_3)
             .attachmentFileType3(UPDATED_ATTACHMENT_FILE_TYPE_3)
-            .attachmentFileData3(UPDATED_ATTACHMENT_FILE_DATA_3);
+            .attachmentFileData3(UPDATED_ATTACHMENT_FILE_DATA_3)
+            .createDate(UPDATED_CREATE_DATE);
 
         restFilesNotesMockMvc.perform(put("/api/files-notes")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -448,6 +457,7 @@ public class FilesNotesResourceIntTest {
         assertThat(testFilesNotes.getAttachmentFileName3()).isEqualTo(UPDATED_ATTACHMENT_FILE_NAME_3);
         assertThat(testFilesNotes.getAttachmentFileType3()).isEqualTo(UPDATED_ATTACHMENT_FILE_TYPE_3);
         assertThat(testFilesNotes.getAttachmentFileData3()).isEqualTo(UPDATED_ATTACHMENT_FILE_DATA_3);
+        assertThat(testFilesNotes.getCreateDate()).isEqualTo(UPDATED_CREATE_DATE);
     }
 
     @Test

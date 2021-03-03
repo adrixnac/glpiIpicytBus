@@ -33,6 +33,7 @@
             <th><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileName3">Attachment File Name 3</span></th>
             <th><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileType3">Attachment File Type 3</span></th>
             <th><span jhiTranslate="ipicytBussApp.filesNotes.attachmentFileData3">Attachment File Data 3</span></th>
+            <th><span jhiTranslate="ipicytBussApp.filesNotes.createDate">Create Date</span></th>
             <th></th>
             </tr>
             </thead>
@@ -55,6 +56,7 @@
                 <td>{{filesNotes.attachmentFileName3}}</td>
                 <td>{{filesNotes.attachmentFileType3}}</td>
                 <td>{{filesNotes.attachmentFileData3}}</td>
+                <td>{{filesNotes.createDate | date:'medium'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

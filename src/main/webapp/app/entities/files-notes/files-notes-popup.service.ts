@@ -2,6 +2,7 @@ import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 import { FilesNotes } from './files-notes.model';
 import { FilesNotesService } from './files-notes.service';
 
@@ -10,6 +11,7 @@ export class FilesNotesPopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
+        private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
         private filesNotesService: FilesNotesService
@@ -29,6 +31,8 @@ export class FilesNotesPopupService {
                 this.filesNotesService.find(id)
                     .subscribe((filesNotesResponse: HttpResponse<FilesNotes>) => {
                         const filesNotes: FilesNotes = filesNotesResponse.body;
+                        filesNotes.createDate = this.datePipe
+                            .transform(filesNotes.createDate, 'yyyy-MM-ddTHH:mm:ss');
                         this.ngbModalRef = this.filesNotesModalRef(component, filesNotes);
                         resolve(this.ngbModalRef);
                     });

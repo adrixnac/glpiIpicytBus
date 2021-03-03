@@ -3,6 +3,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
 
+import { JhiDateUtils } from 'ng-jhipster';
+
 import { FilesNotes } from './files-notes.model';
 import { createRequestOption } from '../../shared';
 
@@ -13,7 +15,7 @@ export class FilesNotesService {
 
     private resourceUrl =  SERVER_API_URL + 'api/files-notes';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
 
     create(filesNotes: FilesNotes): Observable<EntityResponseType> {
         const copy = this.convert(filesNotes);
@@ -61,6 +63,8 @@ export class FilesNotesService {
      */
     private convertItemFromServer(filesNotes: FilesNotes): FilesNotes {
         const copy: FilesNotes = Object.assign({}, filesNotes);
+        copy.createDate = this.dateUtils
+            .convertDateTimeFromServer(filesNotes.createDate);
         return copy;
     }
 
@@ -69,6 +73,8 @@ export class FilesNotesService {
      */
     private convert(filesNotes: FilesNotes): FilesNotes {
         const copy: FilesNotes = Object.assign({}, filesNotes);
+
+        copy.createDate = this.dateUtils.toDate(filesNotes.createDate);
         return copy;
     }
 }

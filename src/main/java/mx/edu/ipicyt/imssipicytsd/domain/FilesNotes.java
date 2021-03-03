@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
 
 /**
@@ -77,6 +78,9 @@ public class FilesNotes implements Serializable {
 
     @Column(name = "attachment_file_data_3")
     private String attachmentFileData3;
+
+    @Column(name = "create_date")
+    private Instant createDate;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -294,6 +298,19 @@ public class FilesNotes implements Serializable {
     public void setAttachmentFileData3(String attachmentFileData3) {
         this.attachmentFileData3 = attachmentFileData3;
     }
+
+    public Instant getCreateDate() {
+        return createDate;
+    }
+
+    public FilesNotes createDate(Instant createDate) {
+        this.createDate = createDate;
+        return this;
+    }
+
+    public void setCreateDate(Instant createDate) {
+        this.createDate = createDate;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -336,6 +353,7 @@ public class FilesNotes implements Serializable {
             ", attachmentFileName3='" + getAttachmentFileName3() + "'" +
             ", attachmentFileType3='" + getAttachmentFileType3() + "'" +
             ", attachmentFileData3='" + getAttachmentFileData3() + "'" +
+            ", createDate='" + getCreateDate() + "'" +
             "}";
     }
 }

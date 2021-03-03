@@ -17,6 +17,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,7 @@ public class FilesNotesResource {
         if (filesNotes.getId() != null) {
             throw new BadRequestAlertException("A new filesNotes cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        filesNotes.setCreateDate(Instant.EPOCH);
         FilesNotes result = filesNotesRepository.save(filesNotes);
         return ResponseEntity.created(new URI("/api/files-notes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

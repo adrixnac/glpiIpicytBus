@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.02.27 a las 05:11:50 PM CST 
+// Generado el: 2021.03.03 a las 11:23:48 AM CST 
 //
 
 
@@ -33,13 +33,10 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="WorklogSummary" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="WorkInfoNotes" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Attachment.FileName1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="Attachment.FileType1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Attachment.FileData1" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *         &lt;element name="Attachment.FileName2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="Attachment.FileType2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Attachment.FileData2" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *         &lt;element name="Attachment.FileName3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="Attachment.FileType3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Attachment.FileData3" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -59,13 +56,10 @@ import javax.xml.bind.annotation.XmlType;
     "worklogSummary",
     "workInfoNotes",
     "attachmentFileName1",
-    "attachmentFileType1",
     "attachmentFileData1",
     "attachmentFileName2",
-    "attachmentFileType2",
     "attachmentFileData2",
     "attachmentFileName3",
-    "attachmentFileType3",
     "attachmentFileData3"
 })
 @XmlRootElement(name = "FileRequest")
@@ -87,20 +81,14 @@ public class FileRequest {
     protected String workInfoNotes;
     @XmlElement(name = "Attachment.FileName1")
     protected String attachmentFileName1;
-    @XmlElement(name = "Attachment.FileType1")
-    protected String attachmentFileType1;
     @XmlElement(name = "Attachment.FileData1")
     protected byte[] attachmentFileData1;
     @XmlElement(name = "Attachment.FileName2")
     protected String attachmentFileName2;
-    @XmlElement(name = "Attachment.FileType2")
-    protected String attachmentFileType2;
     @XmlElement(name = "Attachment.FileData2")
     protected byte[] attachmentFileData2;
     @XmlElement(name = "Attachment.FileName3")
     protected String attachmentFileName3;
-    @XmlElement(name = "Attachment.FileType3")
-    protected String attachmentFileType3;
     @XmlElement(name = "Attachment.FileData3")
     protected byte[] attachmentFileData3;
 
@@ -297,30 +285,6 @@ public class FileRequest {
     }
 
     /**
-     * Obtiene el valor de la propiedad attachmentFileType1.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAttachmentFileType1() {
-        return attachmentFileType1;
-    }
-
-    /**
-     * Define el valor de la propiedad attachmentFileType1.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAttachmentFileType1(String value) {
-        this.attachmentFileType1 = value;
-    }
-
-    /**
      * Obtiene el valor de la propiedad attachmentFileData1.
      * 
      * @return
@@ -367,30 +331,6 @@ public class FileRequest {
     }
 
     /**
-     * Obtiene el valor de la propiedad attachmentFileType2.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAttachmentFileType2() {
-        return attachmentFileType2;
-    }
-
-    /**
-     * Define el valor de la propiedad attachmentFileType2.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAttachmentFileType2(String value) {
-        this.attachmentFileType2 = value;
-    }
-
-    /**
      * Obtiene el valor de la propiedad attachmentFileData2.
      * 
      * @return
@@ -434,30 +374,6 @@ public class FileRequest {
      */
     public void setAttachmentFileName3(String value) {
         this.attachmentFileName3 = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad attachmentFileType3.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAttachmentFileType3() {
-        return attachmentFileType3;
-    }
-
-    /**
-     * Define el valor de la propiedad attachmentFileType3.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAttachmentFileType3(String value) {
-        this.attachmentFileType3 = value;
     }
 
     /**

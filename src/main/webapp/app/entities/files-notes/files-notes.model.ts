@@ -19,6 +19,7 @@ export class FilesNotes implements BaseEntity {
         public attachmentFileName3?: string,
         public attachmentFileType3?: string,
         public attachmentFileData3?: string,
+        public createDate?: any,
     ) {
     }
 }

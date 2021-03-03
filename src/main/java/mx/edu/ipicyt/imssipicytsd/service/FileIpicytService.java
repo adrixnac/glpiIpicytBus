@@ -66,7 +66,7 @@ public class FileIpicytService {
 //        log.debug("fileRequest.getAttachmentFileData1() {}", fileRequest.getAttachmentFileName1().length());
         /* la nota no tiene un archivo*/
         try {
-            if (fileRequest.getAttachmentFileName1() == null || fileRequest.getAttachmentFileName2() == null || fileRequest.getAttachmentFileName3() == null ) {
+            if (fileRequest.getAttachmentFileName1() == null && fileRequest.getAttachmentFileName2() == null && fileRequest.getAttachmentFileName3() == null ) {
                 log.debug("procesa file sin archivo");
                 jsonString = this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(), fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
                 this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
@@ -74,9 +74,7 @@ public class FileIpicytService {
                 if (!fileRequest.getAttachmentFileName1().isEmpty()) {
                     log.debug("procesa atachment 1");
                     try {
-                        fileAPath = this.procesaFileToHost(fileRequest.getAttachmentFileName1(), fileRequest.getAttachmentFileData1(), fileRequest.getAttachmentFileType1());
-                        fileA = fileRequest.getAttachmentFileName1() + "." + fileRequest.getAttachmentFileType1();
-                        log.debug("--- FILE A ---- {}", fileAPath);
+                        fileAPath = this.procesaFileToHost(fileRequest.getAttachmentFileName1(), fileRequest.getAttachmentFileData1());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -95,8 +93,8 @@ public class FileIpicytService {
         return fileResponse;
     }
 
-    private String procesaFileToHost(String attachmentFileName1, byte[] attachmentFileData1, String attachmentFileType1) throws IOException {
-        String urlPathFile = "/tmp/" + attachmentFileName1.trim().toLowerCase() + "." + attachmentFileType1.trim().toLowerCase();
+    private String procesaFileToHost(String attachmentFileName1, byte[] attachmentFileData1) throws IOException {
+        String urlPathFile = "/tmp/" + attachmentFileName1.trim().toLowerCase();
         FileUtils.writeByteArrayToFile(new File(urlPathFile), attachmentFileData1);
         return urlPathFile;
 
@@ -120,7 +118,7 @@ public class FileIpicytService {
         String token = this.GetSession().getSession_token();
         Content content = null;
         try {
-            content = Request.Post("http://10.100.10.3/apirest.php/Ticket/"+idReferenciaCliente+"/ITILFollowup")
+            content = Request.Post("http://0.0.0.0/apirest.php/Ticket/"+idReferenciaCliente+"/ITILFollowup")
                                 .addHeader("Content-Type", "application/json")
                                 .addHeader("Session-Token", token)
                                 .addHeader("App-Token", "Dd&WSgu9qGn")

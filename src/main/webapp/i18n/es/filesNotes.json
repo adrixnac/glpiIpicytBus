@@ -31,7 +31,8 @@
             "attachmentFileData2": "Attachment File Data 2",
             "attachmentFileName3": "Attachment File Name 3",
             "attachmentFileType3": "Attachment File Type 3",
-            "attachmentFileData3": "Attachment File Data 3"
+            "attachmentFileData3": "Attachment File Data 3",
+            "createDate": "Create Date"
         }
     }
 }

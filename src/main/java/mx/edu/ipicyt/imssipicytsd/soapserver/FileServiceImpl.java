@@ -54,16 +54,8 @@ public class FileServiceImpl implements FileService{
         filesNotes.setWorkLogSummary(fileRequest.getWorklogSummary());
         filesNotes.setWorkInfoNotes(fileRequest.getWorkInfoNotes());
         filesNotes.setAttachmentFileName1(fileRequest.getAttachmentFileName1());
-        filesNotes.setAttachmentFileType1(fileRequest.getAttachmentFileType1());
-        filesNotes.setAttachmentFileData1(fileRequest.getAttachmentFileName1()+"."+fileRequest.getAttachmentFileType1());
-
         filesNotes.setAttachmentFileName2(fileRequest.getAttachmentFileName2());
-        filesNotes.setAttachmentFileType2(fileRequest.getAttachmentFileType2());
-        filesNotes.setAttachmentFileData2(fileRequest.getAttachmentFileName2()+"."+fileRequest.getAttachmentFileType2());
-
         filesNotes.setAttachmentFileName2(fileRequest.getAttachmentFileName3());
-        filesNotes.setAttachmentFileType2(fileRequest.getAttachmentFileType3());
-        filesNotes.setAttachmentFileData2(fileRequest.getAttachmentFileName3()+"."+fileRequest.getAttachmentFileType3());
         log.debug("--- convertFileRequestToNote filesNotes {} ----", filesNotes);
         return filesNotes;
 
