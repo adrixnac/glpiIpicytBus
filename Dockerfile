@@ -6,7 +6,7 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs rsync tree nfs-common
 RUN mkdir /mnt/storage
-RUN mount -t nfs 10.100.10.5:/documentos /mnt/storage
+RUN mount -t nfs  -o nolock 10.100.10.5:/documentos /mnt/storage
 COPY . /source
 RUN rm -f ./.gitignore
 RUN rm -f ./.gitattributes
