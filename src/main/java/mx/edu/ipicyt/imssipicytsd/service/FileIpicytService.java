@@ -75,7 +75,7 @@ public class FileIpicytService {
     }
 
     private String procesaFileToHost(String attachmentFileName1, byte[] attachmentFileData1) throws IOException {
-        String urlPathFile = "/tmp/" + attachmentFileName1.trim().toLowerCase();
+        String urlPathFile = "/mnt/storage/" + attachmentFileName1.trim().toLowerCase();
         FileUtils.writeByteArrayToFile(new File(urlPathFile), attachmentFileData1);
         return urlPathFile;
 
