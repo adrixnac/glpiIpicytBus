@@ -12,8 +12,7 @@ RUN echo "rpcbind : 10.100.10.0/24 127.0.0.1" >> /etc/hosts.allow && \
 RUN update-rc.d rpcbind enable && update-rc.d nfs-common enable && \
     /etc/init.d/nfs-common start && \
     /etc/init.d/rpcbind start
-RUN mkdir /mnt/storage && \
-    mount -t nfs  -o nolock 10.100.10.5:/documentos /mnt/storage
+RUN mkdir /mnt/storage 
 COPY . /source
 RUN rm -f ./.gitignore
 RUN rm -f ./.gitattributes
