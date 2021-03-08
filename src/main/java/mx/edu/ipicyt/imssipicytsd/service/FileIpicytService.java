@@ -17,6 +17,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.Instant;
+
 
 @Service
 public class FileIpicytService {
@@ -55,7 +59,7 @@ public class FileIpicytService {
                 if (!fileRequest.getAttachmentFileName1().isEmpty()) {
                     log.debug("procesa atachment 1");
                     try {
-                        fileAPath = this.procesaFileToHost(fileRequest.getAttachmentFileName1(), fileRequest.getAttachmentFileData1());
+                        fileAPath = this.procesaFileToHost(fileRequest.getIdRemedyGlpi(), fileRequest.getAttachmentFileName1(), fileRequest.getAttachmentFileData1());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -74,20 +78,17 @@ public class FileIpicytService {
         return fileResponse;
     }
 
-    private String procesaFileToHost(String attachmentFileName1, byte[] attachmentFileData1) throws IOException {
-        String urlPathFile = "/mnt/storage/" + attachmentFileName1.trim().toLowerCase();
+    private String procesaFileToHost(String getIdRemedyGlpi , String attachmentFileName1, byte[] attachmentFileData1) throws IOException {
+        log.debug("procesaFileToHost.attachmentFileName1 {}", attachmentFileName1);
+        Files.createDirectories(Paths.get("/tmp/storage/"+ getIdRemedyGlpi+"/"));
+        String urlPathFile = "/tmp/storage/"+ getIdRemedyGlpi+"/" + attachmentFileName1.trim().toLowerCase();
         FileUtils.writeByteArrayToFile(new File(urlPathFile), attachmentFileData1);
         return urlPathFile;
 
     }
 
     private FileResponse insertaArchivos(FileRequest fileRequest, String fileAttachment, FilesNotes result) {
-        log.debug("--- insertaArchivos.fileRequest --- {}", fileRequest);
-        log.debug("--- insertaArchivos.fileAttachment --- {}", fileAttachment);
-        log.debug("--- insertaArchivos.result --- {}", result.toString());
         fileRequest.setWorklogSummary(fileRequest.getWorklogSummary() + "<br /><strong>Para consultar el archivo visite el siguiente enlace</strong>:<br><a target='_blank' href='https://ipicytbuss-glpi-mesas-qa.cloudapps.imss.gob.mx/#/files-notes/"+result.getId()+"'>GLPI-Remedy Bus</a> " );
-
-
         String jsonString = this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(), fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
         return this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
 
@@ -100,7 +101,7 @@ public class FileIpicytService {
         String token = this.GetSession().getSession_token();
         Content content = null;
         try {
-            content = Request.Post("http://10.100.10.3/apirest.php/Ticket/"+idReferenciaCliente+"/ITILFollowup")
+            content = Request.Post("http://0.0.0.0/apirest.php/Ticket/"+idReferenciaCliente+"/ITILFollowup")
                                 .addHeader("Content-Type", "application/json")
                                 .addHeader("Session-Token", token)
                                 .addHeader("App-Token", "Dd&WSgu9qGn")

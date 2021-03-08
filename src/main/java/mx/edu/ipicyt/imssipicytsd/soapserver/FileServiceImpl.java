@@ -8,6 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import  mx.edu.ipicyt.imssipicytsd.repository.FilesNotesRepository;
+
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+
+import static java.time.Instant.*;
 //import mx.edu.ipicyt.imssipicytsd.repository.TicketRepository;
 
 @Service
@@ -32,7 +37,8 @@ public class FileServiceImpl implements FileService{
         log.debug("--- processFileApplication {} ----", fileRequest.getCompany());
         FilesNotes filesNotes= new FilesNotes();
         FileResponse fileResponse = new FileResponse();
-
+        filesNotes.setCreateDate(Instant.now().truncatedTo(ChronoUnit.MILLIS));
+        log.debug("--- c {} ----", filesNotes.getCreateDate());
         filesNotes = convertFileRequestToNote(fileRequest);
         FilesNotes result = filesNotesRepository.save(filesNotes);
         log.debug("--- processFileApplication result {} ----", result.toString());
