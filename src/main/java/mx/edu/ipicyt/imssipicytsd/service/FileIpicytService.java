@@ -28,12 +28,15 @@ public class FileIpicytService {
     private final String glpiAuthorization;
     private final String glpiToken;
     private final String glpiURL;
+    private final String glpiFilesUrl;
+    
     private static final String BOUNDARY = "------------------------f34ed144c46e1ca7";
 
     public FileIpicytService(ApplicationProperties glpi) {
         this.glpiURL = glpi.getGlpiUrl();
         this.glpiAuthorization = glpi.getGlpiAuthorization();
         this.glpiToken = glpi.getGlpiToken();
+        this.glpiFilesUrl = glpi.getGlpiFilesUrl();
     }
 
     public FileResponse procesaFile(FileRequest fileRequest, FilesNotes result) {
@@ -88,7 +91,7 @@ public class FileIpicytService {
     }
 
     private FileResponse insertaArchivos(FileRequest fileRequest, String fileAttachment, FilesNotes result) {
-        fileRequest.setWorklogSummary(fileRequest.getWorklogSummary() + "<br /><strong>Para consultar el archivo visite el siguiente enlace</strong>:<br><a target='_blank' href='https://ipicytbuss-glpi-mesas-qa.cloudapps.imss.gob.mx/#/files-notes/"+result.getId()+"'>GLPI-Remedy Bus</a> " );
+        fileRequest.setWorklogSummary(fileRequest.getWorklogSummary() + "<br /><strong>Para consultar el archivo visite el siguiente enlace</strong>:<br><a target='_blank' href='"+ glpiFilesUrl + result.getId()+"'>GLPI-Remedy Bus</a> " );
         String jsonString = this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(), fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
         return this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
 

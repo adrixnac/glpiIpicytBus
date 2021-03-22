@@ -163,4 +163,4 @@ application:
     glpiuser: imssglpi
     glpipass: 123456qW
     appTransfromEnable: true
-
+    glpiFilesUrl: https://files-glpi-mesas-qa.cloudapps.imss.gob.mx/files/
