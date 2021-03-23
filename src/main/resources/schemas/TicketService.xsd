@@ -106,10 +106,10 @@
             <xs:element minOccurs="0" name="Nombre_producto" type="xs:string"/>
             <xs:element minOccurs="0" name="CatOp01" type="xs:string"/>
             <xs:element minOccurs="0" name="CatOp02" type="xs:string"/>
-            <xs:element minOccurs="0" name="CatOp03" type="xs:string"/>ok
-            <xs:element name="Estado" nillable="true" />
+            <xs:element minOccurs="0" name="CatOp03" type="xs:string"/>
+            <xs:element name="Estado" nillable="true"/>
             <xs:element name="Ticket_Proveedor" type="xs:string"/>
-            <xs:element name="Tipo" nillable="true" />
+            <xs:element name="Tipo" nillable="true"/>
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="ImpactoType">

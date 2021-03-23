@@ -5,12 +5,15 @@ import io.github.jhipster.web.util.ResponseUtil;
 import mx.edu.ipicyt.imssipicytsd.domain.GlpiResponse;
 import mx.edu.ipicyt.imssipicytsd.domain.Ticket;
 import mx.edu.ipicyt.imssipicytsd.repository.TicketRepository;
+import mx.edu.ipicyt.imssipicytsd.service.ImssRemedyService;
 import mx.edu.ipicyt.imssipicytsd.service.TicketIpicytService;
+import mx.edu.ipicyt.imssipicytsd.soapclient.SoapClientConfig;
 import mx.edu.ipicyt.imssipicytsd.web.rest.errors.BadRequestAlertException;
 import mx.edu.ipicyt.imssipicytsd.web.rest.util.HeaderUtil;
 import mx.edu.ipicyt.imssipicytsd.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -59,7 +62,10 @@ public class TicketResource {
         GlpiResponse glpiResponse = new GlpiResponse();
         glpiResponse = this.ticketIpicytService.createTicket(ticket);
         log.debug("REST request to save GlpiResponse : {}", glpiResponse);
-
+        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(SoapClientConfig.class);
+        ImssRemedyService imssRemedyService = annotationConfigApplicationContext.getBean(ImssRemedyService.class);
+        imssRemedyService.getImss(ticket);
+        log.debug("REST request to save Remedy Response : {}", glpiResponse);
         return ResponseEntity.created(new URI("/api/tickets/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
