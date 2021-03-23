@@ -91,4 +91,76 @@
             </xs:simpleContent>
         </xs:complexType>
     </xs:element>
+    <!-- CREATE -->
+    <xs:element name="CREATE"/>
+    <xs:complexType name="InputMapping1">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="Impacto" nillable="true"/>
+            <xs:element minOccurs="0" name="Urgencia" nillable="true" />
+            <xs:element minOccurs="0" name="Descripcion" type="xs:string"/>
+            <xs:element minOccurs="0" name="Accion" type="xs:string"/>
+            <xs:element minOccurs="0" name="Notas" type="xs:string"/>
+            <xs:element minOccurs="0" name="ProdCat01" type="xs:string"/>
+            <xs:element minOccurs="0" name="ProdCat02" type="xs:string"/>
+            <xs:element minOccurs="0" name="ProdCat03" type="xs:string"/>
+            <xs:element minOccurs="0" name="Nombre_producto" type="xs:string"/>
+            <xs:element minOccurs="0" name="CatOp01" type="xs:string"/>
+            <xs:element minOccurs="0" name="CatOp02" type="xs:string"/>
+            <xs:element minOccurs="0" name="CatOp03" type="xs:string"/>ok
+            <xs:element name="Estado" nillable="true" />
+            <xs:element name="Ticket_Proveedor" type="xs:string"/>
+            <xs:element name="Tipo" nillable="true" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="ImpactoType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="1-Extensive/Widespread"/>
+            <xs:enumeration value="2-Significant/Large"/>
+            <xs:enumeration value="3-Moderate/Limited"/>
+            <xs:enumeration value="4-Minor/Localized"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="UrgenciaType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="1-Critical"/>
+            <xs:enumeration value="2-High"/>
+            <xs:enumeration value="3-Medium"/>
+            <xs:enumeration value="4-Low"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EstadoType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="New"/>
+            <xs:enumeration value="Assigned"/>
+            <xs:enumeration value="In Progress"/>
+            <xs:enumeration value="Pending"/>
+            <xs:enumeration value="Resolved"/>
+            <xs:enumeration value="Closed"/>
+            <xs:enumeration value="Cancelled"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TipoType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Incidente"/>
+            <xs:enumeration value="WorkOrder"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="CREATEResponse" />
+    <xs:complexType name="OutputMapping1">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="Resultado" type="xs:string"/>
+            <xs:element name="Incident_ID" type="xs:string"/>
+            <xs:element name="Estado" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="AuthenticationInfo" />
+    <xs:complexType name="AuthenticationInfo">
+        <xs:sequence>
+            <xs:element name="userName" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element minOccurs="0" name="authentication" type="xs:string"/>
+            <xs:element minOccurs="0" name="locale" type="xs:string"/>
+            <xs:element minOccurs="0" name="timeZone" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>
