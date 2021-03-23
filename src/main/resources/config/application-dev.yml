@@ -15,9 +15,9 @@
 
 logging:
     level:
-        ROOT: DEBUG
-        mx.edu.ipicyt.imssipicytsd: DEBUG
-        io.github.jhipster: DEBUG
+        ROOT: TRACE
+        mx.edu.ipicyt.imssipicytsd: TRACE
+        io.github.jhipster: TRACE
 
 eureka:
     instance:
@@ -163,4 +163,4 @@ application:
     glpiuser: imssglpi
     glpipass: 123456qW
     appTransfromEnable: true
-
+    glpiFilesUrl: https://files-glpi-mesas-qa.cloudapps.imss.gob.mx/files/

@@ -17,6 +17,7 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th><span>Remedy Update</span></th>
             <th jhiSortBy="idRemedyGlpi"><span jhiTranslate="ipicytBussApp.ticket.idRemedyGlpi">Id Remedy Glpi</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="subTypeTransaction"><span jhiTranslate="ipicytBussApp.ticket.subTypeTransaction">Sub Type Transaction</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="idReferenciaCliente"><span jhiTranslate="ipicytBussApp.ticket.idReferenciaCliente">Id Referencia Cliente</span> <span class="fa fa-sort"></span></th>
@@ -49,6 +50,16 @@
             <tbody>
             <tr *ngFor="let ticket of tickets ;trackBy: trackId">
                 <td><a [routerLink]="['../ticket', ticket.id ]">{{ticket.id}}</a></td>
+                <td>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'ticket/'+ ticket.id + '/update'} }]"
+                            replaceUrl="true"
+                            queryParamsHandling="merge"
+                            class="btn btn-danger btn-sm">
+                        <span class="fa fa-circle-o-notch"></span>
+                    </button>
+
+                </td>
                 <td>{{ticket.idRemedyGlpi}}</td>
                 <td>{{ticket.subTypeTransaction}}</td>
                 <td>{{ticket.idReferenciaCliente}}</td>

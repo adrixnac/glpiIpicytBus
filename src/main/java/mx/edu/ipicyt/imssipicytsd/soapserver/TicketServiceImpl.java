@@ -7,7 +7,6 @@ import mx.edu.ipicyt.imssipicytsd.domain.Ticket;
 import mx.edu.ipicyt.imssipicytsd.repository.TicketRepository;
 import mx.edu.ipicyt.imssipicytsd.service.TicketIpicytService;
 import mx.edu.ipicyt.imssipicytsd.service.util.Utils;
-import mx.edu.ipicyt.imssipicytsd.web.rest.TicketResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ import java.net.URISyntaxException;
 public class TicketServiceImpl implements TicketService{
     private final TicketRepository ticketRepository;
     private final TicketIpicytService ticketIpicytService;
-    private final Logger log = LoggerFactory.getLogger(TicketResource.class);
+    private final Logger log = LoggerFactory.getLogger(TicketServiceImpl.class);
 
 
     public TicketServiceImpl(TicketRepository ticketRepository, TicketIpicytService ticketIpicytService) {

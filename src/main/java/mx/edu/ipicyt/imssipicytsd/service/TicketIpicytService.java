@@ -103,6 +103,7 @@ public class TicketIpicytService {
 
 
         try {
+            //content = Request.Put("http://0.0.0.0/apirest.php/Ticket/"+ticket.getIdGlpi())
             content = Request.Put("http://10.100.10.3/apirest.php/Ticket/"+ticket.getIdGlpi())
 
                 // Add headers
@@ -200,4 +201,6 @@ public class TicketIpicytService {
     }
 
 
+    public void remedyUpdate(Ticket ticket) {
+    }
 }

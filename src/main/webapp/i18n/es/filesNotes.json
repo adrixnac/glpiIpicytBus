@@ -1,0 +1,38 @@
+
+{
+    "ipicytBussApp": {
+        "filesNotes" : {
+            "home": {
+                "title": "Files Notes",
+                "createLabel": "Crear nuevo Files Notes",
+                "createOrEditLabel": "Crear o editar Files Notes"
+            },
+            "created": "Un nuevo Files Notes ha sido creado con el identificador {{ param }}",
+            "updated": "Un Files Notes ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Files Notes ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Files Notes {{ id }}?"
+            },
+            "detail": {
+                "title": "Files Notes"
+            },
+            "idRemedyGlpi": "Id Remedy Glpi",
+            "typeTransaccion": "Type Transaccion",
+            "subTypeTransaction": "Sub Type Transaction",
+            "idReferenciaCliente": "Id Referencia Cliente",
+            "company": "Company",
+            "workLogSummary": "Work Log Summary",
+            "workInfoNotes": "Work Info Notes",
+            "attachmentFileName1": "Attachment File Name 1",
+            "attachmentFileType1": "Attachment File Type 1",
+            "attachmentFileData1": "Attachment File Data 1",
+            "attachmentFileName2": "Attachment File Name 2",
+            "attachmentFileType2": "Attachment File Type 2",
+            "attachmentFileData2": "Attachment File Data 2",
+            "attachmentFileName3": "Attachment File Name 3",
+            "attachmentFileType3": "Attachment File Type 3",
+            "attachmentFileData3": "Attachment File Data 3",
+            "createDate": "Create Date"
+        }
+    }
+}

@@ -1,0 +1,154 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myFilesNotesLabel" jhiTranslate="ipicytBussApp.filesNotes.home.createOrEditLabel">Create or edit a Files Notes</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!filesNotes.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="filesNotes.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.idRemedyGlpi" for="field_idRemedyGlpi">Id Remedy Glpi</label>
+            <input type="text" class="form-control" name="idRemedyGlpi" id="field_idRemedyGlpi"
+                [(ngModel)]="filesNotes.idRemedyGlpi" required/>
+            <div [hidden]="!(editForm.controls.idRemedyGlpi?.dirty && editForm.controls.idRemedyGlpi?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.idRemedyGlpi?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.typeTransaccion" for="field_typeTransaccion">Type Transaccion</label>
+            <input type="text" class="form-control" name="typeTransaccion" id="field_typeTransaccion"
+                [(ngModel)]="filesNotes.typeTransaccion" required/>
+            <div [hidden]="!(editForm.controls.typeTransaccion?.dirty && editForm.controls.typeTransaccion?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.typeTransaccion?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.subTypeTransaction" for="field_subTypeTransaction">Sub Type Transaction</label>
+            <input type="text" class="form-control" name="subTypeTransaction" id="field_subTypeTransaction"
+                [(ngModel)]="filesNotes.subTypeTransaction" required/>
+            <div [hidden]="!(editForm.controls.subTypeTransaction?.dirty && editForm.controls.subTypeTransaction?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.subTypeTransaction?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.idReferenciaCliente" for="field_idReferenciaCliente">Id Referencia Cliente</label>
+            <input type="text" class="form-control" name="idReferenciaCliente" id="field_idReferenciaCliente"
+                [(ngModel)]="filesNotes.idReferenciaCliente" required/>
+            <div [hidden]="!(editForm.controls.idReferenciaCliente?.dirty && editForm.controls.idReferenciaCliente?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.idReferenciaCliente?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.company" for="field_company">Company</label>
+            <input type="text" class="form-control" name="company" id="field_company"
+                [(ngModel)]="filesNotes.company" required/>
+            <div [hidden]="!(editForm.controls.company?.dirty && editForm.controls.company?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.company?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.workLogSummary" for="field_workLogSummary">Work Log Summary</label>
+            <input type="text" class="form-control" name="workLogSummary" id="field_workLogSummary"
+                [(ngModel)]="filesNotes.workLogSummary" required/>
+            <div [hidden]="!(editForm.controls.workLogSummary?.dirty && editForm.controls.workLogSummary?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.workLogSummary?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.workInfoNotes" for="field_workInfoNotes">Work Info Notes</label>
+            <input type="text" class="form-control" name="workInfoNotes" id="field_workInfoNotes"
+                [(ngModel)]="filesNotes.workInfoNotes" required/>
+            <div [hidden]="!(editForm.controls.workInfoNotes?.dirty && editForm.controls.workInfoNotes?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.workInfoNotes?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.attachmentFileName1" for="field_attachmentFileName1">Attachment File Name 1</label>
+            <input type="text" class="form-control" name="attachmentFileName1" id="field_attachmentFileName1"
+                [(ngModel)]="filesNotes.attachmentFileName1" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.attachmentFileType1" for="field_attachmentFileType1">Attachment File Type 1</label>
+            <input type="text" class="form-control" name="attachmentFileType1" id="field_attachmentFileType1"
+                [(ngModel)]="filesNotes.attachmentFileType1" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.attachmentFileData1" for="field_attachmentFileData1">Attachment File Data 1</label>
+            <input type="text" class="form-control" name="attachmentFileData1" id="field_attachmentFileData1"
+                [(ngModel)]="filesNotes.attachmentFileData1" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.attachmentFileName2" for="field_attachmentFileName2">Attachment File Name 2</label>
+            <input type="text" class="form-control" name="attachmentFileName2" id="field_attachmentFileName2"
+                [(ngModel)]="filesNotes.attachmentFileName2" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.attachmentFileType2" for="field_attachmentFileType2">Attachment File Type 2</label>
+            <input type="text" class="form-control" name="attachmentFileType2" id="field_attachmentFileType2"
+                [(ngModel)]="filesNotes.attachmentFileType2" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.attachmentFileData2" for="field_attachmentFileData2">Attachment File Data 2</label>
+            <input type="text" class="form-control" name="attachmentFileData2" id="field_attachmentFileData2"
+                [(ngModel)]="filesNotes.attachmentFileData2" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.attachmentFileName3" for="field_attachmentFileName3">Attachment File Name 3</label>
+            <input type="text" class="form-control" name="attachmentFileName3" id="field_attachmentFileName3"
+                [(ngModel)]="filesNotes.attachmentFileName3" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.attachmentFileType3" for="field_attachmentFileType3">Attachment File Type 3</label>
+            <input type="text" class="form-control" name="attachmentFileType3" id="field_attachmentFileType3"
+                [(ngModel)]="filesNotes.attachmentFileType3" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.attachmentFileData3" for="field_attachmentFileData3">Attachment File Data 3</label>
+            <input type="text" class="form-control" name="attachmentFileData3" id="field_attachmentFileData3"
+                [(ngModel)]="filesNotes.attachmentFileData3" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ipicytBussApp.filesNotes.createDate" for="field_createDate">Create Date</label>
+            <div class="d-flex">
+                <input id="field_createDate" type="datetime-local" class="form-control" name="createDate" [(ngModel)]="filesNotes.createDate"
+                />
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

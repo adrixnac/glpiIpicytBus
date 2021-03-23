@@ -7,6 +7,7 @@ import { TicketComponent } from './ticket.component';
 import { TicketDetailComponent } from './ticket-detail.component';
 import { TicketPopupComponent } from './ticket-dialog.component';
 import { TicketDeletePopupComponent } from './ticket-delete-dialog.component';
+import {TicketUpdatePopupComponent} from './ticket-update-dialog.component';
 
 @Injectable()
 export class TicketResolvePagingParams implements Resolve<any> {
@@ -71,6 +72,16 @@ export const ticketPopupRoute: Routes = [
     {
         path: 'ticket/:id/delete',
         component: TicketDeletePopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'ipicytBussApp.ticket.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'ticket/:id/update',
+        component: TicketUpdatePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'ipicytBussApp.ticket.home.title'

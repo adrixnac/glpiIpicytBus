@@ -9,6 +9,7 @@ import { IpicytBussContactTypeModule } from './contact-type/contact-type.module'
 import { IpicytBussImpactModule } from './impact/impact.module';
 import { IpicytBussUrgencyModule } from './urgency/urgency.module';
 import { IpicytBussPriorityModule } from './priority/priority.module';
+import { IpicytBussFilesNotesModule } from './files-notes/files-notes.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -22,6 +23,7 @@ import { IpicytBussPriorityModule } from './priority/priority.module';
         IpicytBussImpactModule,
         IpicytBussUrgencyModule,
         IpicytBussPriorityModule,
+        IpicytBussFilesNotesModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

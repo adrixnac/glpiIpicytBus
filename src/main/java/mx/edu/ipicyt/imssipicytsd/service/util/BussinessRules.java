@@ -41,11 +41,11 @@ public class BussinessRules {
                 "\"input\": { " +
                     "\"name\" : \"" + this.procesaTitulo(ticket.getIdRemedyGlpi() , ticket.getIdReferenciaCliente(),  ticket.getGlpiTicketsName()) + "\"," +
                     "\"date\" : \"" + this.procesaDate(ticket.getActualSysDate()) + "\"," +
-                    "\"content\" : \"" + this.procesaContent(ticket.getGlpiTicketsContent()) + "." + utils.unformatText(ticket.getNotes())  + "\"," +
+                    "\"content\" : \"" + this.procesaContent(ticket.getGlpiTicketsContent()) + "." + utils.unformatText(ticket.getNotes())  + this.procesaCatProd(ticket) +"\"," +
                     "\"status\" : " + this.procesaStatus(ticket.getSubTypeTransaction()) + "," +
                     "\"urgency\" : " + this.procesaUrgency(ticket.getUrgency()) + "," +
                     "\"impact\" : " + this.procesaImpact(ticket.getImpact()) + "," +
-                    "\"itilcategories_id\" : " + this.procesaCat(ticket.getCatOp01(), ticket.getCatOp02(), ticket.getCatOp03()) + "," +
+                    "\"itilcategories_id\" : " + this.procesaCat(ticket.getProdCat01(), ticket.getProdCat02(), ticket.getProdCat03()) + "," +
                     "\"requesttypes_id\" :" + this.procesaRequestTypesId(ticket.getGlpiTicketsRequesttypesId()) + "," +
                     "\"type\" :" + this.procesaRequestTypesId(ticket.getGlpiTicketsRequesttypesId()) + "," +
                     "\"global_validation\":" + "7," +
@@ -148,6 +148,12 @@ public class BussinessRules {
 
     private String procesaTitulo(String idRemedyGlpi,  String idReferenciaCliente, String glpiTicketsName) {
         return idReferenciaCliente + " - " + idRemedyGlpi + ", " + glpiTicketsName;
+    }
+
+    private String procesaCatProd(Ticket ticket){
+        String cateProd = " ";
+        cateProd = "<<" + ticket.getCatOp01() + "> " + ticket.getCatOp02() + " > " + ticket.getCatOp03() + ">>";
+        return cateProd;
     }
 
 

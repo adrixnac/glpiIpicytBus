@@ -119,16 +119,17 @@ public class TicketResource {
     }
 
     /**
-     * DELETE  /tickets/:id : delete the "id" ticket.
+     * PUT  /tickets/translate/:id : update the "id" ticket on Remedy.
      *
-     * @param id the id of the ticket to delete
+     * @param id the id of the ticket to update
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/tickets/{id}")
+    @PutMapping("/tickets/translate/{id}")
     @Timed
     public ResponseEntity<Void> deleteTicket(@PathVariable Long id) {
         log.debug("REST request to delete Ticket : {}", id);
-        ticketRepository.delete(id);
+        Ticket ticket = ticketRepository.findOne(id);
+        this.ticketIpicytService.remedyUpdate(ticket);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }
