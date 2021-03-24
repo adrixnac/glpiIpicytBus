@@ -98,6 +98,18 @@ public class TicketResource {
         Ticket result = ticketRepository.save(ticket);
         GlpiResponse glpiResponse = new GlpiResponse();
         glpiResponse = this.ticketIpicytService.updateTicket(ticket);
+
+        ImssRemedyService imssRemedyService = new ImssRemedyService();
+        OutputMapping1 imssResult = imssRemedyService.getImss(ticket);
+
+        if( imssResult != null){
+            log.debug("IMSS funcionando {}", imssResult.toString());
+        }else {
+            log.debug("IMSS no funcionando {}", imssResult.toString());
+        }
+
+        log.debug("REST request to save Remedy Response : {}", glpiResponse);
+        
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, ticket.getId().toString()))
             .body(result);
