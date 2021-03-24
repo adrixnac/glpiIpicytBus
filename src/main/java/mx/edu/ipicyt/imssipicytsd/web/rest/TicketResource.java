@@ -1,6 +1,7 @@
 package mx.edu.ipicyt.imssipicytsd.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt.OutputMapping1;
 import io.github.jhipster.web.util.ResponseUtil;
 import mx.edu.ipicyt.imssipicytsd.domain.GlpiResponse;
 import mx.edu.ipicyt.imssipicytsd.domain.Ticket;
@@ -64,7 +65,14 @@ public class TicketResource {
         log.debug("REST request to save GlpiResponse : {}", glpiResponse);
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(SoapClientConfig.class);
         ImssRemedyService imssRemedyService = annotationConfigApplicationContext.getBean(ImssRemedyService.class);
-        imssRemedyService.getImss(ticket);
+        OutputMapping1 imssResult = imssRemedyService.getImss(ticket);
+
+        if( imssResult != null){
+            log.debug("IMSS funcionando {}", imssResult.toString());
+        }else {
+            log.debug("IMSS no funcionando {}", imssResult.toString());
+        }
+
         log.debug("REST request to save Remedy Response : {}", glpiResponse);
         return ResponseEntity.created(new URI("/api/tickets/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
