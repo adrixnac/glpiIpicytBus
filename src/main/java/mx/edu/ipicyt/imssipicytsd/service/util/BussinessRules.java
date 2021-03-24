@@ -110,7 +110,7 @@ public class BussinessRules {
         Integer urgency = null;
         log.debug("URGENCY {}", urgencyString);
         Urgency urgencyObj = urgencyRepository.findFirstByUrgencyRemedyEquals(urgencyString);
-        log.debug("URGENCY {}", urgencyObj.toString());
+
         if(urgencyObj != null){
             urgency = Integer.valueOf(urgencyObj.getUrgencyGlpiId());
         }else{
