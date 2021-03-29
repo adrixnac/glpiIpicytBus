@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:PCT_CreaCHG_WS"
+  xmlns:s0="urn:PCT_CreaCHG_WS"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="urn:PCT_CreaCHG_WS">
+      <xsd:element name="CREATE" type="s0:InputMapping1"/>
+      <xsd:complexType name="InputMapping1">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ID_Cambio_Proveedor" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Tipo_de_cambio" nillable="true" type="s0:Tipo_de_cambioType"/>
+          <xsd:element minOccurs="0" name="Clase" nillable="true" type="s0:ClaseType"/>
+          <xsd:element minOccurs="0" name="Impacto" nillable="true" type="s0:ImpactoType"/>
+          <xsd:element minOccurs="0" name="Urgencia" nillable="true" type="s0:UrgenciaType"/>
+          <xsd:element minOccurs="0" name="Nivel_de_Riesgo" nillable="true" type="s0:Nivel_de_RiesgoType"/>
+          <xsd:element minOccurs="0" name="Ambiente" nillable="true" type="s0:AmbienteType"/>
+          <xsd:element minOccurs="0" name="Motivo_del_cambio" nillable="true" type="s0:Motivo_del_cambioType"/>
+          <xsd:element minOccurs="0" name="Fecha_solicitada_inicio" type="xsd:dateTime"/>
+          <xsd:element minOccurs="0" name="Fecha_solicitada_fin" type="xsd:dateTime"/>
+          <xsd:element minOccurs="0" name="Descripcion" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Notas" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Estado" type="s0:EstadoType"/>
+          <xsd:element minOccurs="0" name="Categoria_producto_01" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Categoria_producto_02" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Categoria_producto_03" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Nombre_producto" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Categoria_operacional_01" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Categoria_operacional_02" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Categoria_operacional_03" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Accion" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="Tipo_de_cambioType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Project"/>
+          <xsd:enumeration value="Change"/>
+          <xsd:enumeration value="Release"/>
+          <xsd:enumeration value="Asset Configuration"/>
+          <xsd:enumeration value="Asset Management"/>
+          <xsd:enumeration value="Asset Lease"/>
+          <xsd:enumeration value="Purchase Requisition"/>
+          <xsd:enumeration value="Asset Maintenance"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="ClaseType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Emergency"/>
+          <xsd:enumeration value="Expedited"/>
+          <xsd:enumeration value="Latent"/>
+          <xsd:enumeration value="Normal"/>
+          <xsd:enumeration value="No Impact"/>
+          <xsd:enumeration value="Standard"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="ImpactoType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="1-Extensive/Widespread"/>
+          <xsd:enumeration value="2-Significant/Large"/>
+          <xsd:enumeration value="3-Moderate/Limited"/>
+          <xsd:enumeration value="4-Minor/Localized"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="UrgenciaType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="1-Critical"/>
+          <xsd:enumeration value="2-High"/>
+          <xsd:enumeration value="3-Medium"/>
+          <xsd:enumeration value="4-Low"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Nivel_de_RiesgoType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Risk Level 1"/>
+          <xsd:enumeration value="Risk Level 2"/>
+          <xsd:enumeration value="Risk Level 3"/>
+          <xsd:enumeration value="Risk Level 4"/>
+          <xsd:enumeration value="Risk Level 5"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="AmbienteType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Production"/>
+          <xsd:enumeration value="Model Office"/>
+          <xsd:enumeration value="Hot Backup"/>
+          <xsd:enumeration value="Development"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Motivo_del_cambioType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Fix/Repair"/>
+          <xsd:enumeration value="New Functionality"/>
+          <xsd:enumeration value="Maintenance"/>
+          <xsd:enumeration value="Upgrade"/>
+          <xsd:enumeration value="Other"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="EstadoType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Draft"/>
+          <xsd:enumeration value="Request For Authorization"/>
+          <xsd:enumeration value="Request For Change"/>
+          <xsd:enumeration value="Planning In Progress"/>
+          <xsd:enumeration value="Scheduled For Review"/>
+          <xsd:enumeration value="Scheduled For Approval"/>
+          <xsd:enumeration value="Scheduled"/>
+          <xsd:enumeration value="Implementation In Progress"/>
+          <xsd:enumeration value="Pending"/>
+          <xsd:enumeration value="Rejected"/>
+          <xsd:enumeration value="Completed"/>
+          <xsd:enumeration value="Closed"/>
+          <xsd:enumeration value="Cancelled"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="CREATEResponse" type="s0:OutputMapping1"/>
+      <xsd:complexType name="OutputMapping1">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Resultado" type="xsd:string"/>
+          <xsd:element name="ID_Cambio" type="xsd:string"/>
+          <xsd:element name="Estado" type="s0:EstadoType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="EstadoType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Nuevo"/>
+          <xsd:enumeration value="Procesado"/>
+          <xsd:enumeration value="Error"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="AuthenticationInfo" type="s0:AuthenticationInfo"/>
+      <xsd:complexType name="AuthenticationInfo">
+        <xsd:sequence>
+          <xsd:element name="userName" type="xsd:string"/>
+          <xsd:element name="password" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="authentication" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="timeZone" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CREATESoapIn">
+    <wsdl:part element="s0:CREATE" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ARAuthenticate">
+    <wsdl:part element="s0:AuthenticationInfo" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CREATESoapOut">
+    <wsdl:part element="s0:CREATEResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PCT_CreaCHG_WSPortPortType">
+    <wsdl:operation name="CREATE">
+      <wsdl:input message="s0:CREATESoapIn">
+      </wsdl:input>
+      <wsdl:output message="s0:CREATESoapOut">
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PCT_CreaCHG_WSPortSoapBinding" type="s0:PCT_CreaCHG_WSPortPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CREATE">
+      <soap:operation soapAction="urn:PCT_CreaCHG_WS/CREATE" style="document"/>
+      <wsdl:input>
+        <soap:header message="s0:ARAuthenticate" part="parameters" use="literal">
+        </soap:header>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PCT_CreaCHG_WSService">
+    <wsdl:documentation>Web service para creación de solicitudes de cambio desde el IPICYT.</wsdl:documentation>
+    <wsdl:port binding="s0:PCT_CreaCHG_WSPortSoapBinding" name="PCT_CreaCHG_WSPortSoap">
+      <soap:address location="http://172.16.162.38//services/ARService?server=remedy&amp;webService=PCT_CreaCHG_WS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
