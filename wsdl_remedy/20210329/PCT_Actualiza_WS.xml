@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:PCT_Actualiza_WS"
+  xmlns:s0="urn:PCT_Actualiza_WS"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="urn:PCT_Actualiza_WS">
+      <xsd:element name="UPDATE" type="s0:InputMapping1"/>
+      <xsd:complexType name="InputMapping1">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Impact" nillable="true" type="s0:ImpactType"/>
+          <xsd:element minOccurs="0" name="Urgency" nillable="true" type="s0:UrgencyType"/>
+          <xsd:element minOccurs="0" name="Action" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Status" nillable="true" type="s0:StatusType"/>
+          <xsd:element minOccurs="0" name="Ticket_Proveedor__c" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Type" nillable="true" type="s0:TypeType"/>
+          <xsd:element name="Ticket_Number" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Resolution" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Resolution_Category" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Resolution_Category_Tier_2" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Resolution_Category_Tier_3" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Closure_Product_Name" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Closure_Product_Category_Tier1" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Closure_Product_Category_Tier2" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Closure_Product_Category_Tier3" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Work_Info_Notes" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Work_Info_View_Access" nillable="true" type="s0:Work_Info_View_AccessType"/>
+          <xsd:element minOccurs="0" name="Work_Info_Type" nillable="true" type="s0:Work_Info_TypeType"/>
+          <xsd:element minOccurs="0" name="Attachment1_attachmentName" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Attachment1_attachmentData" type="xsd:base64Binary"/>
+          <xsd:element minOccurs="0" name="Attachment1_attachmentOrigSize" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="Attachment2_attachmentName" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Attachment2_attachmentData" type="xsd:base64Binary"/>
+          <xsd:element minOccurs="0" name="Attachment2_attachmentOrigSize" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="Attachment3_attachmentName" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Attachment3_attachmentData" type="xsd:base64Binary"/>
+          <xsd:element minOccurs="0" name="Attachment3_attachmentOrigSize" type="xsd:int"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="ImpactType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="1-Extensive/Widespread"/>
+          <xsd:enumeration value="2-Significant/Large"/>
+          <xsd:enumeration value="3-Moderate/Limited"/>
+          <xsd:enumeration value="4-Minor/Localized"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="UrgencyType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="1-Critical"/>
+          <xsd:enumeration value="2-High"/>
+          <xsd:enumeration value="3-Medium"/>
+          <xsd:enumeration value="4-Low"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="StatusType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="New"/>
+          <xsd:enumeration value="Assigned"/>
+          <xsd:enumeration value="In Progress"/>
+          <xsd:enumeration value="Pending"/>
+          <xsd:enumeration value="Resolved"/>
+          <xsd:enumeration value="Closed"/>
+          <xsd:enumeration value="Cancelled"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="TypeType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Incidente"/>
+          <xsd:enumeration value="WorkOrder"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Work_Info_View_AccessType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Internal"/>
+          <xsd:enumeration value="Public"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Work_Info_TypeType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="----- Customer Inbound -----"/>
+          <xsd:enumeration value="Customer Communication"/>
+          <xsd:enumeration value="Customer Follow-up"/>
+          <xsd:enumeration value="Customer Status Update"/>
+          <xsd:enumeration value="----- Customer Outbound -----"/>
+          <xsd:enumeration value="Closure Follow Up"/>
+          <xsd:enumeration value="Detail Clarification"/>
+          <xsd:enumeration value="General Information"/>
+          <xsd:enumeration value="Resolution Communications"/>
+          <xsd:enumeration value="Satisfaction Survey"/>
+          <xsd:enumeration value="Status Update"/>
+          <xsd:enumeration value="----- General -----"/>
+          <xsd:enumeration value="Incident Task / Action"/>
+          <xsd:enumeration value="Problem Script"/>
+          <xsd:enumeration value="Working Log"/>
+          <xsd:enumeration value="Email System"/>
+          <xsd:enumeration value="Paging System"/>
+          <xsd:enumeration value="BMC Impact Manager Update"/>
+          <xsd:enumeration value="Chat"/>
+          <xsd:enumeration value="----- Vendor -----"/>
+          <xsd:enumeration value="Vendor Communication"/>
+          <xsd:enumeration value="-----System-----"/>
+          <xsd:enumeration value="Assignment Change"/>
+          <xsd:enumeration value="Priority Change"/>
+          <xsd:enumeration value="Status Change"/>
+          <xsd:enumeration value="Vendor Ticket Status Update"/>
+          <xsd:enumeration value="Note from Vendor"/>
+          <xsd:enumeration value="Vendor Ticket Created via Business Rules"/>
+          <xsd:enumeration value="Ticket Created from Vendor"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="UPDATEResponse" type="s0:OutputMapping1"/>
+      <xsd:complexType name="OutputMapping1">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Resultado" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="Estado" nillable="true" type="s0:EstadoType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="EstadoType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Nuevo"/>
+          <xsd:enumeration value="Procesado"/>
+          <xsd:enumeration value="Error"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="AuthenticationInfo" type="s0:AuthenticationInfo"/>
+      <xsd:complexType name="AuthenticationInfo">
+        <xsd:sequence>
+          <xsd:element name="userName" type="xsd:string"/>
+          <xsd:element name="password" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="authentication" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="locale" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="timeZone" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="UPDATESoapIn">
+    <wsdl:part element="s0:UPDATE" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ARAuthenticate">
+    <wsdl:part element="s0:AuthenticationInfo" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UPDATESoapOut">
+    <wsdl:part element="s0:UPDATEResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PCT_Actualiza_WSPortPortType">
+    <wsdl:operation name="UPDATE">
+      <wsdl:input message="s0:UPDATESoapIn">
+      </wsdl:input>
+      <wsdl:output message="s0:UPDATESoapOut">
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PCT_Actualiza_WSPortSoapBinding" type="s0:PCT_Actualiza_WSPortPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="UPDATE">
+      <soap:operation soapAction="urn:PCT_Actualiza_WS/UPDATE" style="document"/>
+      <wsdl:input>
+        <soap:header message="s0:ARAuthenticate" part="parameters" use="literal">
+        </soap:header>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PCT_Actualiza_WSService">
+    <wsdl:documentation>Web service para actualización de incidentes desde el IPICYT.</wsdl:documentation>
+    <wsdl:port binding="s0:PCT_Actualiza_WSPortSoapBinding" name="PCT_Actualiza_WSPortSoap">
+      <soap:address location="http://172.16.162.38//services/ARService?server=remedy&amp;webService=PCT_Actualiza_WS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
