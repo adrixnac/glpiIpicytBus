@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.03.23 a las 02:56:54 PM CST 
+// Generado el: 2021.03.31 a las 08:46:26 AM CST 
 //
 
 
@@ -31,11 +31,13 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _CREATEResponse_QNAME = new QName("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", "CREATEResponse");
-    private final static QName _AuthenticationInfo_QNAME = new QName("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", "AuthenticationInfo");
-    private final static QName _CREATE_QNAME = new QName("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", "CREATE");
-    private final static QName _InputMapping1Urgencia_QNAME = new QName("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", "Urgencia");
-    private final static QName _InputMapping1Impacto_QNAME = new QName("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", "Impacto");
+    private final static QName _UPDATEResponseEstado_QNAME = new QName("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", "Estado");
+    private final static QName _UPDATEUrgency_QNAME = new QName("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", "Urgency");
+    private final static QName _UPDATEType_QNAME = new QName("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", "Type");
+    private final static QName _UPDATEWorkInfoType_QNAME = new QName("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", "Work_Info_Type");
+    private final static QName _UPDATEImpact_QNAME = new QName("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", "Impact");
+    private final static QName _UPDATEStatus_QNAME = new QName("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", "Status");
+    private final static QName _UPDATEWorkInfoViewAccess_QNAME = new QName("https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", "Work_Info_View_Access");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt
@@ -69,27 +71,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UPDATEResponse }
+     * 
+     */
+    public UPDATEResponse createUPDATEResponse() {
+        return new UPDATEResponse();
+    }
+
+    /**
+     * Create an instance of {@link UPDATE }
+     * 
+     */
+    public UPDATE createUPDATE() {
+        return new UPDATE();
+    }
+
+    /**
      * Create an instance of {@link TicketRequest }
      * 
      */
     public TicketRequest createTicketRequest() {
         return new TicketRequest();
-    }
-
-    /**
-     * Create an instance of {@link OutputMapping1 }
-     * 
-     */
-    public OutputMapping1 createOutputMapping1() {
-        return new OutputMapping1();
-    }
-
-    /**
-     * Create an instance of {@link InputMapping1 }
-     * 
-     */
-    public InputMapping1 createInputMapping1() {
-        return new InputMapping1();
     }
 
     /**
@@ -104,45 +106,63 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", name = "CREATEResponse")
-    public JAXBElement<Object> createCREATEResponse(Object value) {
-        return new JAXBElement<Object>(_CREATEResponse_QNAME, Object.class, null, value);
+    @XmlElementDecl(namespace = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", name = "Estado", scope = UPDATEResponse.class)
+    public JAXBElement<Object> createUPDATEResponseEstado(Object value) {
+        return new JAXBElement<Object>(_UPDATEResponseEstado_QNAME, Object.class, UPDATEResponse.class, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", name = "AuthenticationInfo")
-    public JAXBElement<Object> createAuthenticationInfo(Object value) {
-        return new JAXBElement<Object>(_AuthenticationInfo_QNAME, Object.class, null, value);
+    @XmlElementDecl(namespace = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", name = "Urgency", scope = UPDATE.class)
+    public JAXBElement<String> createUPDATEUrgency(String value) {
+        return new JAXBElement<String>(_UPDATEUrgency_QNAME, String.class, UPDATE.class, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", name = "CREATE")
-    public JAXBElement<Object> createCREATE(Object value) {
-        return new JAXBElement<Object>(_CREATE_QNAME, Object.class, null, value);
+    @XmlElementDecl(namespace = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", name = "Type", scope = UPDATE.class)
+    public JAXBElement<String> createUPDATEType(String value) {
+        return new JAXBElement<String>(_UPDATEType_QNAME, String.class, UPDATE.class, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", name = "Urgencia", scope = InputMapping1 .class)
-    public JAXBElement<Object> createInputMapping1Urgencia(Object value) {
-        return new JAXBElement<Object>(_InputMapping1Urgencia_QNAME, Object.class, InputMapping1 .class, value);
+    @XmlElementDecl(namespace = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", name = "Work_Info_Type", scope = UPDATE.class)
+    public JAXBElement<String> createUPDATEWorkInfoType(String value) {
+        return new JAXBElement<String>(_UPDATEWorkInfoType_QNAME, String.class, UPDATE.class, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", name = "Impacto", scope = InputMapping1 .class)
-    public JAXBElement<Object> createInputMapping1Impacto(Object value) {
-        return new JAXBElement<Object>(_InputMapping1Impacto_QNAME, Object.class, InputMapping1 .class, value);
+    @XmlElementDecl(namespace = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", name = "Impact", scope = UPDATE.class)
+    public JAXBElement<String> createUPDATEImpact(String value) {
+        return new JAXBElement<String>(_UPDATEImpact_QNAME, String.class, UPDATE.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", name = "Status", scope = UPDATE.class)
+    public JAXBElement<String> createUPDATEStatus(String value) {
+        return new JAXBElement<String>(_UPDATEStatus_QNAME, String.class, UPDATE.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "https://ipicyt.edu.mx/ws_i_solicitud_tk_imms_ipicyt", name = "Work_Info_View_Access", scope = UPDATE.class)
+    public JAXBElement<String> createUPDATEWorkInfoViewAccess(String value) {
+        return new JAXBElement<String>(_UPDATEWorkInfoViewAccess_QNAME, String.class, UPDATE.class, value);
     }
 
 }

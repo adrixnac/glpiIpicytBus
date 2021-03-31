@@ -91,76 +91,57 @@
             </xs:simpleContent>
         </xs:complexType>
     </xs:element>
-    <!-- CREATE -->
-    <xs:element name="CREATE"/>
-    <xs:complexType name="InputMapping1">
-        <xs:sequence>
-            <xs:element minOccurs="0" name="Impacto" nillable="true"/>
-            <xs:element minOccurs="0" name="Urgencia" nillable="true" />
-            <xs:element minOccurs="0" name="Descripcion" type="xs:string"/>
-            <xs:element minOccurs="0" name="Accion" type="xs:string"/>
-            <xs:element minOccurs="0" name="Notas" type="xs:string"/>
-            <xs:element minOccurs="0" name="ProdCat01" type="xs:string"/>
-            <xs:element minOccurs="0" name="ProdCat02" type="xs:string"/>
-            <xs:element minOccurs="0" name="ProdCat03" type="xs:string"/>
-            <xs:element minOccurs="0" name="Nombre_producto" type="xs:string"/>
-            <xs:element minOccurs="0" name="CatOp01" type="xs:string"/>
-            <xs:element minOccurs="0" name="CatOp02" type="xs:string"/>
-            <xs:element minOccurs="0" name="CatOp03" type="xs:string"/>
-            <xs:element name="Estado" nillable="true"/>
-            <xs:element name="Ticket_Proveedor" type="xs:string"/>
-            <xs:element name="Tipo" nillable="true"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:simpleType name="ImpactoType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="1-Extensive/Widespread"/>
-            <xs:enumeration value="2-Significant/Large"/>
-            <xs:enumeration value="3-Moderate/Limited"/>
-            <xs:enumeration value="4-Minor/Localized"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="UrgenciaType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="1-Critical"/>
-            <xs:enumeration value="2-High"/>
-            <xs:enumeration value="3-Medium"/>
-            <xs:enumeration value="4-Low"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="EstadoType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="New"/>
-            <xs:enumeration value="Assigned"/>
-            <xs:enumeration value="In Progress"/>
-            <xs:enumeration value="Pending"/>
-            <xs:enumeration value="Resolved"/>
-            <xs:enumeration value="Closed"/>
-            <xs:enumeration value="Cancelled"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="TipoType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Incidente"/>
-            <xs:enumeration value="WorkOrder"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:element name="CREATEResponse" />
-    <xs:complexType name="OutputMapping1">
-        <xs:sequence>
-            <xs:element minOccurs="0" name="Resultado" type="xs:string"/>
-            <xs:element name="Incident_ID" type="xs:string"/>
-            <xs:element name="Estado" />
-        </xs:sequence>
-    </xs:complexType>
-    <xs:element name="AuthenticationInfo" />
-    <xs:complexType name="AuthenticationInfo">
-        <xs:sequence>
-            <xs:element name="userName" type="xs:string"/>
-            <xs:element name="password" type="xs:string"/>
-            <xs:element minOccurs="0" name="authentication" type="xs:string"/>
-            <xs:element minOccurs="0" name="locale" type="xs:string"/>
-            <xs:element minOccurs="0" name="timeZone" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
+    <!-- UPDATE -->
+    <xs:element name="UPDATE" >
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="Impact" nillable="true" type="xs:string" />
+                <xs:element minOccurs="0" name="Urgency" nillable="true" type="xs:string" />
+                <xs:element minOccurs="0" name="Action" type="xs:string" />
+                <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+                <xs:element minOccurs="0" name="Ticket_Proveedor__c" type="xs:string" />
+                <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+                <xs:element name="Ticket_Number" nillable="true" type="xs:string" />
+                <xs:element minOccurs="0" name="Resolution" type="xs:string" />
+                <xs:element minOccurs="0" name="Resolution_Category" type="xs:string" />
+                <xs:element minOccurs="0" name="Resolution_Category_Tier_2" type="xs:string" />
+                <xs:element minOccurs="0" name="Resolution_Category_Tier_3" type="xs:string" />
+                <xs:element minOccurs="0" name="Closure_Product_Name" type="xs:string" />
+                <xs:element minOccurs="0" name="Closure_Product_Category_Tier1" type="xs:string" />
+                <xs:element minOccurs="0" name="Closure_Product_Category_Tier2" type="xs:string" />
+                <xs:element minOccurs="0" name="Closure_Product_Category_Tier3" type="xs:string" />
+                <xs:element minOccurs="0" name="Work_Info_Notes" type="xs:string" />
+                <xs:element minOccurs="0" name="Work_Info_View_Access" nillable="true" type="xs:string" />
+                <xs:element minOccurs="0" name="Work_Info_Type" nillable="true" type="xs:string" />
+                <xs:element minOccurs="0" name="Attachment1_attachmentName" type="xs:string" />
+                <xs:element minOccurs="0" name="Attachment1_attachmentData" type="xs:base64Binary" />
+                <xs:element minOccurs="0" name="Attachment1_attachmentOrigSize" type="xs:int" />
+                <xs:element minOccurs="0" name="Attachment2_attachmentName" type="xs:string" />
+                <xs:element minOccurs="0" name="Attachment2_attachmentData" type="xs:base64Binary" />
+                <xs:element minOccurs="0" name="Attachment2_attachmentOrigSize" type="xs:int" />
+                <xs:element minOccurs="0" name="Attachment3_attachmentName" type="xs:string" />
+                <xs:element minOccurs="0" name="Attachment3_attachmentData" type="xs:base64Binary" />
+                <xs:element minOccurs="0" name="Attachment3_attachmentOrigSize" type="xs:int" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UPDATEResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="Resultado" type="xs:string" />
+                <xs:element minOccurs="0" name="Estado" nillable="true"  />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AuthenticationInfo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userName" type="xs:string" />
+                <xs:element name="password" type="xs:string" />
+                <xs:element minOccurs="0" name="authentication" type="xs:string" />
+                <xs:element minOccurs="0" name="locale" type="xs:string" />
+                <xs:element minOccurs="0" name="timeZone" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>

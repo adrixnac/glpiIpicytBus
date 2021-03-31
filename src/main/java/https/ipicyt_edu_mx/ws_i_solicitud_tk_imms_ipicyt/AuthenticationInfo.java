@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.03.23 a las 02:56:54 PM CST 
+// Generado el: 2021.03.31 a las 08:46:26 AM CST 
 //
 
 
@@ -11,16 +11,17 @@ package https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para AuthenticationInfo complex type.
+ * <p>Clase Java para anonymous complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="AuthenticationInfo">
+ * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -38,13 +39,14 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AuthenticationInfo", propOrder = {
+@XmlType(name = "", propOrder = {
     "userName",
     "password",
     "authentication",
     "locale",
     "timeZone"
 })
+@XmlRootElement(name = "AuthenticationInfo")
 public class AuthenticationInfo {
 
     @XmlElement(required = true)
