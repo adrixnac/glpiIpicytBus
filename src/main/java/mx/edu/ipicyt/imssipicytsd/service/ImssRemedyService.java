@@ -5,10 +5,9 @@ import https.ipicyt_edu_mx.ws_i_solicitud_tk_imms_ipicyt.OutputMapping1;
 import mx.edu.ipicyt.imssipicytsd.domain.Ticket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
-@Service
+
 public class ImssRemedyService extends WebServiceGatewaySupport {
     private final Logger log = LoggerFactory.getLogger(ImssRemedyService.class);
     public OutputMapping1 getImss(Ticket ticket){
@@ -16,7 +15,7 @@ public class ImssRemedyService extends WebServiceGatewaySupport {
         InputMapping1 inputMapping1 = new InputMapping1();
         inputMapping1.setNombreProducto(ticket.getNombreProducto());
         log.debug("--inputMapping1-- {}", inputMapping1.toString());
-        return (OutputMapping1) getWebServiceTemplate().marshalSendAndReceive(inputMapping1);
+        return (OutputMapping1) getWebServiceTemplate().marshalSendAndReceive("http://172.16.162.38//services/ARService?server=remedy&amp;webService=PCT_Actualiza_WS",inputMapping1);
 
     }
 }
