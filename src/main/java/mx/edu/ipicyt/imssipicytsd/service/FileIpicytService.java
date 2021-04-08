@@ -83,8 +83,8 @@ public class FileIpicytService {
 
     private String procesaFileToHost(String getIdRemedyGlpi , String attachmentFileName1, byte[] attachmentFileData1) throws IOException {
         log.debug("procesaFileToHost.attachmentFileName1 {}", attachmentFileName1);
-        Files.createDirectories(Paths.get("/tmp/storage/"+ getIdRemedyGlpi+"/"));
-        String urlPathFile = "/tmp/storage/"+ getIdRemedyGlpi+"/" + attachmentFileName1.trim().toLowerCase();
+        Files.createDirectories(Paths.get("/mnt/storage/"+ getIdRemedyGlpi+"/"));
+        String urlPathFile = "/mnt/storage/"+ getIdRemedyGlpi+"/" + attachmentFileName1.trim().toLowerCase();
         FileUtils.writeByteArrayToFile(new File(urlPathFile), attachmentFileData1);
         return urlPathFile;
 
