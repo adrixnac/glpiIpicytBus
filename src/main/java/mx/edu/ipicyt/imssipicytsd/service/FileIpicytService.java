@@ -91,7 +91,7 @@ public class FileIpicytService {
     }
 
     private FileResponse insertaArchivos(FileRequest fileRequest, String fileAttachment, FilesNotes result) {
-        fileRequest.setWorklogSummary(fileRequest.getWorklogSummary() + "<br /><strong>Para consultar el archivo visite el siguiente enlace</strong>:<br><a target='_blank' href='"+ glpiFilesUrl + result.getId()+"'>GLPI-Remedy Bus</a> " );
+        fileRequest.setWorklogSummary(fileRequest.getWorklogSummary() + "<br /><strong>Para consultar el archivo visite el siguiente enlace</strong>:<br><a target='_blank' href='"+ glpiFilesUrl + result.getIdRemedyGlpi()+"/" + result.getAttachmentFileName1() +"'>GLPI-Remedy Bus</a> " );
         String jsonString = this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(), fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
         return this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
 
