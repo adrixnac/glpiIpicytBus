@@ -21,7 +21,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Instant;
 
-
 @Service
 public class FileIpicytService {
     private final Logger log = LoggerFactory.getLogger(FileIpicytService.class);
@@ -29,7 +28,7 @@ public class FileIpicytService {
     private final String glpiToken;
     private final String glpiURL;
     private final String glpiFilesUrl;
-    
+
     private static final String BOUNDARY = "------------------------f34ed144c46e1ca7";
 
     public FileIpicytService(ApplicationProperties glpi) {
@@ -43,56 +42,60 @@ public class FileIpicytService {
         log.debug("PROCESA FILE {}", fileRequest.toString());
         FileResponse fileResponse = new FileResponse();
         String jsonString = "";
-        String fileAPath= "";
-        String fileBPath= "";
-        String fileCPath= "";
+        String fileAPath = "";
+        String fileBPath = "";
+        String fileCPath = "";
         String ptr = null;
-        String fileA= "";
-        String fileB= "";
-        String fileC= "";
+        String fileA = "";
+        String fileB = "";
+        String fileC = "";
 
-//        log.debug("fileRequest.getAttachmentFileData1() {}", fileRequest.getAttachmentFileName1().length());
-        /* la nota no tiene un archivo*/
+        // log.debug("fileRequest.getAttachmentFileData1() {}",
+        // fileRequest.getAttachmentFileName1().length());
+        /* la nota no tiene un archivo */
         try {
-            if (fileRequest.getAttachmentFileName1() == null && fileRequest.getAttachmentFileName2() == null && fileRequest.getAttachmentFileName3() == null ) {
+            if (fileRequest.getAttachmentFileName1() == null && fileRequest.getAttachmentFileName2() == null
+                    && fileRequest.getAttachmentFileName3() == null) {
                 log.debug("procesa file sin archivo");
-                jsonString = this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(), fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
-                fileResponse =this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
+                jsonString = this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(),
+                        fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
+                fileResponse = this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
             } else {
                 if (!fileRequest.getAttachmentFileName1().isEmpty()) {
                     log.debug("procesa atachment 1");
                     try {
-                        fileAPath = this.procesaFileToHost(fileRequest.getIdRemedyGlpi(), fileRequest.getAttachmentFileName1(), fileRequest.getAttachmentFileData1());
+                        fileAPath = this.procesaFileToHost(fileRequest.getIdRemedyGlpi(),
+                                fileRequest.getAttachmentFileName1(), fileRequest.getAttachmentFileData1());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     fileResponse = this.insertaArchivos(fileRequest, fileAPath, result);
                 }
-
-
             }
-        }
-        catch(NullPointerException e)
-        {
+        } catch (NullPointerException e) {
             System.out.print("Caught NullPointerException");
         }
-
 
         return fileResponse;
     }
 
-    private String procesaFileToHost(String getIdRemedyGlpi , String attachmentFileName1, byte[] attachmentFileData1) throws IOException {
+    private String procesaFileToHost(String getIdRemedyGlpi, String attachmentFileName1, byte[] attachmentFileData1)
+            throws IOException {
         log.debug("procesaFileToHost.attachmentFileName1 {}", attachmentFileName1);
-        Files.createDirectories(Paths.get("/mnt/storage/"+ getIdRemedyGlpi+"/"));
-        String urlPathFile = "/mnt/storage/"+ getIdRemedyGlpi+"/" + attachmentFileName1.trim().toLowerCase();
+        Files.createDirectories(Paths.get("/mnt/storage/" + getIdRemedyGlpi + "/"));
+        String urlPathFile = "/mnt/storage/" + getIdRemedyGlpi + "/" + attachmentFileName1.trim().toLowerCase();
         FileUtils.writeByteArrayToFile(new File(urlPathFile), attachmentFileData1);
         return urlPathFile;
 
     }
 
     private FileResponse insertaArchivos(FileRequest fileRequest, String fileAttachment, FilesNotes result) {
-        fileRequest.setWorklogSummary(fileRequest.getWorklogSummary() + "<br /><strong>Para consultar el archivo visite el siguiente enlace</strong>:<br><a target='_blank' href='"+ glpiFilesUrl + result.getIdRemedyGlpi()+"/" + result.getAttachmentFileName1() +"'>GLPI-Remedy Bus</a> " );
-        String jsonString = this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(), fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
+        fileRequest.setWorklogSummary(fileRequest.getWorklogSummary()
+                + "<br /><strong>Para consultar el archivo visite el siguiente enlace</strong>:<br><a target='_blank' href='"
+                + glpiFilesUrl + result.getIdRemedyGlpi() + "/" + result.getAttachmentFileName1()
+                + "'>GLPI-Remedy Bus</a> ");
+        String jsonString = this.insertaNotas(fileRequest.getWorkInfoNotes(), fileRequest.getWorklogSummary(),
+                fileRequest.getIdReferenciaCliente(), fileRequest.getIdRemedyGlpi());
         return this.updateTIcketGLPI(jsonString, fileRequest.getIdReferenciaCliente());
 
     }
@@ -104,13 +107,11 @@ public class FileIpicytService {
         String token = this.GetSession().getSession_token();
         Content content = null;
         try {
-            content = Request.Post("http://10.100.10.3/apirest.php/Ticket/"+idReferenciaCliente+"/ITILFollowup")
-                                .addHeader("Content-Type", "application/json")
-                                .addHeader("Session-Token", token)
-                                .addHeader("App-Token", "Dd&WSgu9qGn")
-                                .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
-                                .bodyString(jsonString, ContentType.APPLICATION_JSON)
-                                .execute().returnContent();
+            content = Request.Post(this.glpiURL + "/Ticket/" + idReferenciaCliente + "/ITILFollowup")
+                    .addHeader("Content-Type", "application/json").addHeader("Session-Token", token)
+                    .addHeader("App-Token", "Dd&WSgu9qGn")
+                    .addHeader("Authorization", "Basic aG90bGluZXIucmVzdDpxd2VyMTIzNA==")
+                    .bodyString(jsonString, ContentType.APPLICATION_JSON).execute().returnContent();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -122,7 +123,7 @@ public class FileIpicytService {
             return fileResponse;
         }
 
-        System.out.println("Contenido post"+ content);
+        System.out.println("Contenido post" + content);
         log.debug("Contenido Ipicyt: ", content.toString());
         fileResponse.setValue("NULL");
         fileResponse.setGlpiTicketsId("");
@@ -134,24 +135,24 @@ public class FileIpicytService {
 
     }
 
-
-    private String insertaNotas(String workInfoNotes, String worklogSummary, String idReferenciaCliente, String idRemedyGlpi) {
+    private String insertaNotas(String workInfoNotes, String worklogSummary, String idReferenciaCliente,
+            String idRemedyGlpi) {
         log.debug("insertaNotas  workInfoNotes {}", workInfoNotes);
         log.debug("insertaNotas  worklogSummary {}", worklogSummary);
         log.debug("insertaNotas  idReferenciaCliente {}", idReferenciaCliente);
         log.debug("insertaNotas  idRemedyGlpi {}", idRemedyGlpi);
-        String json= "{\"input\": {\"items_id\": \""+idRemedyGlpi+"\",\"itemtype\": \"Ticket\",\"is_private\": \"0\",\"requesttypes_id\": \"1\",\"content\":\""+idRemedyGlpi+":"+worklogSummary+"<br>"+workInfoNotes+ "\"}}";
+        String json = "{\"input\": {\"items_id\": \"" + idReferenciaCliente
+                + "\",\"itemtype\": \"Ticket\",\"is_private\": \"0\",\"requesttypes_id\": \"1\",\"content\":\""
+                + idRemedyGlpi + ":" + worklogSummary + "<br>" + workInfoNotes + "\"}}";
 
         log.debug("JSON RESULTADO {}", json);
         return json;
     }
 
-
-
-    private void creaJsonArchivos(FileRequest fileRequest){
+    private void creaJsonArchivos(FileRequest fileRequest) {
     }
 
-    private Session GetSession(){
+    private Session GetSession() {
         // Inicia Sesión (GET )
         log.debug("GLPI get session ");
         log.debug("Basic {} ", this.glpiAuthorization);
@@ -162,12 +163,10 @@ public class FileIpicytService {
             // Create request
             Content content = Request.Get(this.glpiURL + "/initSession")
 
-                // Add headers
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Authorization", "Basic " + this.glpiAuthorization)
-                .addHeader("App-Token", this.glpiToken)
-                .execute().returnContent();
-
+                    // Add headers
+                    .addHeader("Content-Type", "application/json")
+                    .addHeader("Authorization", "Basic " + this.glpiAuthorization)
+                    .addHeader("App-Token", this.glpiToken).execute().returnContent();
 
             // Print content
             Gson gson = new Gson();
@@ -176,8 +175,9 @@ public class FileIpicytService {
             Session session = gson.fromJson(object, Session.class);
             return session;
 
+        } catch (IOException e) {
+            System.out.println(e);
         }
-        catch (IOException e) { System.out.println(e); }
 
         return null;
     }
@@ -191,20 +191,19 @@ public class FileIpicytService {
             // Create request
             Content content = Request.Get(this.glpiURL + "/killSession/")
 
-                // Add headers
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Session-Token", token)
-                .addHeader("Authorization", "Basic " + this.glpiAuthorization)
-                .addHeader("App-Token", this.glpiToken)
+                    // Add headers
+                    .addHeader("Content-Type", "application/json").addHeader("Session-Token", token)
+                    .addHeader("Authorization", "Basic " + this.glpiAuthorization)
+                    .addHeader("App-Token", this.glpiToken)
 
-                // Fetch request and return content
-                .execute().returnContent();
+                    // Fetch request and return content
+                    .execute().returnContent();
 
             // Print content
             System.out.println(content);
+        } catch (IOException e) {
+            System.out.println(e);
         }
-        catch (IOException e) { System.out.println(e); }
     }
-
 
 }

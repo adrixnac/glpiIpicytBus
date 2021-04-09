@@ -49,7 +49,7 @@ public class TicketIpicytService {
         Content content = null;
         try {
             //content = Request.Post("http://0.0.0.0/apirest.php/Ticket/")
-            content = Request.Post("http://10.100.10.3/apirest.php/Ticket/")
+            content = Request.Post(glpiURL+"/Ticket/")
 
                 // Add headers
                 .addHeader("Content-Type", "application/json")
@@ -104,7 +104,7 @@ public class TicketIpicytService {
 
         try {
             //content = Request.Put("http://0.0.0.0/apirest.php/Ticket/"+ticket.getIdGlpi())
-            content = Request.Put("http://10.100.10.3/apirest.php/Ticket/"+ticket.getIdGlpi())
+            content = Request.Put(glpiURL + "/Ticket/"+ticket.getIdGlpi())
 
                 // Add headers
                 .addHeader("Content-Type", "application/json")
