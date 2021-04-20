@@ -34,7 +34,7 @@ public class SoapClientConfig {
     public ImssRemedyService imssRemedyService(Jaxb2Marshaller jaxb2Marshaller){
         log.debug("-- imssRemedyService --");
         ImssRemedyService imssRemedyService = new ImssRemedyService();
-        imssRemedyService.setDefaultUri("http://172.16.162.38//services/ARService?server=remedy&amp;webService=PCT_Actualiza_WS");
+        imssRemedyService.setDefaultUri("http://localhost:3336//services/ARService?server=remedy&amp;webService=PCT_Actualiza_WS");
         imssRemedyService.setMarshaller(jaxb2Marshaller);
         imssRemedyService.setUnmarshaller(jaxb2Marshaller);
         return imssRemedyService;
