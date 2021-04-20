@@ -15,7 +15,7 @@ public class ImssRemedyService extends WebServiceGatewaySupport {
         InputMapping1 inputMapping1 = new InputMapping1();
         inputMapping1.setNombreProducto(ticket.getNombreProducto());
         log.debug("--inputMapping1-- {}", inputMapping1.toString());
-        return (OutputMapping1) getWebServiceTemplate().marshalSendAndReceive("http://localhost:3336//services/ARService?server=remedy&amp;webService=PCT_Actualiza_WS",inputMapping1);
+        return (OutputMapping1) getWebServiceTemplate().marshalSendAndReceive("http://http://172.16.162.38/services/ARService?server=remedy&amp;webService=PCT_Actualiza_WS",inputMapping1);
 
     }
 }
