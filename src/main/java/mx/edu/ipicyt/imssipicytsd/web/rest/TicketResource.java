@@ -23,11 +23,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.io.ByteArrayInputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 import javax.xml.soap.*;
+import javax.xml.transform.stream.StreamSource;
 
 /**
  * REST controller for managing Ticket.
@@ -68,7 +71,7 @@ public class TicketResource {
 
             // Send SOAP Message to SOAP Server
             String url = "http://172.16.162.38/services/ARService?server=remedy&webService=PCT_Actualiza_WS";
-            SOAPMessage soapResponse = soapConnection.call(UpdateTicketResueltoSOAPRequest(), url);
+            SOAPMessage soapResponse = soapConnection.call(UpdateTicketWithFileSOAPRequest(), url);
 
             // print SOAP Response
             System.out.print("Response SOAP Message:");
@@ -84,24 +87,26 @@ public class TicketResource {
         }
 
         return createTicket(ticket);
-        /*Ticket result = new Ticket();// ticketRepository.save(ticket);
-        GlpiResponse glpiResponse = new GlpiResponse();
-        // glpiResponse = this.ticketIpicytService.createTicket(ticket);
-        log.debug("REST request to save GlpiResponse : {}", glpiResponse);
-        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(
-                SoapClientConfig.class);
-        ImssRemedyService imssRemedyService = annotationConfigApplicationContext.getBean(ImssRemedyService.class);
-        OutputMapping1 imssResult = imssRemedyService.getImss(ticket);
-
-        if (imssResult != null) {
-            log.debug("IMSS funcionando {}", imssResult.toString());
-        } else {
-            log.debug("IMSS no funcionando {}", imssResult.toString());
-        }
-
-        log.debug("REST request to save Remedy Response : {}", glpiResponse);
-        return ResponseEntity.created(new URI("/api/tickets/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);*/
+        /*
+         * Ticket result = new Ticket();// ticketRepository.save(ticket); GlpiResponse
+         * glpiResponse = new GlpiResponse(); // glpiResponse =
+         * this.ticketIpicytService.createTicket(ticket);
+         * log.debug("REST request to save GlpiResponse : {}", glpiResponse);
+         * AnnotationConfigApplicationContext annotationConfigApplicationContext = new
+         * AnnotationConfigApplicationContext( SoapClientConfig.class);
+         * ImssRemedyService imssRemedyService =
+         * annotationConfigApplicationContext.getBean(ImssRemedyService.class);
+         * OutputMapping1 imssResult = imssRemedyService.getImss(ticket);
+         * 
+         * if (imssResult != null) { log.debug("IMSS funcionando {}",
+         * imssResult.toString()); } else { log.debug("IMSS no funcionando {}",
+         * imssResult.toString()); }
+         * 
+         * log.debug("REST request to save Remedy Response : {}", glpiResponse); return
+         * ResponseEntity.created(new URI("/api/tickets/" + result.getId()))
+         * .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME,
+         * result.getId().toString())).body(result);
+         */
     }
 
     private static SOAPMessage UpdateTicketSOAPRequest() throws Exception {
@@ -146,7 +151,7 @@ public class TicketResource {
         soapBodyElem6.addTextNode("INC840604");
 
         SOAPElement soapBodyElem7 = soapBodyElem.addChildElement("Work_Info_Notes", "urn");
-        soapBodyElem7.addTextNode("Se cambia a resuelto");
+        soapBodyElem7.addTextNode("Se cambia a en curso");
 
         SOAPElement soapBodyElem8 = soapBodyElem.addChildElement("Work_Info_View_Access", "urn");
         soapBodyElem8.addTextNode("Public");
@@ -154,7 +159,7 @@ public class TicketResource {
         SOAPElement soapBodyElem9 = soapBodyElem.addChildElement("Work_Info_Type", "urn");
         soapBodyElem9.addTextNode("General Information");
 
-        soapBodyElem.addChildElement("Status", "urn").addTextNode("Resolved");
+        soapBodyElem.addChildElement("Status", "urn").addTextNode("In Progress");
         soapBodyElem.addChildElement("Resolution", "urn").addTextNode("Todo Ok");
 
         SOAPHeader header = envelope.getHeader();
@@ -259,7 +264,6 @@ public class TicketResource {
         return soapMessage;
     }
 
-
     private static SOAPMessage UpdateTicketResueltoSOAPRequest() throws Exception {
         MessageFactory messageFactory = MessageFactory.newInstance();
         SOAPMessage soapMessage = messageFactory.createMessage();
@@ -311,12 +315,13 @@ public class TicketResource {
         soapBodyElem.addChildElement("Resolution", "urn").addTextNode("Todo Ok");
         soapBodyElem.addChildElement("Resolution_Category", "urn").addTextNode("APLICACIONES Y SOFTWARE");
         soapBodyElem.addChildElement("Resolution_Category_Tier_2", "urn").addTextNode("ERROR EN CONFIGURACION");
-        soapBodyElem.addChildElement("Resolution_Category_Tier_3", "urn").addTextNode("SE REALIZA CONFIGURACION REQUERIDA");
+        soapBodyElem.addChildElement("Resolution_Category_Tier_3", "urn")
+                .addTextNode("SE REALIZA CONFIGURACION REQUERIDA");
 
         soapBodyElem.addChildElement("Closure_Product_Category_Tier1", "urn").addTextNode("SW ABASTO Y RH");
         soapBodyElem.addChildElement("Closure_Product_Category_Tier2", "urn").addTextNode("RECURSOS HUMANOS");
-        soapBodyElem.addChildElement("Closure_Product_Category_Tier3", "urn").addTextNode("SIAP (SISTEMA INTEGRAL DE ADMINISTRACION DE PERSONAL)");
-
+        soapBodyElem.addChildElement("Closure_Product_Category_Tier3", "urn")
+                .addTextNode("SIAP (SISTEMA INTEGRAL DE ADMINISTRACION DE PERSONAL)");
 
         SOAPHeader header = envelope.getHeader();
 
@@ -334,6 +339,145 @@ public class TicketResource {
 
         soapMessage.saveChanges();
 
+        /* Print the request message */
+        System.out.print("Request SOAP Message:");
+        soapMessage.writeTo(System.out);
+        System.out.println();
+
+        return soapMessage;
+    }
+
+    private static SOAPMessage UpdateTicketWithFileSOAPRequest() throws Exception {
+        MessageFactory messageFactory = MessageFactory.newInstance();
+        SOAPMessage soapMessage = messageFactory.createMessage();
+        SOAPPart soapPart = soapMessage.getSOAPPart();
+
+        String serverURI = "PCT_Actualiza_WS";
+
+        // SOAP Envelope
+        SOAPEnvelope envelope = soapPart.getEnvelope();
+        envelope.addNamespaceDeclaration("urn", serverURI);
+
+        SOAPBody soapBody = envelope.getBody();
+        SOAPElement soapBodyElem = soapBody.addChildElement("UPDATE", "urn");
+
+        soapBodyElem.addChildElement("Impact", "urn").addTextNode("1-Extensive/Widespread");
+        soapBodyElem.addChildElement("Urgency", "urn").addTextNode("1-Critical");
+        soapBodyElem.addChildElement("Action", "urn").addTextNode("UPDATE");
+        soapBodyElem.addChildElement("Ticket_Proveedor__c", "urn").addTextNode("2021030016");
+        soapBodyElem.addChildElement("Type", "urn").addTextNode("Incidente");
+        soapBodyElem.addChildElement("Ticket_Number", "urn").addTextNode("INC840394");
+        soapBodyElem.addChildElement("Work_Info_Notes", "urn").addTextNode("Intento de Archivo");
+        soapBodyElem.addChildElement("Work_Info_View_Access", "urn").addTextNode("Public");
+        soapBodyElem.addChildElement("Work_Info_Type", "urn").addTextNode("General Information");
+
+        // soapBodyElem.addChildElement("Status", "urn").addTextNode("In Progres");
+        // soapBodyElem.addChildElement("Resolution", "urn").addTextNode("Todo Ok");
+
+        SOAPHeader header = envelope.getHeader();
+        SOAPElement security = header.addChildElement("AuthenticationInfo", "urn");
+        security.addChildElement("userName", "urn").addTextNode("ws.usuario_imss");
+        security.addChildElement("password", "urn").addTextNode("KUH7864SR...ghd");
+
+        MimeHeaders headers = soapMessage.getMimeHeaders();
+        headers.addHeader("Content-Type", "text/xml");
+        headers.addHeader("userName", "ws.usuario_imss");
+        headers.addHeader("password", "KUH7864SR...ghd");
+
+
+        AttachmentPart attachment = soapMessage.createAttachmentPart();
+        String stringContent = "Update address for Sunny Skies "
+                + "Inc., to 10 Upbeat Street, Pleasant Grove, CA 95439";
+
+        attachment.setContent(stringContent, "text/plain");
+        attachment.setContentId("update_address");
+
+        soapMessage.addAttachmentPart(attachment);
+
+        soapBodyElem.addChildElement("Attachment1_attachmentName", "urn").addTextNode("");
+        soapBodyElem.addChildElement("Attachment1_attachmentData", "urn").addTextNode(attachment.getContentId());
+        soapBodyElem.addChildElement("Attachment1_attachmentOrigSize", "urn")
+                .addTextNode(Integer.toString(attachment.getSize()));
+
+        soapMessage.saveChanges();
+        /* Print the request message */
+        System.out.print("Request SOAP Message:");
+        soapMessage.writeTo(System.out);
+        System.out.println();
+
+        return soapMessage;
+    }
+
+    private static SOAPMessage UpdateWOSOAPRequest() throws Exception {
+        MessageFactory messageFactory = MessageFactory.newInstance();
+        SOAPMessage soapMessage = messageFactory.createMessage();
+        SOAPPart soapPart = soapMessage.getSOAPPart();
+
+        String serverURI = "PCT_Actualiza_WS";
+
+        // SOAP Envelope
+        SOAPEnvelope envelope = soapPart.getEnvelope();
+        envelope.addNamespaceDeclaration("urn", serverURI);
+
+        SOAPBody soapBody = envelope.getBody();
+        SOAPElement soapBodyElem = soapBody.addChildElement("UPDATE", "urn");
+
+        soapBodyElem.addChildElement("Priority", "urn").addTextNode("3");
+        soapBodyElem.addChildElement("Action", "urn").addTextNode("UPDATE");
+        soapBodyElem.addChildElement("Ticket_Proveedor__c", "urn").addTextNode("2021040007");
+        soapBodyElem.addChildElement("Type", "urn").addTextNode("WorkOrder");
+        soapBodyElem.addChildElement("Ticket_Number", "urn").addTextNode("WO1260511");
+        soapBodyElem.addChildElement("Work_Info_Notes", "urn").addTextNode("Actualización WO IPICYT BUS");
+        soapBodyElem.addChildElement("Work_Info_View_Access", "urn").addTextNode("Public");
+        soapBodyElem.addChildElement("Work_Info_Type", "urn").addTextNode("General Information");
+
+        soapBodyElem.addChildElement("Status", "urn").addTextNode("In Progress");
+        // soapBodyElem.addChildElement("Resolution", "urn").addTextNode("Todo Ok");
+
+        SOAPHeader header = envelope.getHeader();
+        SOAPElement security = header.addChildElement("AuthenticationInfo", "urn");
+        security.addChildElement("userName", "urn").addTextNode("ws.usuario_imss");
+        security.addChildElement("password", "urn").addTextNode("KUH7864SR...ghd");
+
+        soapMessage.saveChanges();
+        /* Print the request message */
+        System.out.print("Request SOAP Message:");
+        soapMessage.writeTo(System.out);
+        System.out.println();
+
+        return soapMessage;
+    }
+
+    private static SOAPMessage UpdateResolveWOSOAPRequest() throws Exception {
+        MessageFactory messageFactory = MessageFactory.newInstance();
+        SOAPMessage soapMessage = messageFactory.createMessage();
+        SOAPPart soapPart = soapMessage.getSOAPPart();
+
+        String serverURI = "PCT_Actualiza_WS";
+
+        // SOAP Envelope
+        SOAPEnvelope envelope = soapPart.getEnvelope();
+        envelope.addNamespaceDeclaration("urn", serverURI);
+
+        SOAPBody soapBody = envelope.getBody();
+        SOAPElement soapBodyElem = soapBody.addChildElement("UPDATE", "urn");
+
+        soapBodyElem.addChildElement("Priority", "urn").addTextNode("3");
+        soapBodyElem.addChildElement("Action", "urn").addTextNode("UPDATE");
+        soapBodyElem.addChildElement("Ticket_Proveedor__c", "urn").addTextNode("2021040007");
+        soapBodyElem.addChildElement("Type", "urn").addTextNode("WorkOrder");
+        soapBodyElem.addChildElement("Ticket_Number", "urn").addTextNode("WO1260511");
+        soapBodyElem.addChildElement("Work_Info_Notes", "urn").addTextNode("Finaliza WO IPICYT BUS");
+        soapBodyElem.addChildElement("Work_Info_View_Access", "urn").addTextNode("Public");
+        soapBodyElem.addChildElement("Work_Info_Type", "urn").addTextNode("General Information");
+
+        soapBodyElem.addChildElement("Status", "urn").addTextNode("Resolved");
+        SOAPHeader header = envelope.getHeader();
+        SOAPElement security = header.addChildElement("AuthenticationInfo", "urn");
+        security.addChildElement("userName", "urn").addTextNode("ws.usuario_imss");
+        security.addChildElement("password", "urn").addTextNode("KUH7864SR...ghd");
+
+        soapMessage.saveChanges();
         /* Print the request message */
         System.out.print("Request SOAP Message:");
         soapMessage.writeTo(System.out);
