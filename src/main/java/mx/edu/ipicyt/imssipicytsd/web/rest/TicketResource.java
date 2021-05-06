@@ -27,6 +27,7 @@ import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import javax.xml.soap.*;
@@ -66,11 +67,10 @@ public class TicketResource {
         try {
 
             // Create SOAP Connection
-            SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
-            SOAPConnection soapConnection = soapConnectionFactory.createConnection();
+            SOAPConnection soapConnection = SOAPConnectionFactory.newInstance().createConnection();
 
             // Send SOAP Message to SOAP Server
-            String url = "http://172.16.162.38/services/ARService?server=remedy&webService=PCT_Actualiza_WS";
+            String url = "http://localhost:3336/services/ARService?server=remedy&webService=PCT_Actualiza_WS";
             SOAPMessage soapResponse = soapConnection.call(UpdateTicketWithFileSOAPRequest(), url);
 
             // print SOAP Response
@@ -81,6 +81,7 @@ public class TicketResource {
 
         } catch (Exception e) {
             // TODO: handle exception
+            log.debug(e.getMessage());
         }
         if (ticket.getId() != null) {
             throw new BadRequestAlertException("A new ticket cannot already have an ID", ENTITY_NAME, "idexists");
@@ -348,8 +349,7 @@ public class TicketResource {
     }
 
     private static SOAPMessage UpdateTicketWithFileSOAPRequest() throws Exception {
-        MessageFactory messageFactory = MessageFactory.newInstance();
-        SOAPMessage soapMessage = messageFactory.createMessage();
+        SOAPMessage soapMessage = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL).createMessage();
         SOAPPart soapPart = soapMessage.getSOAPPart();
 
         String serverURI = "PCT_Actualiza_WS";
@@ -364,14 +364,13 @@ public class TicketResource {
         soapBodyElem.addChildElement("Impact", "urn").addTextNode("1-Extensive/Widespread");
         soapBodyElem.addChildElement("Urgency", "urn").addTextNode("1-Critical");
         soapBodyElem.addChildElement("Action", "urn").addTextNode("UPDATE");
-        soapBodyElem.addChildElement("Ticket_Proveedor__c", "urn").addTextNode("2021030016");
+        soapBodyElem.addChildElement("Ticket_Proveedor__c", "urn").addTextNode("2021040002");
         soapBodyElem.addChildElement("Type", "urn").addTextNode("Incidente");
-        soapBodyElem.addChildElement("Ticket_Number", "urn").addTextNode("INC840394");
+        soapBodyElem.addChildElement("Ticket_Number", "urn").addTextNode("INC840391");
         soapBodyElem.addChildElement("Work_Info_Notes", "urn").addTextNode("Intento de Archivo");
         soapBodyElem.addChildElement("Work_Info_View_Access", "urn").addTextNode("Public");
         soapBodyElem.addChildElement("Work_Info_Type", "urn").addTextNode("General Information");
-
-        // soapBodyElem.addChildElement("Status", "urn").addTextNode("In Progres");
+        soapBodyElem.addChildElement("Status", "urn").addTextNode("In Progress");
         // soapBodyElem.addChildElement("Resolution", "urn").addTextNode("Todo Ok");
 
         SOAPHeader header = envelope.getHeader();
@@ -379,27 +378,33 @@ public class TicketResource {
         security.addChildElement("userName", "urn").addTextNode("ws.usuario_imss");
         security.addChildElement("password", "urn").addTextNode("KUH7864SR...ghd");
 
-        MimeHeaders headers = soapMessage.getMimeHeaders();
-        headers.addHeader("Content-Type", "text/xml");
-        headers.addHeader("userName", "ws.usuario_imss");
-        headers.addHeader("password", "KUH7864SR...ghd");
-
+        String cid = "1111330292904";
+        soapBodyElem.addChildElement("Attachment1_attachmentName", "urn").addTextNode("ejemplo.txt");
+        soapBodyElem.addChildElement("Attachment1_attachmentData", "urn").addTextNode("cid:" + cid);
+        soapBodyElem.addChildElement("Attachment1_attachmentOrigSize", "urn")
+                .addTextNode("");
 
         AttachmentPart attachment = soapMessage.createAttachmentPart();
         String stringContent = "Update address for Sunny Skies "
                 + "Inc., to 10 Upbeat Street, Pleasant Grove, CA 95439";
 
+        
         attachment.setContent(stringContent, "text/plain");
-        attachment.setContentId("update_address");
+        attachment.setMimeHeader("Content-Type", "text/xml");
+        attachment.setContentId("<" + cid + ">");
 
+        soapMessage.getMimeHeaders().addHeader(HttpHeaders.CONTENT_TYPE, "text/xml");
         soapMessage.addAttachmentPart(attachment);
 
-        soapBodyElem.addChildElement("Attachment1_attachmentName", "urn").addTextNode("");
-        soapBodyElem.addChildElement("Attachment1_attachmentData", "urn").addTextNode(attachment.getContentId());
-        soapBodyElem.addChildElement("Attachment1_attachmentOrigSize", "urn")
-                .addTextNode(Integer.toString(attachment.getSize()));
 
+        
         soapMessage.saveChanges();
+        /*
+         * Iterator<MimeHeader> imh = soapMessage.getMimeHeaders().getAllHeaders();
+         * while(imh.hasNext()){ MimeHeader head = imh.next();
+         * if(head.getName()=="Content-Type"){ head. } }
+         */
+
         /* Print the request message */
         System.out.print("Request SOAP Message:");
         soapMessage.writeTo(System.out);
